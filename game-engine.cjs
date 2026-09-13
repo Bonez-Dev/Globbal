@@ -3,6 +3,7 @@
 const fs = require("fs");
 const { buildPlayableDictionary } = require("./dictionary-keys.js");
 const { moveRackSlots, remapRackIndicesAfterMove } = require("./rack-move.cjs");
+const { shouldTriggerBonus, scoreBonusAnswer } = require("./bonus-round.cjs");
 const path = require("path");
 
 const BOARD_COLS = 15;
@@ -274,6 +275,8 @@ class OnlineGame {
     this.lastScoredWords = [];
     /** @type {{ text: string, score: number }[]} */
     this.playedWordScores = [];
+    this.totalSubmitCount = 0;
+    this.bonusState = null;
   }
 
   initGame() {
@@ -298,6 +301,48 @@ class OnlineGame {
     this.lastScoredWords = [];
     this.playedWordScores = [];
     this.lastMessage = "";
+    this.totalSubmitCount = 0;
+    this.bonusState = null;
+  }
+
+  isBonusBlocking() {
+    return Boolean(this.bonusState && !this.bonusState.complete);
+  }
+
+  beginBonusRound(submittingPlayer, question) {
+    this.bonusState = {
+      submittingPlayer: submittingPlayer === 1 ? 1 : 0,
+      activePlayerIndex: submittingPlayer === 1 ? 1 : 0,
+      answers: [null, null],
+      question,
+      complete: false
+    };
+  }
+
+  submitBonusAnswer(playerIndex, choiceIndex) {
+    if (!this.bonusState || this.bonusState.complete) {
+      return { ok: false, error: "No bonus round active." };
+    }
+    const bs = this.bonusState;
+    if (playerIndex !== bs.activePlayerIndex) {
+      return { ok: false, error: "Wait for your opponent in the bonus round." };
+    }
+    if (bs.answers[playerIndex] != null) {
+      return { ok: false, error: "You already answered." };
+    }
+    const points = scoreBonusAnswer(bs.question, choiceIndex);
+    bs.answers[playerIndex] = points;
+
+    if (playerIndex === bs.submittingPlayer) {
+      bs.activePlayerIndex = playerIndex === 0 ? 1 : 0;
+      return { ok: true, points };
+    }
+
+    this.players[0].score += Number(bs.answers[0]) || 0;
+    this.players[1].score += Number(bs.answers[1]) || 0;
+    this.bonusState = null;
+    this.lastMessage = "Bonus round complete.";
+    return { ok: true, points, complete: true };
   }
 
   createTileBag() {
@@ -422,7 +467,17 @@ class OnlineGame {
         rackIndex,
         tile: this.cloneTile(tile)
       })),
-      boardTiles
+      boardTiles,
+      totalSubmitCount: this.totalSubmitCount || 0,
+      bonusState: this.bonusState
+        ? {
+            submittingPlayer: this.bonusState.submittingPlayer,
+            activePlayerIndex: this.bonusState.activePlayerIndex,
+            answers: this.bonusState.answers.slice(),
+            question: this.bonusState.question,
+            complete: !!this.bonusState.complete
+          }
+        : null
     };
   }
 
@@ -498,6 +553,19 @@ class OnlineGame {
           score: Number(w?.score) || 0
         }))
       : [];
+    this.totalSubmitCount = Number(snapshot.totalSubmitCount) || 0;
+    this.bonusState =
+      snapshot.bonusState && snapshot.bonusState.question
+        ? {
+            submittingPlayer: snapshot.bonusState.submittingPlayer === 1 ? 1 : 0,
+            activePlayerIndex: snapshot.bonusState.activePlayerIndex === 1 ? 1 : 0,
+            answers: Array.isArray(snapshot.bonusState.answers)
+              ? snapshot.bonusState.answers.slice(0, 2)
+              : [null, null],
+            question: snapshot.bonusState.question,
+            complete: !!snapshot.bonusState.complete
+          }
+        : null;
     return true;
   }
 
@@ -548,11 +616,25 @@ class OnlineGame {
             text: w.text,
             score: Number(w.score) || 0
           }))
-        : []
+        : [],
+      totalSubmitCount: this.totalSubmitCount || 0,
+      bonusState: this.bonusState
+        ? {
+            submittingPlayer: this.bonusState.submittingPlayer,
+            activePlayerIndex: this.bonusState.activePlayerIndex,
+            answers: this.bonusState.answers.slice(),
+            question: this.bonusState.question,
+            complete: !!this.bonusState.complete
+          }
+        : null,
+      inBonusRound: this.isBonusBlocking()
     };
   }
 
   assertTurn(playerIndex) {
+    if (this.isBonusBlocking()) {
+      return { ok: false, error: "Bonus round in progress." };
+    }
     if (!this.gameStarted || this.gameOver) {
       return { ok: false, error: "Game not active." };
     }
@@ -690,10 +772,15 @@ class OnlineGame {
       return { ok: true };
     }
 
+    this.totalSubmitCount = (this.totalSubmitCount || 0) + 1;
+    const triggerBonus =
+      shouldTriggerBonus(this.totalSubmitCount, "online") && !this.bonusState;
+    const submittingPlayer = playerIndex;
+
     const scorerName = this.players[playerIndex].name;
     this.currentPlayer = playerIndex === 0 ? 1 : 0;
     this.lastMessage = `${scorerName} scores ${points}.`;
-    return { ok: true };
+    return { ok: true, triggerBonus, submittingPlayer };
   }
 
   validateTurn() {

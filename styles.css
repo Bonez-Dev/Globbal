@@ -1624,6 +1624,55 @@ body.wiki-reveal-open .play-layout {
   mix-blend-mode: soft-light;
 }
 
+.cell.dw.cell-start {
+  --cell-tint: #a8b0b8;
+  border-color: color-mix(in srgb, #606878 55%, var(--board-grid-line));
+  background-color: #b0b8c0;
+  background-image:
+    linear-gradient(
+      145deg,
+      #f4f6f8 0%,
+      #e0e4e8 14%,
+      #c8ccd4 30%,
+      #989ea8 46%,
+      #d0d4dc 58%,
+      #9098a4 74%,
+      #c4c8d0 88%,
+      #787f88 100%
+    ),
+    repeating-linear-gradient(
+      118deg,
+      rgba(255, 255, 255, 0.2) 0 1px,
+      transparent 1px 5px
+    ),
+    radial-gradient(ellipse 88% 58% at 22% 11%, rgba(255, 255, 255, 0.58), transparent 54%);
+  box-shadow:
+    inset 0 2px 5px rgba(255, 255, 255, 0.74),
+    inset 0 -2px 5px rgba(48, 52, 58, 0.3),
+    inset 2px 0 3px rgba(255, 255, 255, 0.36),
+    inset -2px 0 4px rgba(56, 60, 68, 0.2),
+    0 0 0 1px rgba(220, 224, 232, 0.44),
+    0 1px 2px rgba(160, 168, 180, 0.26);
+}
+
+.cell.dw.cell-start::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 48% 38% at 20% 9%, rgba(255, 255, 255, 0.62), transparent 72%),
+    linear-gradient(
+      168deg,
+      rgba(255, 255, 255, 0.52) 0%,
+      rgba(255, 255, 255, 0.12) 28%,
+      transparent 46%,
+      rgba(48, 52, 58, 0.1) 100%
+    );
+  mix-blend-mode: soft-light;
+}
+
 .cell:hover,
 .cell:focus-visible {
   cursor: pointer;
@@ -1653,6 +1702,36 @@ body.wiki-reveal-open .play-layout {
     inset 0 -1px 3px rgba(72, 46, 28, 0.18),
     0 0 0 2px rgba(232, 196, 140, 0.55);
   z-index: 2;
+}
+
+.cell.dw.cell-start:hover,
+.cell.dw.cell-start:focus-visible {
+  border-color: color-mix(in srgb, #506068 65%, var(--board-grid-line));
+  background-color: #bcc4cc;
+  background-image:
+    linear-gradient(
+      145deg,
+      #fafbfd 0%,
+      #e8ecf0 14%,
+      #d0d6dc 28%,
+      #a0a8b0 44%,
+      #dce0e6 56%,
+      #989ea8 72%,
+      #d4d8de 86%,
+      #808890 100%
+    ),
+    repeating-linear-gradient(
+      118deg,
+      rgba(255, 255, 255, 0.24) 0 1px,
+      transparent 1px 5px
+    ),
+    radial-gradient(ellipse 88% 58% at 22% 11%, rgba(255, 255, 255, 0.68), transparent 54%);
+  box-shadow:
+    inset 0 2px 6px rgba(255, 255, 255, 0.86),
+    inset 0 -2px 6px rgba(48, 52, 58, 0.26),
+    inset 2px 0 4px rgba(255, 255, 255, 0.42),
+    0 0 0 1px rgba(232, 236, 244, 0.52),
+    0 1px 3px rgba(168, 176, 188, 0.32);
 }
 
 .cell.qw:hover,
@@ -1975,9 +2054,15 @@ body.wiki-reveal-open .play-layout {
 }
 
 .cell.cell-start .premium-label {
+  position: relative;
+  z-index: 1;
   font-size: clamp(0.3rem, 36cqmin, 0.68rem);
   letter-spacing: -0.07em;
   padding: 0;
+  color: #343840;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.88),
+    0 -1px 0 rgba(72, 76, 84, 0.28);
 }
 
 .tile {

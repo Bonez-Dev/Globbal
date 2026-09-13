@@ -212,9 +212,11 @@ let rackShufflePendingAnimation = false;
 let shufflePrevRack = null;
 let shuffleSlotSources = null;
 let rackReturnAnimating = false;
+let totalSubmitCount = 0;
 
 function initGame() {
   window.GlobblePracticeResume?.clearSaved();
+  totalSubmitCount = 0;
   board = Array.from({ length: BOARD_ROWS }, (_, row) =>
     Array.from({ length: BOARD_COLS }, (_, col) => ({
       premium: PREMIUM_LAYOUT[row][col],
@@ -230,6 +232,7 @@ function initGame() {
   drawToRack(0);
   drawToRack(1);
   currentPlayer = 0;
+  totalSubmitCount = 0;
   resetPracticeTestRackState();
   applyPracticeTestRackForTurnStart(currentPlayer);
   selectedRackIndex = null;
@@ -364,6 +367,7 @@ function placeDemoWords() {
 
 function initDemoGame() {
   window.GlobblePracticeResume?.clearSaved();
+  totalSubmitCount = 0;
   board = Array.from({ length: BOARD_ROWS }, (_, row) =>
     Array.from({ length: BOARD_COLS }, (_, col) => ({
       premium: PREMIUM_LAYOUT[row][col],
@@ -1638,6 +1642,8 @@ async function submitTurn() {
     return;
   }
 
+  totalSubmitCount += 1;
+
   const deferPlaceDetails = () => {
     setMessage(scoreLine, scoredWords);
     if (qwWordScored) {
@@ -1656,11 +1662,35 @@ async function submitTurn() {
     }
     bindSubmittedTilePlaceTips(lockedPositions);
   };
-  if (typeof requestIdleCallback === "function") {
-    requestIdleCallback(deferPlaceDetails, { timeout: 120 });
-  } else {
-    window.setTimeout(deferPlaceDetails, 0);
+
+  const schedulePlaceDetails = () => {
+    if (typeof requestIdleCallback === "function") {
+      requestIdleCallback(deferPlaceDetails, { timeout: 120 });
+    } else {
+      window.setTimeout(deferPlaceDetails, 0);
+    }
+  };
+
+  const wantBonus = window.GlobbleBonusRound?.shouldTriggerBonus?.(totalSubmitCount, "practice");
+  const bonusOffline = typeof navigator !== "undefined" && navigator.onLine === false;
+  if (wantBonus && bonusOffline) {
+    setMessage(`${scoreLine} Bonus round skipped (offline).`);
+    schedulePlaceDetails();
+    return;
   }
+
+  if (wantBonus && window.GlobblePracticeBonus?.launchPracticeBonus) {
+    const snap = capturePracticeSnapshot();
+    snap.totalSubmitCount = totalSubmitCount;
+    void window.GlobblePracticeBonus.launchPracticeBonus(submittingPlayer, snap).catch((err) => {
+      console.error(err);
+      setMessage("Could not start bonus round — continuing the game.");
+      schedulePlaceDetails();
+    });
+    return;
+  }
+
+  schedulePlaceDetails();
 }
 
 function validateTurn() {
@@ -1966,6 +1996,7 @@ function capturePracticeSnapshot() {
       rackIndex,
       tile: cloneTile(tile)
     })),
+    totalSubmitCount,
     messageText: messageEl?.textContent || ""
   };
 }
@@ -1984,6 +2015,7 @@ function restorePracticeSnapshot(snapshot) {
     rack: player.rack.map((tile) => (tile ? { ...tile } : null))
   }));
   currentPlayer = snapshot.currentPlayer;
+  totalSubmitCount = Number(snapshot.totalSubmitCount) || 0;
   selectedRackIndex = null;
   turnPlacedTiles = snapshot.turnPlacedTiles.map(({ row, col, tile, rackIndex }) => ({
     row,

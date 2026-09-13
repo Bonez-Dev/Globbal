@@ -1,9 +1,9 @@
 /**
- * Adds plains, valleys, islands (>= 10 sq mi), and continents to the dictionary.
+ * Adds plains, valleys, and continents to the dictionary.
+ * Large islands (>= 400 sq mi) are handled by scripts/add-islands-to-dictionary.cjs.
  *
  * Sources:
  *  - data/world-continents.json
- *  - data/world-islands.json (build with scripts/build-world-islands-data.cjs)
  *  - GeoNames allCountries.txt (feature class T; CC-BY-4.0)
  *
  * Run: node scripts/add-landforms-to-dictionary.cjs
@@ -16,14 +16,11 @@ const ROOT = path.resolve(__dirname, "..");
 const DICT_PATH = path.join(ROOT, "dictionary.js");
 const META_PATH = path.join(ROOT, "place-metadata.json");
 const CONTINENTS_PATH = path.join(ROOT, "data", "world-continents.json");
-const ISLANDS_PATH = path.join(ROOT, "data", "world-islands.json");
 const CACHE = path.join(ROOT, "geonames-cache");
 const ALL_COUNTRIES_TXT = path.join(CACHE, "allCountries.txt");
 const COUNTRY_INFO_PATH = path.join(CACHE, "countryInfo.txt");
 const { compactWord, displayWord, isPlayableDictionaryWord } = require(path.join(ROOT, "dictionary-keys.js"));
 const { normalizeCountry } = require("./city-country-resolver.cjs");
-
-const MIN_ISLAND_AREA_KM2 = 26; // 10 square miles
 
 function loadLockedWords() {
   const src = fs.readFileSync(DICT_PATH, "utf8");
@@ -99,6 +96,7 @@ function isProtectedEntry(meta) {
     meta.kind === "mountain" ||
     meta.kind === "mountainRange" ||
     meta.kind === "hill" ||
+    meta.kind === "island" ||
     ["ocean", "sea", "bay", "gulf", "bight"].includes(meta.kind)
   );
 }
@@ -134,31 +132,13 @@ function upsertCandidate(map, candidate) {
 }
 
 function loadCuratedRows() {
-  const continents = JSON.parse(fs.readFileSync(CONTINENTS_PATH, "utf8")).map((row) => ({
+  return JSON.parse(fs.readFileSync(CONTINENTS_PATH, "utf8")).map((row) => ({
     word: displayWord(row.name),
     kind: "continent",
     region: row.region || "—",
     country: "—",
     areaKm2: row.areaKm2 != null ? Number(row.areaKm2) : null
   }));
-
-  if (!fs.existsSync(ISLANDS_PATH)) {
-    throw new Error(
-      `Missing ${ISLANDS_PATH}. Run: node scripts/build-world-islands-data.cjs`
-    );
-  }
-
-  const islands = JSON.parse(fs.readFileSync(ISLANDS_PATH, "utf8"))
-    .filter((row) => Number(row.areaKm2) >= MIN_ISLAND_AREA_KM2)
-    .map((row) => ({
-      word: displayWord(row.name),
-      kind: "island",
-      region: row.region || "—",
-      country: row.region && row.region !== "—" ? row.region : "—",
-      areaKm2: Number(row.areaKm2)
-    }));
-
-  return [...continents, ...islands];
 }
 
 async function ingestGeonameLandforms(countryNames, countryKeys) {
@@ -238,7 +218,7 @@ async function main() {
   let added = 0;
   let updated = 0;
   let skipped = 0;
-  const kindCounts = { plain: 0, valley: 0, island: 0, continent: 0 };
+  const kindCounts = { plain: 0, valley: 0, continent: 0 };
 
   geonameCandidates.forEach((candidate) => {
     kindCounts[candidate.kind] = (kindCounts[candidate.kind] || 0) + 1;
@@ -283,9 +263,7 @@ async function main() {
     `Landforms: ${geonameCandidates.size} unique entries (${added} new words, ${updated} metadata, ${skipped} skipped).\n` +
       `  plain: ${kindCounts.plain || 0}\n` +
       `  valley: ${kindCounts.valley || 0}\n` +
-      `  island: ${kindCounts.island || 0}\n` +
       `  continent: ${kindCounts.continent || 0}\n` +
-      `Islands filtered at >= ${MIN_ISLAND_AREA_KM2} km2 (10 sq mi).\n` +
       `Dictionary total: ${mergedWords.length} words.\n`
   );
 }

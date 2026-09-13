@@ -19,6 +19,9 @@
     "add:water-bodies": "node scripts/add-water-bodies-to-dictionary.cjs",
     "add:mountains": "node scripts/add-mountains-to-dictionary.cjs",
     "build:islands": "node scripts/build-world-islands-data.cjs",
+    "build:large-islands": "node scripts/build-large-islands-data.cjs",
+    "add:islands": "node scripts/add-islands-to-dictionary.cjs",
+    "add:large-islands": "node scripts/add-islands-to-dictionary.cjs",
     "add:landforms": "node scripts/add-landforms-to-dictionary.cjs",
     "filter:min-pop": "node scripts/filter-dictionary-min-pop.cjs",
     "filter:world-min-pop": "node scripts/filter-world-cities-min-pop.cjs",
@@ -30,11 +33,15 @@
     "build:logo": "node scripts/build-logo-assets.cjs",
     "build:logo-wordmark": "node scripts/generate-logo-wordmark.cjs",
     "build:historical": "node scripts/build-ancient-dictionary.cjs",
+    "build:bonus-countries": "node scripts/build-bonus-country-data.cjs",
+    "vendor:three": "node scripts/vendor-three.cjs",
+    "prepare:deploy": "npm run build:bonus-countries && npm run vendor:three",
     "strip:mountains-hills": "node --max-old-space-size=8192 scripts/strip-mountains-hills.cjs"
   },
   "dependencies": {
     "dotenv": "^17.4.2",
     "mongodb": "^7.6.0",
+    "three": "^0.180.0",
     "ws": "^8.20.0"
   }
 }

@@ -1,0 +1,3037 @@
+{
+  "generatedAt": "2026-09-13T00:03:51.313Z",
+  "minAreaSqMi": 400,
+  "islandCount": 505,
+  "islands": [
+    {
+      "name": "Greenland",
+      "areaKm2": 2200000,
+      "areaSqMi": 849424.7,
+      "region": "Kingdom of Denmark"
+    },
+    {
+      "name": "New Guinea",
+      "areaKm2": 785753,
+      "areaSqMi": 303380.9,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Borneo",
+      "areaKm2": 748168,
+      "areaSqMi": 288869.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Madagascar",
+      "areaKm2": 587713,
+      "areaSqMi": 226917.3,
+      "region": "Madagascar"
+    },
+    {
+      "name": "Baffin Island",
+      "areaKm2": 507451,
+      "areaSqMi": 195927.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Sumatra",
+      "areaKm2": 473481,
+      "areaSqMi": 182812,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Great Britain",
+      "areaKm2": 228938,
+      "areaSqMi": 88393.5,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Honshu",
+      "areaKm2": 227940,
+      "areaSqMi": 88008.1,
+      "region": "Japan"
+    },
+    {
+      "name": "Victoria Island",
+      "areaKm2": 217291,
+      "areaSqMi": 83896.5,
+      "region": "Canada"
+    },
+    {
+      "name": "Ellesmere Island",
+      "areaKm2": 196235,
+      "areaSqMi": 75766.8,
+      "region": "Canada"
+    },
+    {
+      "name": "K'gari",
+      "areaKm2": 184000,
+      "areaSqMi": 71042.8,
+      "region": "Australia"
+    },
+    {
+      "name": "Sulawesi",
+      "areaKm2": 174600,
+      "areaSqMi": 67413.4,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Nang Passa To",
+      "areaKm2": 164600,
+      "areaSqMi": 63552.4,
+      "region": "South Korea"
+    },
+    {
+      "name": "Clarion Island",
+      "areaKm2": 161346,
+      "areaSqMi": 62296,
+      "region": "Mexico"
+    },
+    {
+      "name": "South Island",
+      "areaKm2": 150437,
+      "areaSqMi": 58084.1,
+      "region": "New Zealand"
+    },
+    {
+      "name": "Bobrovy Island",
+      "areaKm2": 143100,
+      "areaSqMi": 55251.2,
+      "region": "Russia"
+    },
+    {
+      "name": "East Sister Island",
+      "areaKm2": 140536,
+      "areaSqMi": 54261.3,
+      "region": "Canada"
+    },
+    {
+      "name": "San Benedicto Island",
+      "areaKm2": 137002,
+      "areaSqMi": 52896.8,
+      "region": "Mexico"
+    },
+    {
+      "name": "Yassıca Island",
+      "areaKm2": 132616,
+      "areaSqMi": 51203.3,
+      "region": "Turkey"
+    },
+    {
+      "name": "Java",
+      "areaKm2": 128297,
+      "areaSqMi": 49535.7,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Blaze Island",
+      "areaKm2": 123750,
+      "areaSqMi": 47780.1,
+      "region": "Canada"
+    },
+    {
+      "name": "North Island",
+      "areaKm2": 113729,
+      "areaSqMi": 43911,
+      "region": "New Zealand"
+    },
+    {
+      "name": "Roca Partida",
+      "areaKm2": 112637,
+      "areaSqMi": 43489.4,
+      "region": "Mexico"
+    },
+    {
+      "name": "Mok-to",
+      "areaKm2": 112330,
+      "areaSqMi": 43370.9,
+      "region": "South Korea"
+    },
+    {
+      "name": "Luzon",
+      "areaKm2": 109965,
+      "areaSqMi": 42457.7,
+      "region": "Philippines"
+    },
+    {
+      "name": "Darsah",
+      "areaKm2": 109374,
+      "areaSqMi": 42229.5,
+      "region": "Yemen"
+    },
+    {
+      "name": "Newfoundland",
+      "areaKm2": 108860,
+      "areaSqMi": 42031.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Atolls d’Entrecasteaux",
+      "areaKm2": 106800,
+      "areaSqMi": 41235.7,
+      "region": "France"
+    },
+    {
+      "name": "Cuba",
+      "areaKm2": 105806,
+      "areaSqMi": 40851.9,
+      "region": "Cuba"
+    },
+    {
+      "name": "Ballast Key",
+      "areaKm2": 105218,
+      "areaSqMi": 40624.9,
+      "region": "United States"
+    },
+    {
+      "name": "Oen-sŏm",
+      "areaKm2": 104132,
+      "areaSqMi": 40205.6,
+      "region": "South Korea"
+    },
+    {
+      "name": "Iceland",
+      "areaKm2": 102775,
+      "areaSqMi": 39681.6,
+      "region": "Iceland"
+    },
+    {
+      "name": "Mornington Island",
+      "areaKm2": 100139,
+      "areaSqMi": 38663.9,
+      "region": "Australia"
+    },
+    {
+      "name": "Mindanao",
+      "areaKm2": 97530,
+      "areaSqMi": 37656.5,
+      "region": "Philippines"
+    },
+    {
+      "name": "Ireland",
+      "areaKm2": 84421,
+      "areaSqMi": 32595.1,
+      "region": "Ireland"
+    },
+    {
+      "name": "Buru Island",
+      "areaKm2": 80516,
+      "areaSqMi": 31087.4,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Midorinoshima",
+      "areaKm2": 80000,
+      "areaSqMi": 30888.2,
+      "region": "Japan"
+    },
+    {
+      "name": "Okinoshima",
+      "areaKm2": 79363,
+      "areaSqMi": 30642.2,
+      "region": "Japan"
+    },
+    {
+      "name": "Hokkaidō",
+      "areaKm2": 77984,
+      "areaSqMi": 30109.8,
+      "region": "Japan"
+    },
+    {
+      "name": "Hispaniola",
+      "areaKm2": 77900,
+      "areaSqMi": 30077.4,
+      "region": "Dominican Republic"
+    },
+    {
+      "name": "Sakhalin",
+      "areaKm2": 72492,
+      "areaSqMi": 27989.3,
+      "region": "Russia"
+    },
+    {
+      "name": "Seram",
+      "areaKm2": 70370,
+      "areaSqMi": 27170,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Banks Island",
+      "areaKm2": 70028,
+      "areaSqMi": 27038,
+      "region": "Canada"
+    },
+    {
+      "name": "Sri Lanka",
+      "areaKm2": 67655,
+      "areaSqMi": 26121.7,
+      "region": "Sri Lanka"
+    },
+    {
+      "name": "Gitchie Island",
+      "areaKm2": 67226,
+      "areaSqMi": 25956.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Tasmania",
+      "areaKm2": 65022,
+      "areaSqMi": 25105.1,
+      "region": "Australia"
+    },
+    {
+      "name": "Kızıl Island",
+      "areaKm2": 58999,
+      "areaSqMi": 22779.6,
+      "region": "Turkey"
+    },
+    {
+      "name": "Şeytan Island",
+      "areaKm2": 58572,
+      "areaSqMi": 22614.8,
+      "region": "Turkey"
+    },
+    {
+      "name": "Devon Island",
+      "areaKm2": 55247,
+      "areaSqMi": 21331,
+      "region": "Canada"
+    },
+    {
+      "name": "Alexander Island",
+      "areaKm2": 49070,
+      "areaSqMi": 18946,
+      "region": "—"
+    },
+    {
+      "name": "Isla Grande de Tierra del Fuego",
+      "areaKm2": 47992,
+      "areaSqMi": 18529.8,
+      "region": "Chile"
+    },
+    {
+      "name": "Severny Island",
+      "areaKm2": 47079,
+      "areaSqMi": 18177.3,
+      "region": "Russia"
+    },
+    {
+      "name": "Discovery Island",
+      "areaKm2": 46540,
+      "areaSqMi": 17969.2,
+      "region": "United States"
+    },
+    {
+      "name": "Isle of Arran",
+      "areaKm2": 43201,
+      "areaSqMi": 16680,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Axel Heiberg Island",
+      "areaKm2": 43178,
+      "areaSqMi": 16671.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Melville Island",
+      "areaKm2": 42149,
+      "areaSqMi": 16273.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Southampton Island",
+      "areaKm2": 41214,
+      "areaSqMi": 15912.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Madura Island",
+      "areaKm2": 40471,
+      "areaSqMi": 15625.9,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Marajó",
+      "areaKm2": 40100,
+      "areaSqMi": 15482.7,
+      "region": "Brazil"
+    },
+    {
+      "name": "Spitsbergen",
+      "areaKm2": 39044,
+      "areaSqMi": 15075,
+      "region": "Norway"
+    },
+    {
+      "name": "East Rennell",
+      "areaKm2": 37000,
+      "areaSqMi": 14285.8,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Kyushu",
+      "areaKm2": 36782,
+      "areaSqMi": 14201.6,
+      "region": "Japan"
+    },
+    {
+      "name": "Achill Island",
+      "areaKm2": 36572,
+      "areaSqMi": 14120.5,
+      "region": "Ireland"
+    },
+    {
+      "name": "New Britain",
+      "areaKm2": 36520,
+      "areaSqMi": 14100.5,
+      "region": "Papua New Guinea"
+    },
+    {
+      "name": "Ilha dos Arvoredos",
+      "areaKm2": 36000,
+      "areaSqMi": 13899.7,
+      "region": "Brazil"
+    },
+    {
+      "name": "Taiwan Island",
+      "areaKm2": 35883,
+      "areaSqMi": 13854.5,
+      "region": "Taiwan"
+    },
+    {
+      "name": "Aldabra",
+      "areaKm2": 35000,
+      "areaSqMi": 13513.6,
+      "region": "Seychelles"
+    },
+    {
+      "name": "Prince of Wales Island",
+      "areaKm2": 33339,
+      "areaSqMi": 12872.3,
+      "region": "Canada"
+    },
+    {
+      "name": "Yuzhny Island",
+      "areaKm2": 33275,
+      "areaSqMi": 12847.5,
+      "region": "Russia"
+    },
+    {
+      "name": "Hainan Island",
+      "areaKm2": 33210,
+      "areaSqMi": 12822.5,
+      "region": "People's Republic of China"
+    },
+    {
+      "name": "Vancouver Island",
+      "areaKm2": 32134,
+      "areaSqMi": 12407,
+      "region": "Canada"
+    },
+    {
+      "name": "South Uist",
+      "areaKm2": 32026,
+      "areaSqMi": 12365.3,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Siberut Island",
+      "areaKm2": 30812,
+      "areaSqMi": 11896.6,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Timor",
+      "areaKm2": 30777,
+      "areaSqMi": 11883.1,
+      "region": "Indonesia"
+    },
+    {
+      "name": "North Uist",
+      "areaKm2": 30305,
+      "areaSqMi": 11700.8,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Yamdena Island",
+      "areaKm2": 30254,
+      "areaSqMi": 11681.1,
+      "region": "Indonesia"
+    },
+    {
+      "name": "île de Nôle",
+      "areaKm2": 30000,
+      "areaSqMi": 11583.1,
+      "region": "France"
+    },
+    {
+      "name": "San Pedro Mártir Island",
+      "areaKm2": 29054,
+      "areaSqMi": 11217.8,
+      "region": "Mexico"
+    },
+    {
+      "name": "Oryukdo",
+      "areaKm2": 28189,
+      "areaSqMi": 10883.8,
+      "region": "South Korea"
+    },
+    {
+      "name": "Darling Island",
+      "areaKm2": 27627,
+      "areaSqMi": 10666.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Tranarö",
+      "areaKm2": 27000,
+      "areaSqMi": 10424.8,
+      "region": "Sweden"
+    },
+    {
+      "name": "Isla Pelícano, Santa Marta",
+      "areaKm2": 26797,
+      "areaSqMi": 10346.4,
+      "region": "Colombia"
+    },
+    {
+      "name": "Ossabaw Island",
+      "areaKm2": 26000,
+      "areaSqMi": 10038.7,
+      "region": "United States"
+    },
+    {
+      "name": "Sicily",
+      "areaKm2": 25662,
+      "areaSqMi": 9908.2,
+      "region": "Italy"
+    },
+    {
+      "name": "Hen Island",
+      "areaKm2": 25612,
+      "areaSqMi": 9888.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Hanson Island",
+      "areaKm2": 25560,
+      "areaSqMi": 9868.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Somerset Island",
+      "areaKm2": 24786,
+      "areaSqMi": 9569.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Sardinia",
+      "areaKm2": 23813,
+      "areaSqMi": 9194.3,
+      "region": "Italy"
+    },
+    {
+      "name": "Große Birke",
+      "areaKm2": 23610,
+      "areaSqMi": 9115.9,
+      "region": "Germany"
+    },
+    {
+      "name": "Kotelny Island",
+      "areaKm2": 23200,
+      "areaSqMi": 8957.6,
+      "region": "Russia"
+    },
+    {
+      "name": "Isla Tres Perros",
+      "areaKm2": 22745,
+      "areaSqMi": 8781.9,
+      "region": "Panama"
+    },
+    {
+      "name": "McPherson Island",
+      "areaKm2": 22144,
+      "areaSqMi": 8549.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Solovetsky Island",
+      "areaKm2": 21872,
+      "areaSqMi": 8444.8,
+      "region": "Russia"
+    },
+    {
+      "name": "Pigeon Key",
+      "areaKm2": 21488,
+      "areaSqMi": 8296.6,
+      "region": "United States"
+    },
+    {
+      "name": "Wetar Island",
+      "areaKm2": 20610,
+      "areaSqMi": 7957.6,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Obimayor Island",
+      "areaKm2": 20460,
+      "areaSqMi": 7899.7,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Cockburn Island",
+      "areaKm2": 20440,
+      "areaSqMi": 7891.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Morotai Island",
+      "areaKm2": 20270,
+      "areaSqMi": 7826.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Yapen Island",
+      "areaKm2": 20266,
+      "areaSqMi": 7824.7,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Alor Island",
+      "areaKm2": 20112,
+      "areaSqMi": 7765.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Powers Island",
+      "areaKm2": 19174,
+      "areaSqMi": 7403.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Bananal Island",
+      "areaKm2": 19162,
+      "areaSqMi": 7398.5,
+      "region": "Brazil"
+    },
+    {
+      "name": "Augustus Island",
+      "areaKm2": 18992,
+      "areaSqMi": 7332.9,
+      "region": "Australia"
+    },
+    {
+      "name": "Shikoku",
+      "areaKm2": 18297,
+      "areaSqMi": 7064.5,
+      "region": "Japan"
+    },
+    {
+      "name": "Horstsee Island",
+      "areaKm2": 17856,
+      "areaSqMi": 6894.2,
+      "region": "Germany"
+    },
+    {
+      "name": "Halmahera Island",
+      "areaKm2": 17780,
+      "areaSqMi": 6864.9,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Panaitan Island",
+      "areaKm2": 17050,
+      "areaSqMi": 6583,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Bird Island",
+      "areaKm2": 17000,
+      "areaSqMi": 6563.7,
+      "region": "Namibia"
+    },
+    {
+      "name": "Zephyr Island",
+      "areaKm2": 16998,
+      "areaSqMi": 6563,
+      "region": "Canada"
+    },
+    {
+      "name": "Grande Terre",
+      "areaKm2": 16648,
+      "areaSqMi": 6427.8,
+      "region": "France"
+    },
+    {
+      "name": "Bathurst Island",
+      "areaKm2": 16042,
+      "areaSqMi": 6193.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Prince Patrick Island",
+      "areaKm2": 15848,
+      "areaSqMi": 6118.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Thurston Island",
+      "areaKm2": 15700,
+      "areaSqMi": 6061.8,
+      "region": "—"
+    },
+    {
+      "name": "Nordaustlandet",
+      "areaKm2": 14467,
+      "areaSqMi": 5585.7,
+      "region": "Norway"
+    },
+    {
+      "name": "Sumbawa Island",
+      "areaKm2": 14386,
+      "areaSqMi": 5554.5,
+      "region": "Indonesia"
+    },
+    {
+      "name": "October Revolution Island",
+      "areaKm2": 14204,
+      "areaSqMi": 5484.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Sherman Island",
+      "areaKm2": 14000,
+      "areaSqMi": 5405.4,
+      "region": "United States"
+    },
+    {
+      "name": "Štefanijin otok",
+      "areaKm2": 14000,
+      "areaSqMi": 5405.4,
+      "region": "Croatia"
+    },
+    {
+      "name": "El Ojo",
+      "areaKm2": 13924,
+      "areaSqMi": 5376.1,
+      "region": "Argentina"
+    },
+    {
+      "name": "Bentinck Island",
+      "areaKm2": 13873,
+      "areaSqMi": 5356.4,
+      "region": "Australia"
+    },
+    {
+      "name": "Flores Island",
+      "areaKm2": 13540,
+      "areaSqMi": 5227.8,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Samar Island",
+      "areaKm2": 13429,
+      "areaSqMi": 5185,
+      "region": "Philippines"
+    },
+    {
+      "name": "King William Island",
+      "areaKm2": 13111,
+      "areaSqMi": 5062.2,
+      "region": "Canada"
+    },
+    {
+      "name": "Negros",
+      "areaKm2": 13075,
+      "areaSqMi": 5048.3,
+      "region": "Philippines"
+    },
+    {
+      "name": "Sabuniyah",
+      "areaKm2": 12428,
+      "areaSqMi": 4798.5,
+      "region": "Yemen"
+    },
+    {
+      "name": "Isle of Bute",
+      "areaKm2": 12217,
+      "areaSqMi": 4717,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Palawan",
+      "areaKm2": 12189,
+      "areaSqMi": 4706.2,
+      "region": "Philippines"
+    },
+    {
+      "name": "Panay",
+      "areaKm2": 12011,
+      "areaSqMi": 4637.5,
+      "region": "Philippines"
+    },
+    {
+      "name": "Tupinambarana",
+      "areaKm2": 11850,
+      "areaSqMi": 4575.3,
+      "region": "Brazil"
+    },
+    {
+      "name": "Babina Guzica",
+      "areaKm2": 11848,
+      "areaSqMi": 4574.5,
+      "region": "Croatia"
+    },
+    {
+      "name": "Kolepom Island",
+      "areaKm2": 11742,
+      "areaSqMi": 4533.6,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Mulde Island Grubnitz",
+      "areaKm2": 11443,
+      "areaSqMi": 4418.2,
+      "region": "Germany"
+    },
+    {
+      "name": "Bangka Island",
+      "areaKm2": 11413,
+      "areaSqMi": 4406.6,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Campbell Island / Motu Ihupuku",
+      "areaKm2": 11331,
+      "areaSqMi": 4374.9,
+      "region": "New Zealand"
+    },
+    {
+      "name": "Ellef Ringnes Island",
+      "areaKm2": 11295,
+      "areaSqMi": 4361,
+      "region": "Canada"
+    },
+    {
+      "name": "Bolshevik Island",
+      "areaKm2": 11206,
+      "areaSqMi": 4326.7,
+      "region": "Russia"
+    },
+    {
+      "name": "Jamaica",
+      "areaKm2": 11190,
+      "areaSqMi": 4320.5,
+      "region": "Jamaica"
+    },
+    {
+      "name": "Bylot Island",
+      "areaKm2": 11067,
+      "areaSqMi": 4273,
+      "region": "Canada"
+    },
+    {
+      "name": "Biak Island",
+      "areaKm2": 10896,
+      "areaSqMi": 4207,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Bacan Island",
+      "areaKm2": 10807,
+      "areaSqMi": 4172.6,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Yakushima",
+      "areaKm2": 10747,
+      "areaSqMi": 4149.4,
+      "region": "Japan"
+    },
+    {
+      "name": "Sumba Island",
+      "areaKm2": 10711,
+      "areaSqMi": 4135.5,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Mindoro",
+      "areaKm2": 10572,
+      "areaSqMi": 4081.9,
+      "region": "Philippines"
+    },
+    {
+      "name": "Viti Levu",
+      "areaKm2": 10531,
+      "areaSqMi": 4066,
+      "region": "Fiji"
+    },
+    {
+      "name": "Hawaii",
+      "areaKm2": 10434,
+      "areaSqMi": 4028.6,
+      "region": "United States"
+    },
+    {
+      "name": "Tebing Tinggi Island",
+      "areaKm2": 10375,
+      "areaSqMi": 4005.8,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Cape Breton Island",
+      "areaKm2": 10311,
+      "areaSqMi": 3981.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Stolac",
+      "areaKm2": 10265,
+      "areaSqMi": 3963.3,
+      "region": "Croatia"
+    },
+    {
+      "name": "Padang Island",
+      "areaKm2": 10107,
+      "areaSqMi": 3902.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Maya Island",
+      "areaKm2": 10003,
+      "areaSqMi": 3862.2,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Gilmour Island",
+      "areaKm2": 9701,
+      "areaSqMi": 3745.6,
+      "region": "Canada"
+    },
+    {
+      "name": "Prince Charles Island",
+      "areaKm2": 9521,
+      "areaSqMi": 3676.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Bougainville Island",
+      "areaKm2": 9318,
+      "areaSqMi": 3597.7,
+      "region": "Papua New Guinea"
+    },
+    {
+      "name": "Kodiak Island",
+      "areaKm2": 9310,
+      "areaSqMi": 3594.6,
+      "region": "United States"
+    },
+    {
+      "name": "Cyprus",
+      "areaKm2": 9234,
+      "areaSqMi": 3565.3,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Puerto Rico",
+      "areaKm2": 9100,
+      "areaSqMi": 3513.5,
+      "region": "United States"
+    },
+    {
+      "name": "Komsomolets Island",
+      "areaKm2": 9006,
+      "areaSqMi": 3477.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Dejima",
+      "areaKm2": 9000,
+      "areaSqMi": 3474.9,
+      "region": "Japan"
+    },
+    {
+      "name": "Islas de la Coronilla",
+      "areaKm2": 8968,
+      "areaSqMi": 3462.6,
+      "region": "Uruguay"
+    },
+    {
+      "name": "Île à Bacchus",
+      "areaKm2": 8800,
+      "areaSqMi": 3397.7,
+      "region": "France"
+    },
+    {
+      "name": "Isle Martin",
+      "areaKm2": 8743,
+      "areaSqMi": 3375.7,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Isla Falta Calzado",
+      "areaKm2": 8741,
+      "areaSqMi": 3374.9,
+      "region": "Panama"
+    },
+    {
+      "name": "Corsica",
+      "areaKm2": 8741,
+      "areaSqMi": 3374.9,
+      "region": "France"
+    },
+    {
+      "name": "Disko Island",
+      "areaKm2": 8612,
+      "areaSqMi": 3325.1,
+      "region": "Kingdom of Denmark"
+    },
+    {
+      "name": "Pedra Branca",
+      "areaKm2": 8560,
+      "areaSqMi": 3305,
+      "region": "Singapore"
+    },
+    {
+      "name": "Carney Island",
+      "areaKm2": 8500,
+      "areaSqMi": 3281.9,
+      "region": "—"
+    },
+    {
+      "name": "Chiloé Island",
+      "areaKm2": 8394,
+      "areaSqMi": 3240.9,
+      "region": "Chile"
+    },
+    {
+      "name": "Crete",
+      "areaKm2": 8336,
+      "areaSqMi": 3218.5,
+      "region": "Greece"
+    },
+    {
+      "name": "Kvamsøy",
+      "areaKm2": 8300,
+      "areaSqMi": 3204.6,
+      "region": "Norway"
+    },
+    {
+      "name": "Barkey Island",
+      "areaKm2": 8280,
+      "areaSqMi": 3196.9,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Raspberry Island",
+      "areaKm2": 8094,
+      "areaSqMi": 3125.1,
+      "region": "United States"
+    },
+    {
+      "name": "Skenoh Island",
+      "areaKm2": 8000,
+      "areaSqMi": 3088.8,
+      "region": "United States"
+    },
+    {
+      "name": "Tuishi",
+      "areaKm2": 8000,
+      "areaSqMi": 3088.8,
+      "region": "Japan"
+    },
+    {
+      "name": "Anticosti Island",
+      "areaKm2": 7941,
+      "areaSqMi": 3066,
+      "region": "Canada"
+    },
+    {
+      "name": "Roosevelt Island",
+      "areaKm2": 7910,
+      "areaSqMi": 3054.1,
+      "region": "—"
+    },
+    {
+      "name": "West Tupinambarana",
+      "areaKm2": 7700,
+      "areaSqMi": 2973,
+      "region": "Brazil"
+    },
+    {
+      "name": "Coll",
+      "areaKm2": 7685,
+      "areaSqMi": 2967.2,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Wrangel Island",
+      "areaKm2": 7600,
+      "areaSqMi": 2934.4,
+      "region": "Russia"
+    },
+    {
+      "name": "île du 14-Juillet",
+      "areaKm2": 7500,
+      "areaSqMi": 2895.8,
+      "region": "France"
+    },
+    {
+      "name": "île Saint-Nicolas",
+      "areaKm2": 7500,
+      "areaSqMi": 2895.8,
+      "region": "France"
+    },
+    {
+      "name": "New Ireland",
+      "areaKm2": 7405,
+      "areaSqMi": 2859.1,
+      "region": "Papua New Guinea"
+    },
+    {
+      "name": "Butte Island",
+      "areaKm2": 7404,
+      "areaSqMi": 2858.7,
+      "region": "Canada"
+    },
+    {
+      "name": "Leyte",
+      "areaKm2": 7368,
+      "areaSqMi": 2844.8,
+      "region": "Philippines"
+    },
+    {
+      "name": "Hunter Island",
+      "areaKm2": 7330,
+      "areaSqMi": 2830.1,
+      "region": "Australia"
+    },
+    {
+      "name": "Zealand",
+      "areaKm2": 7031,
+      "areaSqMi": 2714.7,
+      "region": "Denmark"
+    },
+    {
+      "name": "Cornwallis Island",
+      "areaKm2": 6995,
+      "areaSqMi": 2700.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Battery Island",
+      "areaKm2": 6800,
+      "areaSqMi": 2625.5,
+      "region": "Australia"
+    },
+    {
+      "name": "East Falkland",
+      "areaKm2": 6605,
+      "areaSqMi": 2550.2,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Sayers Island",
+      "areaKm2": 6505,
+      "areaSqMi": 2511.6,
+      "region": "Canada"
+    },
+    {
+      "name": "Kaštelina",
+      "areaKm2": 6431,
+      "areaSqMi": 2483,
+      "region": "Croatia"
+    },
+    {
+      "name": "Arga-Muora-Sise",
+      "areaKm2": 6400,
+      "areaSqMi": 2471.1,
+      "region": "Russia"
+    },
+    {
+      "name": "Siple Island",
+      "areaKm2": 6390,
+      "areaSqMi": 2467.2,
+      "region": "—"
+    },
+    {
+      "name": "Graham Island",
+      "areaKm2": 6361,
+      "areaSqMi": 2456,
+      "region": "Canada"
+    },
+    {
+      "name": "Lukovac",
+      "areaKm2": 6289,
+      "areaSqMi": 2428.2,
+      "region": "Croatia"
+    },
+    {
+      "name": "Mali Barjak",
+      "areaKm2": 6232,
+      "areaSqMi": 2406.2,
+      "region": "Croatia"
+    },
+    {
+      "name": "New Siberia",
+      "areaKm2": 6201,
+      "areaSqMi": 2394.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Sheep Island",
+      "areaKm2": 6193,
+      "areaSqMi": 2391.1,
+      "region": "United States"
+    },
+    {
+      "name": "Île Charest",
+      "areaKm2": 6000,
+      "areaSqMi": 2316.6,
+      "region": "Canada"
+    },
+    {
+      "name": "Galley Island Major",
+      "areaKm2": 5904,
+      "areaSqMi": 2279.5,
+      "region": "Antigua and Barbuda"
+    },
+    {
+      "name": "Barra",
+      "areaKm2": 5875,
+      "areaSqMi": 2268.4,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Pellow's Island",
+      "areaKm2": 5682,
+      "areaSqMi": 2193.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Bali Island",
+      "areaKm2": 5633,
+      "areaSqMi": 2174.9,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Prince Edward Island",
+      "areaKm2": 5620,
+      "areaSqMi": 2169.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Vanua Levu",
+      "areaKm2": 5587,
+      "areaSqMi": 2157.2,
+      "region": "Fiji"
+    },
+    {
+      "name": "Döllnitzsee Island",
+      "areaKm2": 5584,
+      "areaSqMi": 2156,
+      "region": "Germany"
+    },
+    {
+      "name": "Wellington Island",
+      "areaKm2": 5556,
+      "areaSqMi": 2145.2,
+      "region": "Chile"
+    },
+    {
+      "name": "Coats Island",
+      "areaKm2": 5498,
+      "areaSqMi": 2122.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Lombok Island",
+      "areaKm2": 5435,
+      "areaSqMi": 2098.5,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Chichagof Island",
+      "areaKm2": 5388,
+      "areaSqMi": 2080.3,
+      "region": "United States"
+    },
+    {
+      "name": "Sant'Angelo della Polvere",
+      "areaKm2": 5310,
+      "areaSqMi": 2050.2,
+      "region": "Italy"
+    },
+    {
+      "name": "Guadalcanal",
+      "areaKm2": 5302,
+      "areaSqMi": 2047.1,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Amund Ringnes Island",
+      "areaKm2": 5255,
+      "areaSqMi": 2029,
+      "region": "Canada"
+    },
+    {
+      "name": "Kolguyev Island",
+      "areaKm2": 5200,
+      "areaSqMi": 2007.7,
+      "region": "Russia"
+    },
+    {
+      "name": "Veli Piruzi",
+      "areaKm2": 5175,
+      "areaSqMi": 1998.1,
+      "region": "Croatia"
+    },
+    {
+      "name": "Bolshoy Lyakhovsky Island",
+      "areaKm2": 5157,
+      "areaSqMi": 1991.1,
+      "region": "Russia"
+    },
+    {
+      "name": "St. Lawrence Island",
+      "areaKm2": 5135,
+      "areaSqMi": 1982.6,
+      "region": "United States"
+    },
+    {
+      "name": "Nias Island",
+      "areaKm2": 5125,
+      "areaSqMi": 1978.8,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Riesco Island",
+      "areaKm2": 5110,
+      "areaSqMi": 1973,
+      "region": "Chile"
+    },
+    {
+      "name": "Edgeøya",
+      "areaKm2": 5073,
+      "areaSqMi": 1958.7,
+      "region": "Norway"
+    },
+    {
+      "name": "Mackenzie King Island",
+      "areaKm2": 5048,
+      "areaSqMi": 1949,
+      "region": "Canada"
+    },
+    {
+      "name": "Sanday",
+      "areaKm2": 5043,
+      "areaSqMi": 1947.1,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Benten Island",
+      "areaKm2": 5000,
+      "areaSqMi": 1930.5,
+      "region": "Japan"
+    },
+    {
+      "name": "Caviana",
+      "areaKm2": 5000,
+      "areaSqMi": 1930.5,
+      "region": "Brazil"
+    },
+    {
+      "name": "Samer",
+      "areaKm2": 4959,
+      "areaSqMi": 1914.7,
+      "region": "Croatia"
+    },
+    {
+      "name": "Shamrock Island",
+      "areaKm2": 4949,
+      "areaSqMi": 1910.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Ilha Grande do Gurupá",
+      "areaKm2": 4864,
+      "areaSqMi": 1878,
+      "region": "Brazil"
+    },
+    {
+      "name": "Rousay",
+      "areaKm2": 4860,
+      "areaSqMi": 1876.5,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Long Island",
+      "areaKm2": 4806,
+      "areaSqMi": 1855.6,
+      "region": "United States"
+    },
+    {
+      "name": "Trinidad",
+      "areaKm2": 4768,
+      "areaSqMi": 1840.9,
+      "region": "Trinidad and Tobago"
+    },
+    {
+      "name": "Westray",
+      "areaKm2": 4713,
+      "areaSqMi": 1819.7,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Isabela Island",
+      "areaKm2": 4711,
+      "areaSqMi": 1818.9,
+      "region": "Ecuador"
+    },
+    {
+      "name": "Anzersky Island",
+      "areaKm2": 4711,
+      "areaSqMi": 1818.9,
+      "region": "Russia"
+    },
+    {
+      "name": "North Jutlandic Island",
+      "areaKm2": 4686,
+      "areaSqMi": 1809.3,
+      "region": "Denmark"
+    },
+    {
+      "name": "Cayo Batata",
+      "areaKm2": 4679,
+      "areaSqMi": 1806.6,
+      "region": "United States"
+    },
+    {
+      "name": "West Falkland",
+      "areaKm2": 4531,
+      "areaSqMi": 1749.4,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Belitung Island",
+      "areaKm2": 4478,
+      "areaSqMi": 1729,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Stefansson Island",
+      "areaKm2": 4473,
+      "areaSqMi": 1727,
+      "region": "Canada"
+    },
+    {
+      "name": "Adelaide Island",
+      "areaKm2": 4463,
+      "areaSqMi": 1723.2,
+      "region": "—"
+    },
+    {
+      "name": "Illas Ons",
+      "areaKm2": 4458,
+      "areaSqMi": 1721.2,
+      "region": "Spain"
+    },
+    {
+      "name": "Cebu",
+      "areaKm2": 4454,
+      "areaSqMi": 1719.7,
+      "region": "Philippines"
+    },
+    {
+      "name": "Field Island",
+      "areaKm2": 4450,
+      "areaSqMi": 1718.2,
+      "region": "Australia"
+    },
+    {
+      "name": "Buton Island",
+      "areaKm2": 4408,
+      "areaSqMi": 1701.9,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Kangaroo Island",
+      "areaKm2": 4374,
+      "areaSqMi": 1688.8,
+      "region": "Australia"
+    },
+    {
+      "name": "Admiralty Island",
+      "areaKm2": 4362,
+      "areaSqMi": 1684.2,
+      "region": "United States"
+    },
+    {
+      "name": "McNeil Island",
+      "areaKm2": 4351,
+      "areaSqMi": 1679.9,
+      "region": "United States"
+    },
+    {
+      "name": "Malaita",
+      "areaKm2": 4307,
+      "areaSqMi": 1662.9,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Laughing Bird Caye",
+      "areaKm2": 4300,
+      "areaSqMi": 1660.2,
+      "region": "Belize"
+    },
+    {
+      "name": "Guyam Island",
+      "areaKm2": 4300,
+      "areaSqMi": 1660.2,
+      "region": "Philippines"
+    },
+    {
+      "name": "Nunivak Island",
+      "areaKm2": 4209,
+      "areaSqMi": 1625.1,
+      "region": "United States"
+    },
+    {
+      "name": "Adolphus Island",
+      "areaKm2": 4157,
+      "areaSqMi": 1605,
+      "region": "Australia"
+    },
+    {
+      "name": "Unimak Island",
+      "areaKm2": 4119,
+      "areaSqMi": 1590.4,
+      "region": "United States"
+    },
+    {
+      "name": "Hoste Island",
+      "areaKm2": 4117,
+      "areaSqMi": 1589.6,
+      "region": "Chile"
+    },
+    {
+      "name": "Fetlar",
+      "areaKm2": 4078,
+      "areaSqMi": 1574.5,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Colonsay",
+      "areaKm2": 4074,
+      "areaSqMi": 1573,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Baranof Island",
+      "areaKm2": 4065,
+      "areaSqMi": 1569.5,
+      "region": "United States"
+    },
+    {
+      "name": "Espiritu Santo",
+      "areaKm2": 3956,
+      "areaSqMi": 1527.4,
+      "region": "Vanuatu"
+    },
+    {
+      "name": "Puget Island",
+      "areaKm2": 3955,
+      "areaSqMi": 1527,
+      "region": "United States"
+    },
+    {
+      "name": "Clare Island",
+      "areaKm2": 3949,
+      "areaSqMi": 1524.7,
+      "region": "Ireland"
+    },
+    {
+      "name": "Marrowstone Island",
+      "areaKm2": 3937,
+      "areaSqMi": 1520.1,
+      "region": "United States"
+    },
+    {
+      "name": "Milne Land",
+      "areaKm2": 3913,
+      "areaSqMi": 1510.8,
+      "region": "Greenland"
+    },
+    {
+      "name": "Half Moon Caye",
+      "areaKm2": 3900,
+      "areaSqMi": 1505.8,
+      "region": "Belize"
+    },
+    {
+      "name": "Bohol",
+      "areaKm2": 3821,
+      "areaSqMi": 1475.3,
+      "region": "Philippines"
+    },
+    {
+      "name": "Insuíña Island",
+      "areaKm2": 3810,
+      "areaSqMi": 1471,
+      "region": "Spain"
+    },
+    {
+      "name": "Aral-Paygambar",
+      "areaKm2": 3800,
+      "areaSqMi": 1467.2,
+      "region": "Uzbekistan"
+    },
+    {
+      "name": "Socotra",
+      "areaKm2": 3796,
+      "areaSqMi": 1465.6,
+      "region": "Yemen"
+    },
+    {
+      "name": "South Georgia",
+      "areaKm2": 3756,
+      "areaSqMi": 1450.2,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Hisaka Island",
+      "areaKm2": 3733,
+      "areaSqMi": 1441.3,
+      "region": "Japan"
+    },
+    {
+      "name": "Lilleager",
+      "areaKm2": 3700,
+      "areaSqMi": 1428.6,
+      "region": "Denmark"
+    },
+    {
+      "name": "Santa Inés Island",
+      "areaKm2": 3688,
+      "areaSqMi": 1423.9,
+      "region": "Chile"
+    },
+    {
+      "name": "Euboea",
+      "areaKm2": 3670,
+      "areaSqMi": 1417,
+      "region": "Greece"
+    },
+    {
+      "name": "Santa Isabel Island",
+      "areaKm2": 3665,
+      "areaSqMi": 1415.1,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Flinders Island",
+      "areaKm2": 3642,
+      "areaSqMi": 1406.2,
+      "region": "Australia"
+    },
+    {
+      "name": "Ongjin Shindo breeding site for yellow-billed egrets and black-tailed gulls",
+      "areaKm2": 3623,
+      "areaSqMi": 1398.8,
+      "region": "South Korea"
+    },
+    {
+      "name": "Mallorca",
+      "areaKm2": 3620,
+      "areaSqMi": 1397.7,
+      "region": "Spain"
+    },
+    {
+      "name": "North Tupinambarana",
+      "areaKm2": 3600,
+      "areaSqMi": 1390,
+      "region": "Brazil"
+    },
+    {
+      "name": "Capul Island",
+      "areaKm2": 3556,
+      "areaSqMi": 1373,
+      "region": "Philippines"
+    },
+    {
+      "name": "Traill Island",
+      "areaKm2": 3542,
+      "areaSqMi": 1367.6,
+      "region": "Greenland"
+    },
+    {
+      "name": "Järflotta nature reserve",
+      "areaKm2": 3538,
+      "areaSqMi": 1366,
+      "region": "Sweden"
+    },
+    {
+      "name": "North Andros Island",
+      "areaKm2": 3439,
+      "areaSqMi": 1327.8,
+      "region": "The Bahamas"
+    },
+    {
+      "name": "Vaygach Island",
+      "areaKm2": 3329,
+      "areaSqMi": 1285.3,
+      "region": "Russia"
+    },
+    {
+      "name": "Latady Island",
+      "areaKm2": 3300,
+      "areaSqMi": 1274.1,
+      "region": "—"
+    },
+    {
+      "name": "Stronsay",
+      "areaKm2": 3275,
+      "areaSqMi": 1264.5,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Masbate",
+      "areaKm2": 3268,
+      "areaSqMi": 1261.8,
+      "region": "Philippines"
+    },
+    {
+      "name": "Eday",
+      "areaKm2": 3209,
+      "areaSqMi": 1239,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Makira",
+      "areaKm2": 3190,
+      "areaSqMi": 1231.7,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Mansel Island",
+      "areaKm2": 3180,
+      "areaSqMi": 1227.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Iturup",
+      "areaKm2": 3167,
+      "areaSqMi": 1222.8,
+      "region": "Russia"
+    },
+    {
+      "name": "Waigeo Island",
+      "areaKm2": 3155,
+      "areaSqMi": 1218.2,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Île Major",
+      "areaKm2": 3119,
+      "areaSqMi": 1204.3,
+      "region": "Canada"
+    },
+    {
+      "name": "Fearns Island",
+      "areaKm2": 3090,
+      "areaSqMi": 1193.1,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Denham Island",
+      "areaKm2": 3044,
+      "areaSqMi": 1175.3,
+      "region": "Australia"
+    },
+    {
+      "name": "Akimiski Island",
+      "areaKm2": 3001,
+      "areaSqMi": 1158.7,
+      "region": "Canada"
+    },
+    {
+      "name": "Pedamaran Island",
+      "areaKm2": 3000,
+      "areaSqMi": 1158.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Funen",
+      "areaKm2": 2985,
+      "areaSqMi": 1152.5,
+      "region": "Denmark"
+    },
+    {
+      "name": "Choiseul Island",
+      "areaKm2": 2971,
+      "areaSqMi": 1147.1,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Gotland",
+      "areaKm2": 2968,
+      "areaSqMi": 1146,
+      "region": "Sweden"
+    },
+    {
+      "name": "Revillagigedo Island",
+      "areaKm2": 2965,
+      "areaSqMi": 1144.8,
+      "region": "United States"
+    },
+    {
+      "name": "Shapinsay",
+      "areaKm2": 2948,
+      "areaSqMi": 1138.2,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Fremont Island",
+      "areaKm2": 2943,
+      "areaSqMi": 1136.3,
+      "region": "United States"
+    },
+    {
+      "name": "Cat Island",
+      "areaKm2": 2926,
+      "areaSqMi": 1129.7,
+      "region": "Canada"
+    },
+    {
+      "name": "Taliabu Island",
+      "areaKm2": 2913,
+      "areaSqMi": 1124.7,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Muna Island",
+      "areaKm2": 2889,
+      "areaSqMi": 1115.4,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Heather Island",
+      "areaKm2": 2886,
+      "areaSqMi": 1114.3,
+      "region": "Canada"
+    },
+    {
+      "name": "Zemlya Georga",
+      "areaKm2": 2821,
+      "areaSqMi": 1089.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Kupreanof Island",
+      "areaKm2": 2813,
+      "areaSqMi": 1086.1,
+      "region": "United States"
+    },
+    {
+      "name": "Borden Island",
+      "areaKm2": 2794,
+      "areaSqMi": 1078.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Manitoulin Island",
+      "areaKm2": 2766,
+      "areaSqMi": 1068,
+      "region": "Canada"
+    },
+    {
+      "name": "Vållö",
+      "areaKm2": 2749,
+      "areaSqMi": 1061.4,
+      "region": "Sweden"
+    },
+    {
+      "name": "Unalaska Island",
+      "areaKm2": 2722,
+      "areaSqMi": 1051,
+      "region": "United States"
+    },
+    {
+      "name": "Saaremaa",
+      "areaKm2": 2672,
+      "areaSqMi": 1031.7,
+      "region": "Estonia"
+    },
+    {
+      "name": "Suomenlinna",
+      "areaKm2": 2641,
+      "areaSqMi": 1019.7,
+      "region": "Finland"
+    },
+    {
+      "name": "Moresby Island",
+      "areaKm2": 2608,
+      "areaSqMi": 1007,
+      "region": "Canada"
+    },
+    {
+      "name": "Banggai Island",
+      "areaKm2": 2607,
+      "areaSqMi": 1006.6,
+      "region": "Indonesia"
+    },
+    {
+      "name": "James Ross Island",
+      "areaKm2": 2598,
+      "areaSqMi": 1003.1,
+      "region": "—"
+    },
+    {
+      "name": "Reunion Island",
+      "areaKm2": 2512,
+      "areaSqMi": 969.9,
+      "region": "France"
+    },
+    {
+      "name": "Saint Pierre Island",
+      "areaKm2": 2511,
+      "areaSqMi": 969.5,
+      "region": "France"
+    },
+    {
+      "name": "Navarino Island",
+      "areaKm2": 2473,
+      "areaSqMi": 954.8,
+      "region": "Chile"
+    },
+    {
+      "name": "Paramushir",
+      "areaKm2": 2471,
+      "areaSqMi": 954.1,
+      "region": "Russia"
+    },
+    {
+      "name": "Ross Island",
+      "areaKm2": 2460,
+      "areaSqMi": 949.8,
+      "region": "—"
+    },
+    {
+      "name": "Ymer Island",
+      "areaKm2": 2437,
+      "areaSqMi": 940.9,
+      "region": "Greenland"
+    },
+    {
+      "name": "Anvers Island",
+      "areaKm2": 2432,
+      "areaSqMi": 939,
+      "region": "—"
+    },
+    {
+      "name": "Isla de la Juventud",
+      "areaKm2": 2419,
+      "areaSqMi": 934,
+      "region": "Cuba"
+    },
+    {
+      "name": "Karaginsky Island",
+      "areaKm2": 2404,
+      "areaSqMi": 928.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Denny Island",
+      "areaKm2": 2400,
+      "areaSqMi": 926.6,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Big Chicken Island",
+      "areaKm2": 2388,
+      "areaSqMi": 922,
+      "region": "Canada"
+    },
+    {
+      "name": "Ostøya",
+      "areaKm2": 2388,
+      "areaSqMi": 922,
+      "region": "Norway"
+    },
+    {
+      "name": "Middle Osborn Island",
+      "areaKm2": 2361,
+      "areaSqMi": 911.6,
+      "region": "Australia"
+    },
+    {
+      "name": "Cornwall Island",
+      "areaKm2": 2358,
+      "areaSqMi": 910.4,
+      "region": "Canada"
+    },
+    {
+      "name": "Lismore",
+      "areaKm2": 2351,
+      "areaSqMi": 907.7,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Peling Island",
+      "areaKm2": 2346,
+      "areaSqMi": 905.8,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Groote Eylandt",
+      "areaKm2": 2285,
+      "areaSqMi": 882.2,
+      "region": "Australia"
+    },
+    {
+      "name": "Vanula",
+      "areaKm2": 2271,
+      "areaSqMi": 876.8,
+      "region": "Croatia"
+    },
+    {
+      "name": "Klåverön",
+      "areaKm2": 2267,
+      "areaSqMi": 875.3,
+      "region": "Sweden"
+    },
+    {
+      "name": "Princess Royal Island",
+      "areaKm2": 2251,
+      "areaSqMi": 869.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Wilczek Land",
+      "areaKm2": 2203,
+      "areaSqMi": 850.6,
+      "region": "Russia"
+    },
+    {
+      "name": "Laulasi Island",
+      "areaKm2": 2200,
+      "areaSqMi": 849.4,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Hinnøya",
+      "areaKm2": 2198,
+      "areaSqMi": 848.7,
+      "region": "Norway"
+    },
+    {
+      "name": "Nelson Island",
+      "areaKm2": 2180,
+      "areaSqMi": 841.7,
+      "region": "United States"
+    },
+    {
+      "name": "Richards Island",
+      "areaKm2": 2165,
+      "areaSqMi": 835.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Wild Horse Island",
+      "areaKm2": 2163,
+      "areaSqMi": 835.1,
+      "region": "United States"
+    },
+    {
+      "name": "Terangan Island",
+      "areaKm2": 2149,
+      "areaSqMi": 829.7,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Great Bernera",
+      "areaKm2": 2122,
+      "areaSqMi": 819.3,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Margarita Island",
+      "areaKm2": 2100,
+      "areaSqMi": 810.8,
+      "region": "Colombia"
+    },
+    {
+      "name": "Lewis and Harris",
+      "areaKm2": 2086,
+      "areaSqMi": 805.4,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Laut Island",
+      "areaKm2": 2057,
+      "areaSqMi": 794.2,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Malakula Island",
+      "areaKm2": 2041,
+      "areaSqMi": 788,
+      "region": "Vanuatu"
+    },
+    {
+      "name": "New Georgia",
+      "areaKm2": 2037,
+      "areaSqMi": 786.5,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Misool Island",
+      "areaKm2": 2034,
+      "areaSqMi": 785.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Tenerife",
+      "areaKm2": 2034,
+      "areaSqMi": 785.3,
+      "region": "Spain"
+    },
+    {
+      "name": "Magdalena Island",
+      "areaKm2": 2025,
+      "areaSqMi": 781.9,
+      "region": "Chile"
+    },
+    {
+      "name": "Shortland Island",
+      "areaKm2": 2022,
+      "areaSqMi": 780.7,
+      "region": "Solomon Islands"
+    },
+    {
+      "name": "Île René-Levasseur",
+      "areaKm2": 2020,
+      "areaSqMi": 779.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Ayon Island",
+      "areaKm2": 2000,
+      "areaSqMi": 772.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Migingo Island",
+      "areaKm2": 2000,
+      "areaSqMi": 772.2,
+      "region": "Kenya"
+    },
+    {
+      "name": "Ulva",
+      "areaKm2": 1990,
+      "areaSqMi": 768.3,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Kuiu Island",
+      "areaKm2": 1962,
+      "areaSqMi": 757.5,
+      "region": "United States"
+    },
+    {
+      "name": "Manus Island",
+      "areaKm2": 1940,
+      "areaSqMi": 749,
+      "region": "Papua New Guinea"
+    },
+    {
+      "name": "Bioko",
+      "areaKm2": 1935,
+      "areaSqMi": 747.1,
+      "region": "Equatorial Guinea"
+    },
+    {
+      "name": "Hidden Island",
+      "areaKm2": 1901,
+      "areaSqMi": 734,
+      "region": "Australia"
+    },
+    {
+      "name": "Bolshaya Muksalma",
+      "areaKm2": 1896,
+      "areaSqMi": 732,
+      "region": "Russia"
+    },
+    {
+      "name": "Storr Island",
+      "areaKm2": 1896,
+      "areaSqMi": 732,
+      "region": "Australia"
+    },
+    {
+      "name": "Žitný ostrov",
+      "areaKm2": 1886,
+      "areaSqMi": 728.2,
+      "region": "Slovakia"
+    },
+    {
+      "name": "Maui",
+      "areaKm2": 1883,
+      "areaSqMi": 727,
+      "region": "United States"
+    },
+    {
+      "name": "Mauritius Island",
+      "areaKm2": 1874,
+      "areaSqMi": 723.6,
+      "region": "Mauritius"
+    },
+    {
+      "name": "Jeju Island",
+      "areaKm2": 1848,
+      "areaSqMi": 713.5,
+      "region": "South Korea"
+    },
+    {
+      "name": "Forsyth Island",
+      "areaKm2": 1844,
+      "areaSqMi": 712,
+      "region": "Australia"
+    },
+    {
+      "name": "Hallands Väderö",
+      "areaKm2": 1834,
+      "areaSqMi": 708.1,
+      "region": "Sweden"
+    },
+    {
+      "name": "Nozaki Island",
+      "areaKm2": 1824,
+      "areaSqMi": 704.3,
+      "region": "Japan"
+    },
+    {
+      "name": "Bely Island",
+      "areaKm2": 1810,
+      "areaSqMi": 698.8,
+      "region": "Russia"
+    },
+    {
+      "name": "Afognak",
+      "areaKm2": 1809,
+      "areaSqMi": 698.5,
+      "region": "United States"
+    },
+    {
+      "name": "Halsön, Korsnäs",
+      "areaKm2": 1800,
+      "areaSqMi": 695,
+      "region": "Finland"
+    },
+    {
+      "name": "île des Anguillards",
+      "areaKm2": 1800,
+      "areaSqMi": 695,
+      "region": "France"
+    },
+    {
+      "name": "Ladaj",
+      "areaKm2": 1800,
+      "areaSqMi": 695,
+      "region": "India"
+    },
+    {
+      "name": "Umnak",
+      "areaKm2": 1793,
+      "areaSqMi": 692.3,
+      "region": "United States"
+    },
+    {
+      "name": "Muckle Roe",
+      "areaKm2": 1773,
+      "areaSqMi": 684.6,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Kleine Birke",
+      "areaKm2": 1770,
+      "areaSqMi": 683.4,
+      "region": "Germany"
+    },
+    {
+      "name": "Bolshoy Shantar",
+      "areaKm2": 1766,
+      "areaSqMi": 681.9,
+      "region": "Russia"
+    },
+    {
+      "name": "Bigger Begichev Island",
+      "areaKm2": 1764,
+      "areaSqMi": 681.1,
+      "region": "Russia"
+    },
+    {
+      "name": "Simeulue Island",
+      "areaKm2": 1754,
+      "areaSqMi": 677.2,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Stewart Island/Rakiura",
+      "areaKm2": 1746,
+      "areaSqMi": 674.1,
+      "region": "New Zealand"
+    },
+    {
+      "name": "Kobroor Island",
+      "areaKm2": 1723,
+      "areaSqMi": 665.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Air Force Island",
+      "areaKm2": 1720,
+      "areaSqMi": 664.1,
+      "region": "Canada"
+    },
+    {
+      "name": "Savai'i",
+      "areaKm2": 1718,
+      "areaSqMi": 663.3,
+      "region": "Samoa"
+    },
+    {
+      "name": "Katers Island",
+      "areaKm2": 1718,
+      "areaSqMi": 663.3,
+      "region": "Australia"
+    },
+    {
+      "name": "Geographical Society Island",
+      "areaKm2": 1717,
+      "areaSqMi": 662.9,
+      "region": "Greenland"
+    },
+    {
+      "name": "Hovgaard Ø",
+      "areaKm2": 1692,
+      "areaSqMi": 653.3,
+      "region": "Greenland"
+    },
+    {
+      "name": "Galley Island Minor",
+      "areaKm2": 1691,
+      "areaSqMi": 652.9,
+      "region": "Antigua and Barbuda"
+    },
+    {
+      "name": "Inagua",
+      "areaKm2": 1679,
+      "areaSqMi": 648.3,
+      "region": "The Bahamas"
+    },
+    {
+      "name": "Bering Island",
+      "areaKm2": 1667,
+      "areaSqMi": 643.6,
+      "region": "Russia"
+    },
+    {
+      "name": "Isle of Skye",
+      "areaKm2": 1656,
+      "areaSqMi": 639.4,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Lesbos",
+      "areaKm2": 1641,
+      "areaSqMi": 633.6,
+      "region": "Greece"
+    },
+    {
+      "name": "Soisalo",
+      "areaKm2": 1635,
+      "areaSqMi": 631.3,
+      "region": "Finland"
+    },
+    {
+      "name": "Fuerteventura",
+      "areaKm2": 1633,
+      "areaSqMi": 630.5,
+      "region": "Spain"
+    },
+    {
+      "name": "Salawati Island",
+      "areaKm2": 1623,
+      "areaSqMi": 626.6,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Joinville Island",
+      "areaKm2": 1607,
+      "areaSqMi": 620.5,
+      "region": "—"
+    },
+    {
+      "name": "Bunguran Island",
+      "areaKm2": 1605,
+      "areaSqMi": 619.7,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Wokam Island",
+      "areaKm2": 1604,
+      "areaSqMi": 619.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Senja",
+      "areaKm2": 1590,
+      "areaSqMi": 613.9,
+      "region": "Norway"
+    },
+    {
+      "name": "Flaherty Island",
+      "areaKm2": 1585,
+      "areaSqMi": 612,
+      "region": "Canada"
+    },
+    {
+      "name": "Kuroshima",
+      "areaKm2": 1582,
+      "areaSqMi": 610.8,
+      "region": "Japan"
+    },
+    {
+      "name": "Deal Island",
+      "areaKm2": 1576,
+      "areaSqMi": 608.5,
+      "region": "Australia"
+    },
+    {
+      "name": "Unguja",
+      "areaKm2": 1575,
+      "areaSqMi": 608.1,
+      "region": "Tanzania"
+    },
+    {
+      "name": "Gran Canaria",
+      "areaKm2": 1560,
+      "areaSqMi": 602.3,
+      "region": "Spain"
+    },
+    {
+      "name": "Graham Bell Island",
+      "areaKm2": 1557,
+      "areaSqMi": 601.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Brämön",
+      "areaKm2": 1548,
+      "areaSqMi": 597.7,
+      "region": "Sweden"
+    },
+    {
+      "name": "Oahu",
+      "areaKm2": 1545,
+      "areaSqMi": 596.5,
+      "region": "United States"
+    },
+    {
+      "name": "Eglinton Island",
+      "areaKm2": 1541,
+      "areaSqMi": 595,
+      "region": "Canada"
+    },
+    {
+      "name": "Pioneer Island",
+      "areaKm2": 1527,
+      "areaSqMi": 589.6,
+      "region": "Russia"
+    },
+    {
+      "name": "Catanduanes",
+      "areaKm2": 1523,
+      "areaSqMi": 588,
+      "region": "Philippines"
+    },
+    {
+      "name": "Middle Andaman Island",
+      "areaKm2": 1523,
+      "areaSqMi": 588,
+      "region": "India"
+    },
+    {
+      "name": "Área de Proteção Ambiental da Ilha do Combu",
+      "areaKm2": 1503,
+      "areaSqMi": 580.3,
+      "region": "Brazil"
+    },
+    {
+      "name": "Charcot Island",
+      "areaKm2": 1500,
+      "areaSqMi": 579.2,
+      "region": "—"
+    },
+    {
+      "name": "Rupat Island",
+      "areaKm2": 1490,
+      "areaSqMi": 575.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Kunashir Island",
+      "areaKm2": 1489,
+      "areaSqMi": 574.9,
+      "region": "Russia"
+    },
+    {
+      "name": "Clavering Island",
+      "areaKm2": 1488,
+      "areaSqMi": 574.5,
+      "region": "Greenland"
+    },
+    {
+      "name": "Letea Island",
+      "areaKm2": 1480,
+      "areaSqMi": 571.4,
+      "region": "Romania"
+    },
+    {
+      "name": "Taransay",
+      "areaKm2": 1475,
+      "areaSqMi": 569.5,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "St Andrew Island",
+      "areaKm2": 1470,
+      "areaSqMi": 567.6,
+      "region": "Australia"
+    },
+    {
+      "name": "Nares Land",
+      "areaKm2": 1466,
+      "areaSqMi": 566,
+      "region": "Greenland"
+    },
+    {
+      "name": "Valentine Island",
+      "areaKm2": 1456,
+      "areaSqMi": 562.2,
+      "region": "Canada"
+    },
+    {
+      "name": "South Andros Island",
+      "areaKm2": 1448,
+      "areaSqMi": 559.1,
+      "region": "The Bahamas"
+    },
+    {
+      "name": "Qeshm Island",
+      "areaKm2": 1445,
+      "areaSqMi": 557.9,
+      "region": "Iran"
+    },
+    {
+      "name": "Bhola Island",
+      "areaKm2": 1441,
+      "areaSqMi": 556.4,
+      "region": "Bangladesh"
+    },
+    {
+      "name": "Urup",
+      "areaKm2": 1437,
+      "areaSqMi": 554.8,
+      "region": "Russia"
+    },
+    {
+      "name": "Fergusson Island",
+      "areaKm2": 1437,
+      "areaSqMi": 554.8,
+      "region": "Papua New Guinea"
+    },
+    {
+      "name": "Kauaʻi",
+      "areaKm2": 1435,
+      "areaSqMi": 554.1,
+      "region": "United States"
+    },
+    {
+      "name": "Hahajima",
+      "areaKm2": 1419,
+      "areaSqMi": 547.9,
+      "region": "Japan"
+    },
+    {
+      "name": "Chichijima",
+      "areaKm2": 1410,
+      "areaSqMi": 544.4,
+      "region": "Japan"
+    },
+    {
+      "name": "São Luís Island",
+      "areaKm2": 1410,
+      "areaSqMi": 544.4,
+      "region": "Brazil"
+    },
+    {
+      "name": "Rhodes",
+      "areaKm2": 1400,
+      "areaSqMi": 540.5,
+      "region": "Greece"
+    },
+    {
+      "name": "Luing",
+      "areaKm2": 1400,
+      "areaSqMi": 540.5,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Oaia Island",
+      "areaKm2": 1400,
+      "areaSqMi": 540.5,
+      "region": "New Zealand"
+    },
+    {
+      "name": "Isle of Gigha",
+      "areaKm2": 1395,
+      "areaSqMi": 538.6,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Grótta",
+      "areaKm2": 1393,
+      "areaSqMi": 537.8,
+      "region": "Iceland"
+    },
+    {
+      "name": "Pitt Island",
+      "areaKm2": 1375,
+      "areaSqMi": 530.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Nottingham Island",
+      "areaKm2": 1372,
+      "areaSqMi": 529.7,
+      "region": "Canada"
+    },
+    {
+      "name": "Desolación Island",
+      "areaKm2": 1352,
+      "areaSqMi": 522,
+      "region": "Chile"
+    },
+    {
+      "name": "Ramree Island",
+      "areaKm2": 1350,
+      "areaSqMi": 521.2,
+      "region": "Myanmar"
+    },
+    {
+      "name": "Öland",
+      "areaKm2": 1347,
+      "areaSqMi": 520.1,
+      "region": "Sweden"
+    },
+    {
+      "name": "South West Osborn Island",
+      "areaKm2": 1339,
+      "areaSqMi": 517,
+      "region": "Australia"
+    },
+    {
+      "name": "Champagny Island",
+      "areaKm2": 1337,
+      "areaSqMi": 516.2,
+      "region": "Australia"
+    },
+    {
+      "name": "Lady Julia Percy Island",
+      "areaKm2": 1330,
+      "areaSqMi": 513.5,
+      "region": "Australia"
+    },
+    {
+      "name": "Arran Island",
+      "areaKm2": 1327,
+      "areaSqMi": 512.4,
+      "region": "Canada"
+    },
+    {
+      "name": "North Andaman Island",
+      "areaKm2": 1317,
+      "areaSqMi": 508.5,
+      "region": "India"
+    },
+    {
+      "name": "Lougheed Island",
+      "areaKm2": 1313,
+      "areaSqMi": 507,
+      "region": "Canada"
+    },
+    {
+      "name": "Seil",
+      "areaKm2": 1300,
+      "areaSqMi": 501.9,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Mali Piruzi",
+      "areaKm2": 1298,
+      "areaSqMi": 501.2,
+      "region": "Croatia"
+    },
+    {
+      "name": "Grenadier Island",
+      "areaKm2": 1290,
+      "areaSqMi": 498.1,
+      "region": "United States"
+    },
+    {
+      "name": "Dawson Island",
+      "areaKm2": 1290,
+      "areaSqMi": 498.1,
+      "region": "Chile"
+    },
+    {
+      "name": "Barentsøya",
+      "areaKm2": 1288,
+      "areaSqMi": 497.3,
+      "region": "Norway"
+    },
+    {
+      "name": "Basilan",
+      "areaKm2": 1282,
+      "areaSqMi": 495,
+      "region": "Philippines"
+    },
+    {
+      "name": "Lembata Island",
+      "areaKm2": 1270,
+      "areaSqMi": 490.3,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Chongming Island",
+      "areaKm2": 1267,
+      "areaSqMi": 489.2,
+      "region": "People's Republic of China"
+    },
+    {
+      "name": "South Andaman Island",
+      "areaKm2": 1262,
+      "areaSqMi": 487.3,
+      "region": "India"
+    },
+    {
+      "name": "Shannon Island",
+      "areaKm2": 1259,
+      "areaSqMi": 486.1,
+      "region": "Greenland"
+    },
+    {
+      "name": "Mill Island",
+      "areaKm2": 1258,
+      "areaSqMi": 485.7,
+      "region": "—"
+    },
+    {
+      "name": "Porquerolles",
+      "areaKm2": 1254,
+      "areaSqMi": 484.2,
+      "region": "France"
+    },
+    {
+      "name": "Morfil",
+      "areaKm2": 1250,
+      "areaSqMi": 482.6,
+      "region": "Senegal"
+    },
+    {
+      "name": "Lolland",
+      "areaKm2": 1243,
+      "areaSqMi": 479.9,
+      "region": "Denmark"
+    },
+    {
+      "name": "Badger Island",
+      "areaKm2": 1242,
+      "areaSqMi": 479.5,
+      "region": "Australia"
+    },
+    {
+      "name": "Mangoli Island",
+      "areaKm2": 1229,
+      "areaSqMi": 474.5,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Rote Island",
+      "areaKm2": 1227,
+      "areaSqMi": 473.7,
+      "region": "Indonesia"
+    },
+    {
+      "name": "New Hanover Island",
+      "areaKm2": 1227,
+      "areaSqMi": 473.7,
+      "region": "Papua New Guinea"
+    },
+    {
+      "name": "Kamik od oštra",
+      "areaKm2": 1220,
+      "areaSqMi": 471,
+      "region": "Croatia"
+    },
+    {
+      "name": "Kerrera",
+      "areaKm2": 1214,
+      "areaSqMi": 468.7,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Okinawa",
+      "areaKm2": 1208,
+      "areaSqMi": 466.4,
+      "region": "Japan"
+    },
+    {
+      "name": "Södertörn",
+      "areaKm2": 1207,
+      "areaSqMi": 466,
+      "region": "Sweden"
+    },
+    {
+      "name": "Sunday Island",
+      "areaKm2": 1198,
+      "areaSqMi": 462.6,
+      "region": "Australia"
+    },
+    {
+      "name": "Oleniy Island",
+      "areaKm2": 1197,
+      "areaSqMi": 462.2,
+      "region": "Russia"
+    },
+    {
+      "name": "Tiburón Island",
+      "areaKm2": 1190,
+      "areaSqMi": 459.5,
+      "region": "Mexico"
+    },
+    {
+      "name": "Campana Island",
+      "areaKm2": 1188,
+      "areaSqMi": 458.7,
+      "region": "Chile"
+    },
+    {
+      "name": "Lingnoonganee Island",
+      "areaKm2": 1182,
+      "areaSqMi": 456.4,
+      "region": "Australia"
+    },
+    {
+      "name": "Stora Karlsö",
+      "areaKm2": 1181,
+      "areaSqMi": 456,
+      "region": "Sweden"
+    },
+    {
+      "name": "Lachlan Island",
+      "areaKm2": 1180,
+      "areaSqMi": 455.6,
+      "region": "Australia"
+    },
+    {
+      "name": "Bintan Island",
+      "areaKm2": 1173,
+      "areaSqMi": 452.9,
+      "region": "Indonesia"
+    },
+    {
+      "name": "Great Cumbrae Island",
+      "areaKm2": 1168,
+      "areaSqMi": 451,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Aracena Island",
+      "areaKm2": 1164,
+      "areaSqMi": 449.4,
+      "region": "Chile"
+    },
+    {
+      "name": "Sicogon Island",
+      "areaKm2": 1160,
+      "areaSqMi": 447.9,
+      "region": "Philippines"
+    },
+    {
+      "name": "King George Island",
+      "areaKm2": 1150,
+      "areaSqMi": 444,
+      "region": "—"
+    },
+    {
+      "name": "Byam Martin Island",
+      "areaKm2": 1150,
+      "areaSqMi": 444,
+      "region": "Canada"
+    },
+    {
+      "name": "Great Abaco",
+      "areaKm2": 1146,
+      "areaSqMi": 442.5,
+      "region": "The Bahamas"
+    },
+    {
+      "name": "Lifou Island",
+      "areaKm2": 1146,
+      "areaSqMi": 442.5,
+      "region": "France"
+    },
+    {
+      "name": "Wales Island",
+      "areaKm2": 1137,
+      "areaSqMi": 439,
+      "region": "Canada"
+    },
+    {
+      "name": "Sweers Island",
+      "areaKm2": 1132,
+      "areaSqMi": 437.1,
+      "region": "Australia"
+    },
+    {
+      "name": "Canna",
+      "areaKm2": 1130,
+      "areaSqMi": 436.3,
+      "region": "United Kingdom"
+    },
+    {
+      "name": "Île Vanier",
+      "areaKm2": 1126,
+      "areaSqMi": 434.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Upolu",
+      "areaKm2": 1125,
+      "areaSqMi": 434.4,
+      "region": "Samoa"
+    },
+    {
+      "name": "Salagnon Island",
+      "areaKm2": 1120,
+      "areaSqMi": 432.4,
+      "region": "Switzerland"
+    },
+    {
+      "name": "Fakarava",
+      "areaKm2": 1112,
+      "areaSqMi": 429.3,
+      "region": "France"
+    },
+    {
+      "name": "Clarence Island",
+      "areaKm2": 1111,
+      "areaSqMi": 429,
+      "region": "Chile"
+    },
+    {
+      "name": "King Island",
+      "areaKm2": 1098,
+      "areaSqMi": 423.9,
+      "region": "Australia"
+    },
+    {
+      "name": "Grand Bahama",
+      "areaKm2": 1096,
+      "areaSqMi": 423.2,
+      "region": "The Bahamas"
+    },
+    {
+      "name": "Rowley Island",
+      "areaKm2": 1095,
+      "areaSqMi": 422.8,
+      "region": "Canada"
+    },
+    {
+      "name": "Alexandra Land",
+      "areaKm2": 1095,
+      "areaSqMi": 422.8,
+      "region": "Russia"
+    },
+    {
+      "name": "Torrö",
+      "areaKm2": 1085,
+      "areaSqMi": 418.9,
+      "region": "Sweden"
+    },
+    {
+      "name": "Middle Island",
+      "areaKm2": 1080,
+      "areaSqMi": 417,
+      "region": "Australia"
+    },
+    {
+      "name": "Sääminginsalo",
+      "areaKm2": 1069,
+      "areaSqMi": 412.7,
+      "region": "Finland"
+    },
+    {
+      "name": "Serrano Island",
+      "areaKm2": 1063,
+      "areaSqMi": 410.4,
+      "region": "Chile"
+    },
+    {
+      "name": "Atka Island",
+      "areaKm2": 1061,
+      "areaSqMi": 409.7,
+      "region": "United States"
+    },
+    {
+      "name": "Cameron Island",
+      "areaKm2": 1059,
+      "areaSqMi": 408.9,
+      "region": "Canada"
+    },
+    {
+      "name": "Trysunda",
+      "areaKm2": 1052,
+      "areaSqMi": 406.2,
+      "region": "Sweden"
+    },
+    {
+      "name": "Hall Island",
+      "areaKm2": 1049,
+      "areaSqMi": 405,
+      "region": "Russia"
+    },
+    {
+      "name": "Madre de Dios Island",
+      "areaKm2": 1043,
+      "areaSqMi": 402.7,
+      "region": "Chile"
+    },
+    {
+      "name": "Tahiti",
+      "areaKm2": 1042,
+      "areaSqMi": 402.3,
+      "region": "France"
+    },
+    {
+      "name": "Normanby Island",
+      "areaKm2": 1040,
+      "areaSqMi": 401.5,
+      "region": "Papua New Guinea"
+    }
+  ]
+}

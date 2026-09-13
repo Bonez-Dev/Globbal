@@ -75,6 +75,19 @@
         return;
       }
       window.GlobblePracticeResume.saveForDictionary();
+      const returnFromLink = (() => {
+        try {
+          const linkUrl = new URL(link.href, window.location.href);
+          const returnParam = linkUrl.searchParams.get("return");
+          if (returnParam) {
+            return returnParam;
+          }
+        } catch {
+          /* ignore */
+        }
+        return window.location.pathname + window.location.search + window.location.hash;
+      })();
+      window.GlobbleDictionaryNav?.rememberReturnUrl(returnFromLink);
     },
     true
   );

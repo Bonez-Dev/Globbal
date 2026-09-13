@@ -14,13 +14,13 @@ const STATES_PATH = path.join(ROOT, "data", "us-states.json");
 const IRISH_COUNTIES_PATH = path.join(ROOT, "data", "irish-counties.json");
 const BRITISH_SHIRES_PATH = path.join(ROOT, "data", "british-shires.json");
 const RIVERS_PATH = path.join(ROOT, "data", "world-rivers.json");
+const ISLANDS_PATH = path.join(ROOT, "data", "world-islands-large.json");
 const WATER_PATH = path.join(ROOT, "data", "world-water-bodies.json");
 
 const OCEAN_SEA_TYPES = new Set(["ocean", "sea"]);
 const COASTAL_WATER_TYPES = new Set(["bay", "gulf", "bight"]);
 const MOUNTAIN_KINDS = new Set(["mountain", "mountainRange", "hill"]);
 const PLAIN_VALLEY_KINDS = new Set(["plain", "valley"]);
-const ISLAND_CONTINENT_KINDS = new Set(["island", "continent"]);
 const { compactWord, collectAliasSourceWords } = require(path.join(ROOT, "dictionary-keys.js"));
 
 const US_COUNTRY_NAMES = new Set(["United States", "United States of America"]);
@@ -127,6 +127,7 @@ function main() {
     abbreviations: [],
     mountainRanges: [],
     landforms: [],
+    islands: [],
     islandsContinents: [],
     rivers: [],
     oceansSeas: [],
@@ -140,6 +141,9 @@ function main() {
   const riverCompacts = new Set(
     JSON.parse(fs.readFileSync(RIVERS_PATH, "utf8")).map((river) => compactWord(river.name))
   );
+  const islandPayload = JSON.parse(fs.readFileSync(ISLANDS_PATH, "utf8"));
+  const islandRows = Array.isArray(islandPayload.islands) ? islandPayload.islands : islandPayload;
+  const islandCompacts = new Set(islandRows.map((island) => compactWord(island.name)));
   const waterBodies = JSON.parse(fs.readFileSync(WATER_PATH, "utf8"));
   const oceanSeaCompacts = new Set(
     waterBodies.filter((b) => OCEAN_SEA_TYPES.has(b.type)).map((b) => compactWord(b.name))
@@ -185,7 +189,7 @@ function main() {
     if (PLAIN_VALLEY_KINDS.has(entry?.kind)) {
       categories.landforms.push(word);
       assigned.add(word);
-    } else if (ISLAND_CONTINENT_KINDS.has(entry?.kind)) {
+    } else if (entry?.kind === "continent") {
       categories.islandsContinents.push(word);
       assigned.add(word);
     }
@@ -219,6 +223,20 @@ function main() {
       riverCompacts.has(compactWord(word))
     ) {
       categories.rivers.push(word);
+      if (entry?.kind !== "country" && entry?.kind !== "state") {
+        assigned.add(word);
+      }
+    }
+  }
+
+  for (const word of words) {
+    const entry = meta[word];
+    if (
+      entry?.kind === "island" ||
+      entry?.island ||
+      islandCompacts.has(compactWord(word))
+    ) {
+      categories.islands.push(word);
       if (entry?.kind !== "country" && entry?.kind !== "state") {
         assigned.add(word);
       }
@@ -322,6 +340,7 @@ function main() {
         abbreviations: categories.abbreviations.length,
         mountainRanges: categories.mountainRanges.length,
         landforms: categories.landforms.length,
+        islands: categories.islands.length,
         islandsContinents: categories.islandsContinents.length,
         rivers: categories.rivers.length,
         oceansSeas: categories.oceansSeas.length,

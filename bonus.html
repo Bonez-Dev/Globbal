@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Globbal — Bonus Round</title>
+    <link rel="icon" href="./assets/favicon.ico" sizes="any" />
+    <link rel="stylesheet" href="./styles-bonus.css?v=1" />
+  </head>
+  <body class="bonus-body">
+    <div id="bonusLoading" class="bonus-loading">Loading bonus round…</div>
+    <div id="bonusWaiting" class="bonus-waiting" hidden>Waiting…</div>
+
+    <main id="bonusShell" class="bonus-shell" hidden>
+      <header class="bonus-header">
+        <div>
+          <p class="bonus-kicker">Bonus Round</p>
+          <h1 id="bonusPlayerLabel" class="bonus-title">What country is this?</h1>
+        </div>
+        <div id="bonusTimer" class="bonus-timer" aria-live="polite">
+          <span aria-hidden="true">⏱</span>
+          <span id="bonusTimerValue">30</span>s
+        </div>
+      </header>
+
+      <div class="bonus-globe-wrap">
+        <div id="bonusGlobeHost" class="bonus-globe-host"></div>
+        <p class="bonus-globe-hint">Drag to spin the globe</p>
+      </div>
+
+      <p class="bonus-question">What country is this?</p>
+      <div id="bonusChoices" class="bonus-choices"></div>
+      <p id="bonusStatus" class="bonus-status" aria-live="polite"></p>
+    </main>
+
+    <script src="./accounts-client.js"></script>
+    <script src="./bonus-round.js"></script>
+    <script type="module" src="./bonus-game.js?v=offline-skip1"></script>
+  </body>
+</html>

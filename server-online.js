@@ -11,6 +11,7 @@ const WebSocket = require("ws");
 const { loadDictionary, OnlineGame } = require("./game-engine.cjs");
 const { createAccountsStore } = require("./accounts-store.cjs");
 const { createAccountsHttp } = require("./accounts-http.cjs");
+const { generateBonusQuestion } = require("./bonus-round.cjs");
 const { containsBannedLanguage } = require("./chat-filter.cjs");
 
 const PORT = Number(process.env.PORT, 10) || 8080;
@@ -130,6 +131,22 @@ function safeJoin(base, target) {
 }
 
 const dictionary = loadDictionary();
+
+let bonusCountryData = null;
+try {
+  bonusCountryData = JSON.parse(
+    fs.readFileSync(path.join(ROOT, "data", "bonus-country-data.json"), "utf8")
+  );
+} catch (err) {
+  process.stderr.write(`[bonus] bonus-country-data.json not loaded: ${err.message}\n`);
+}
+
+function createBonusQuestion() {
+  if (!bonusCountryData) {
+    throw new Error("Bonus country data is missing on the server.");
+  }
+  return generateBonusQuestion(bonusCountryData);
+}
 
 /** @type {Map<string, any>} */
 const liveGames = new Map();
@@ -513,6 +530,16 @@ async function handleMessage(ws, raw) {
   const { room, playerIndex } = meta;
   const { game } = room;
 
+  if (
+    game.isBonusBlocking?.() &&
+    type !== "bonusAnswer" &&
+    type !== "chatOptIn" &&
+    type !== "chatSend"
+  ) {
+    ws.send(JSON.stringify({ type: "error", error: "Bonus round in progress." }));
+    return;
+  }
+
   if (type === "chatOptIn") {
     handleChatOptIn(room, playerIndex, msg.enabled);
     return;
@@ -577,6 +604,10 @@ async function handleMessage(ws, raw) {
       result = game.reorderRack(playerIndex, msg.fromIndex, msg.toIndex);
       break;
     }
+    case "bonusAnswer": {
+      result = game.submitBonusAnswer(playerIndex, Number(msg.choiceIndex));
+      break;
+    }
     default:
       ws.send(JSON.stringify({ type: "error", error: `Unknown action: ${type}` }));
       return;
@@ -590,8 +621,24 @@ async function handleMessage(ws, raw) {
     return;
   }
 
+  if (type === "submit" && result.triggerBonus) {
+    try {
+      const question = createBonusQuestion();
+      game.beginBonusRound(result.submittingPlayer, question);
+    } catch (err) {
+      process.stderr.write(`[bonus] ${err.message}\n`);
+      ws.send(JSON.stringify({ type: "error", error: "Could not start bonus round." }));
+      broadcastRoom(room);
+      return;
+    }
+  }
+
   // Update clients immediately — do not wait on MongoDB for mid-turn moves.
   broadcastRoom(room);
+
+  if (type === "bonusAnswer" && result.ok) {
+    ws.send(JSON.stringify({ type: "bonusResult", complete: !!result.complete, points: result.points }));
+  }
 
   if (game.gameOver) {
     let winnerUserId = null;

@@ -34,6 +34,7 @@ const RACK_SIZE = 16;
 const FULL_RACK_BONUS = Math.round((50 / 7) * RACK_SIZE);
 
 const SESSION_KEY = "globble-online-game-session-v3";
+const BONUS_SESSION_KEY = "globble-bonus-session-v1";
 
 const onlineDictionary = GlobbleDictionaryKeys.buildPlayableDictionary(
   typeof LOCKED_WORDS !== "undefined" ? LOCKED_WORDS : [],
@@ -1269,6 +1270,48 @@ function renderAll() {
   }
 
   window.GlobbleBoardZoom?.syncFromTiles(gameState.pendingPlacements || [], boardEl);
+  maybeLaunchOnlineBonus();
+}
+
+function maybeLaunchOnlineBonus() {
+  if (location.pathname.endsWith("bonus.html")) {
+    return;
+  }
+  const bs = gameState?.bonusState;
+  if (!bs || bs.complete) {
+    return;
+  }
+  const myIndex = gameState.myPlayerIndex;
+  if (bs.answers?.[myIndex] != null) {
+    return;
+  }
+  if (bs.activePlayerIndex !== myIndex) {
+    turnInfoEl.textContent = "Bonus round — waiting for your opponent…";
+    setControlsDisabled(true);
+    return;
+  }
+  const gameId = gameState.gameId || loadPersistSession()?.gameId;
+  if (!gameId) {
+    return;
+  }
+  try {
+    sessionStorage.setItem(
+      BONUS_SESSION_KEY,
+      JSON.stringify({
+        mode: "online",
+        returnUrl: "./game-online.html",
+        gameId,
+        myPlayerIndex: myIndex,
+        activePlayerIndex: bs.activePlayerIndex,
+        submittingPlayer: bs.submittingPlayer,
+        playerNames: gameState.playerNames || [],
+        question: bs.question
+      })
+    );
+  } catch {
+    return;
+  }
+  location.href = "./bonus.html";
 }
 
 function applyOptimisticRecall() {

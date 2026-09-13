@@ -6,6 +6,8 @@ RUN npm install --omit=dev
 
 COPY . .
 
+RUN npm run prepare:deploy
+
 ENV NODE_ENV=production
 ENV PORT=8080
 EXPOSE 8080

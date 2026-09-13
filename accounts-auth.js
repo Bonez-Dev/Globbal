@@ -180,7 +180,10 @@
     if (user) {
       const params = new URLSearchParams(location.search);
       if (params.get("dictionary") === "1") {
-        location.href = "./profile.html?dictionary=1";
+        const returnParam = params.get("return");
+        location.href = returnParam
+          ? `./profile.html?dictionary=1&return=${encodeURIComponent(returnParam)}`
+          : "./profile.html?dictionary=1";
         return;
       }
       goToProfile();

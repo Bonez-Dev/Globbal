@@ -1,0 +1,2258 @@
+{
+  "generatedAt": "2026-09-12T22:21:44.790Z",
+  "countryCount": 193,
+  "countries": {
+    "AFGHANISTAN": {
+      "name": "Afghanistan",
+      "iso": "AF",
+      "lat": 33,
+      "lng": 65,
+      "neighbors": [
+        "TURKMENISTAN",
+        "CHINA",
+        "IRAN",
+        "TAJIKISTAN",
+        "PAKISTAN",
+        "UZBEKISTAN"
+      ]
+    },
+    "ALBANIA": {
+      "name": "Albania",
+      "iso": "AL",
+      "lat": 41,
+      "lng": 20,
+      "neighbors": [
+        "NORTH MACEDONIA",
+        "GREECE",
+        "MONTENEGRO",
+        "SERBIA"
+      ]
+    },
+    "ALGERIA": {
+      "name": "Algeria",
+      "iso": "DZ",
+      "lat": 28,
+      "lng": 3,
+      "neighbors": [
+        "NIGER",
+        "LIBYA",
+        "MAURITANIA",
+        "TUNISIA",
+        "MOROCCO",
+        "MALI"
+      ]
+    },
+    "ANDORRA": {
+      "name": "Andorra",
+      "iso": "AD",
+      "lat": 42.5,
+      "lng": 1.5,
+      "neighbors": [
+        "SPAIN",
+        "FRANCE"
+      ]
+    },
+    "ANGOLA": {
+      "name": "Angola",
+      "iso": "AO",
+      "lat": -12.5,
+      "lng": 18.5,
+      "neighbors": [
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "NAMIBIA",
+        "ZAMBIA",
+        "REPUBLIC OF THE CONGO"
+      ]
+    },
+    "ANTIGUA AND BARBUDA": {
+      "name": "Antigua and Barbuda",
+      "iso": "AG",
+      "lat": 17.05,
+      "lng": -61.8,
+      "neighbors": []
+    },
+    "ARGENTINA": {
+      "name": "Argentina",
+      "iso": "AR",
+      "lat": -34,
+      "lng": -64,
+      "neighbors": [
+        "CHILE",
+        "BOLIVIA",
+        "URUGUAY",
+        "PARAGUAY",
+        "BRAZIL"
+      ]
+    },
+    "ARMENIA": {
+      "name": "Armenia",
+      "iso": "AM",
+      "lat": 40,
+      "lng": 45,
+      "neighbors": [
+        "GEORGIA",
+        "IRAN",
+        "AZERBAIJAN",
+        "TURKEY"
+      ]
+    },
+    "AUSTRALIA": {
+      "name": "Australia",
+      "iso": "AU",
+      "lat": -27,
+      "lng": 133,
+      "neighbors": [],
+      "islandDistractors": [
+        "INDONESIA",
+        "PAPUA NEW GUINEA",
+        "NEW ZEALAND"
+      ]
+    },
+    "AUSTRIA": {
+      "name": "Austria",
+      "iso": "AT",
+      "lat": 47.33333333,
+      "lng": 13.33333333,
+      "neighbors": [
+        "SWITZERLAND",
+        "GERMANY",
+        "HUNGARY",
+        "SLOVAKIA",
+        "CZECHIA",
+        "ITALY",
+        "SLOVENIA",
+        "LIECHTENSTEIN"
+      ]
+    },
+    "AZERBAIJAN": {
+      "name": "Azerbaijan",
+      "iso": "AZ",
+      "lat": 40.5,
+      "lng": 47.5,
+      "neighbors": [
+        "GEORGIA",
+        "IRAN",
+        "ARMENIA",
+        "TURKEY",
+        "RUSSIA"
+      ]
+    },
+    "BAHAMAS": {
+      "name": "Bahamas",
+      "iso": "BS",
+      "lat": 24.25,
+      "lng": -76,
+      "neighbors": [],
+      "islandDistractors": [
+        "UNITED STATES",
+        "CUBA",
+        "JAMAICA"
+      ]
+    },
+    "BAHRAIN": {
+      "name": "Bahrain",
+      "iso": "BH",
+      "lat": 26,
+      "lng": 50.55,
+      "neighbors": [],
+      "islandDistractors": [
+        "SAUDI ARABIA",
+        "QATAR",
+        "IRAN"
+      ]
+    },
+    "BANGLADESH": {
+      "name": "Bangladesh",
+      "iso": "BD",
+      "lat": 24,
+      "lng": 90,
+      "neighbors": [
+        "MYANMAR",
+        "INDIA"
+      ]
+    },
+    "BARBADOS": {
+      "name": "Barbados",
+      "iso": "BB",
+      "lat": 13.16666666,
+      "lng": -59.53333333,
+      "neighbors": []
+    },
+    "BELARUS": {
+      "name": "Belarus",
+      "iso": "BY",
+      "lat": 53,
+      "lng": 28,
+      "neighbors": [
+        "POLAND",
+        "LITHUANIA",
+        "UKRAINE",
+        "RUSSIA",
+        "LATVIA"
+      ]
+    },
+    "BELGIUM": {
+      "name": "Belgium",
+      "iso": "BE",
+      "lat": 50.83333333,
+      "lng": 4,
+      "neighbors": [
+        "GERMANY",
+        "THE NETHERLANDS",
+        "LUXEMBOURG",
+        "FRANCE"
+      ]
+    },
+    "BELIZE": {
+      "name": "Belize",
+      "iso": "BZ",
+      "lat": 17.25,
+      "lng": -88.75,
+      "neighbors": [
+        "GUATEMALA",
+        "MEXICO"
+      ]
+    },
+    "BENIN": {
+      "name": "Benin",
+      "iso": "BJ",
+      "lat": 9.5,
+      "lng": 2.25,
+      "neighbors": [
+        "NIGER",
+        "TOGO",
+        "BURKINA FASO",
+        "NIGERIA"
+      ]
+    },
+    "BHUTAN": {
+      "name": "Bhutan",
+      "iso": "BT",
+      "lat": 27.5,
+      "lng": 90.5,
+      "neighbors": [
+        "CHINA",
+        "INDIA"
+      ]
+    },
+    "BOLIVIA": {
+      "name": "Bolivia",
+      "iso": "BO",
+      "lat": -17,
+      "lng": -65,
+      "neighbors": [
+        "PERU",
+        "CHILE",
+        "PARAGUAY",
+        "BRAZIL",
+        "ARGENTINA"
+      ]
+    },
+    "BOSNIA AND HERZEGOVINA": {
+      "name": "Bosnia and Herzegovina",
+      "iso": "BA",
+      "lat": 44,
+      "lng": 18,
+      "neighbors": [
+        "CROATIA",
+        "MONTENEGRO",
+        "SERBIA"
+      ]
+    },
+    "BOTSWANA": {
+      "name": "Botswana",
+      "iso": "BW",
+      "lat": -22,
+      "lng": 24,
+      "neighbors": [
+        "ZIMBABWE",
+        "SOUTH AFRICA",
+        "NAMIBIA"
+      ]
+    },
+    "BRAZIL": {
+      "name": "Brazil",
+      "iso": "BR",
+      "lat": -10,
+      "lng": -55,
+      "neighbors": [
+        "SURINAME",
+        "PERU",
+        "BOLIVIA",
+        "URUGUAY",
+        "GUYANA",
+        "PARAGUAY",
+        "VENEZUELA",
+        "COLOMBIA",
+        "ARGENTINA"
+      ]
+    },
+    "BRUNEI": {
+      "name": "Brunei",
+      "iso": "BN",
+      "lat": 4.5,
+      "lng": 114.66666666,
+      "neighbors": [
+        "MALAYSIA"
+      ]
+    },
+    "BULGARIA": {
+      "name": "Bulgaria",
+      "iso": "BG",
+      "lat": 43,
+      "lng": 25,
+      "neighbors": [
+        "NORTH MACEDONIA",
+        "GREECE",
+        "ROMANIA",
+        "TURKEY",
+        "SERBIA"
+      ]
+    },
+    "BURKINA FASO": {
+      "name": "Burkina Faso",
+      "iso": "BF",
+      "lat": 13,
+      "lng": -2,
+      "neighbors": [
+        "NIGER",
+        "BENIN",
+        "GHANA",
+        "IVORY COAST",
+        "TOGO",
+        "MALI"
+      ]
+    },
+    "BURUNDI": {
+      "name": "Burundi",
+      "iso": "BI",
+      "lat": -3.5,
+      "lng": 30,
+      "neighbors": [
+        "TANZANIA",
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "RWANDA"
+      ]
+    },
+    "CABO VERDE": {
+      "name": "Cabo Verde",
+      "iso": "CV",
+      "lat": 16,
+      "lng": -24,
+      "neighbors": []
+    },
+    "CAMBODIA": {
+      "name": "Cambodia",
+      "iso": "KH",
+      "lat": 13,
+      "lng": 105,
+      "neighbors": [
+        "LAOS",
+        "THAILAND",
+        "VIETNAM"
+      ]
+    },
+    "CAMEROON": {
+      "name": "Cameroon",
+      "iso": "CM",
+      "lat": 6,
+      "lng": 12,
+      "neighbors": [
+        "CHAD",
+        "CENTRAL AFRICAN REPUBLIC",
+        "GABON",
+        "EQUATORIAL GUINEA",
+        "REPUBLIC OF THE CONGO",
+        "NIGERIA"
+      ]
+    },
+    "CANADA": {
+      "name": "Canada",
+      "iso": "CA",
+      "lat": 60,
+      "lng": -95,
+      "neighbors": [
+        "UNITED STATES"
+      ]
+    },
+    "CENTRAL AFRICAN REPUBLIC": {
+      "name": "Central African Republic",
+      "iso": "CF",
+      "lat": 7,
+      "lng": 21,
+      "neighbors": [
+        "CHAD",
+        "SUDAN",
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "SOUTH SUDAN",
+        "CAMEROON",
+        "REPUBLIC OF THE CONGO"
+      ]
+    },
+    "CHAD": {
+      "name": "Chad",
+      "iso": "TD",
+      "lat": 15,
+      "lng": 19,
+      "neighbors": [
+        "NIGER",
+        "LIBYA",
+        "CENTRAL AFRICAN REPUBLIC",
+        "SUDAN",
+        "CAMEROON",
+        "NIGERIA"
+      ]
+    },
+    "CHILE": {
+      "name": "Chile",
+      "iso": "CL",
+      "lat": -30,
+      "lng": -71,
+      "neighbors": [
+        "PERU",
+        "BOLIVIA",
+        "ARGENTINA"
+      ]
+    },
+    "CHINA": {
+      "name": "China",
+      "iso": "CN",
+      "lat": 35,
+      "lng": 105,
+      "neighbors": [
+        "LAOS",
+        "BHUTAN",
+        "TAJIKISTAN",
+        "KAZAKHSTAN",
+        "MONGOLIA",
+        "AFGHANISTAN",
+        "NEPAL",
+        "MYANMAR",
+        "KYRGYZSTAN",
+        "PAKISTAN",
+        "NORTH KOREA",
+        "RUSSIA",
+        "VIETNAM",
+        "INDIA"
+      ]
+    },
+    "COLOMBIA": {
+      "name": "Colombia",
+      "iso": "CO",
+      "lat": 4,
+      "lng": -72,
+      "neighbors": [
+        "ECUADOR",
+        "PERU",
+        "PANAMA",
+        "BRAZIL",
+        "VENEZUELA"
+      ]
+    },
+    "COMOROS": {
+      "name": "Comoros",
+      "iso": "KM",
+      "lat": -12.16666666,
+      "lng": 44.25,
+      "neighbors": [],
+      "islandDistractors": [
+        "MADAGASCAR",
+        "MOZAMBIQUE",
+        "TANZANIA"
+      ]
+    },
+    "COSTA RICA": {
+      "name": "Costa Rica",
+      "iso": "CR",
+      "lat": 10,
+      "lng": -84,
+      "neighbors": [
+        "PANAMA",
+        "NICARAGUA"
+      ]
+    },
+    "CROATIA": {
+      "name": "Croatia",
+      "iso": "HR",
+      "lat": 45.16666666,
+      "lng": 15.5,
+      "neighbors": [
+        "HUNGARY",
+        "SLOVENIA",
+        "BOSNIA AND HERZEGOVINA",
+        "MONTENEGRO",
+        "SERBIA"
+      ]
+    },
+    "CUBA": {
+      "name": "Cuba",
+      "iso": "CU",
+      "lat": 21.5,
+      "lng": -80,
+      "neighbors": [
+        "UNITED STATES"
+      ],
+      "islandDistractors": [
+        "UNITED STATES",
+        "MEXICO",
+        "JAMAICA"
+      ]
+    },
+    "CYPRUS": {
+      "name": "Cyprus",
+      "iso": "CY",
+      "lat": 35,
+      "lng": 33,
+      "neighbors": [],
+      "islandDistractors": [
+        "TURKEY",
+        "GREECE",
+        "SYRIA"
+      ]
+    },
+    "CZECHIA": {
+      "name": "Czechia",
+      "iso": "CZ",
+      "lat": 49.75,
+      "lng": 15.5,
+      "neighbors": [
+        "POLAND",
+        "GERMANY",
+        "SLOVAKIA",
+        "AUSTRIA"
+      ]
+    },
+    "DEMOCRATIC REPUBLIC OF THE CONGO": {
+      "name": "Democratic Republic of the Congo",
+      "iso": "CD",
+      "lat": 0,
+      "lng": 25,
+      "neighbors": [
+        "TANZANIA",
+        "CENTRAL AFRICAN REPUBLIC",
+        "SOUTH SUDAN",
+        "RWANDA",
+        "ZAMBIA",
+        "BURUNDI",
+        "UGANDA",
+        "REPUBLIC OF THE CONGO",
+        "ANGOLA"
+      ]
+    },
+    "DENMARK": {
+      "name": "Denmark",
+      "iso": "DK",
+      "lat": 56,
+      "lng": 10,
+      "neighbors": [
+        "GERMANY"
+      ]
+    },
+    "DJIBOUTI": {
+      "name": "Djibouti",
+      "iso": "DJ",
+      "lat": 11.5,
+      "lng": 43,
+      "neighbors": [
+        "ERITREA",
+        "ETHIOPIA",
+        "SOMALIA"
+      ]
+    },
+    "DOMINICA": {
+      "name": "Dominica",
+      "iso": "DM",
+      "lat": 15.41666666,
+      "lng": -61.33333333,
+      "neighbors": []
+    },
+    "DOMINICAN REPUBLIC": {
+      "name": "Dominican Republic",
+      "iso": "DO",
+      "lat": 19,
+      "lng": -70.66666666,
+      "neighbors": [
+        "HAITI"
+      ],
+      "islandDistractors": [
+        "HAITI",
+        "CUBA",
+        "JAMAICA"
+      ]
+    },
+    "ECUADOR": {
+      "name": "Ecuador",
+      "iso": "EC",
+      "lat": -2,
+      "lng": -77.5,
+      "neighbors": [
+        "PERU",
+        "COLOMBIA"
+      ]
+    },
+    "EGYPT": {
+      "name": "Egypt",
+      "iso": "EG",
+      "lat": 27,
+      "lng": 30,
+      "neighbors": [
+        "LIBYA",
+        "SUDAN",
+        "ISRAEL"
+      ]
+    },
+    "EL SALVADOR": {
+      "name": "El Salvador",
+      "iso": "SV",
+      "lat": 13.83333333,
+      "lng": -88.91666666,
+      "neighbors": [
+        "GUATEMALA",
+        "HONDURAS"
+      ]
+    },
+    "EQUATORIAL GUINEA": {
+      "name": "Equatorial Guinea",
+      "iso": "GQ",
+      "lat": 2,
+      "lng": 10,
+      "neighbors": [
+        "GABON",
+        "CAMEROON"
+      ]
+    },
+    "ERITREA": {
+      "name": "Eritrea",
+      "iso": "ER",
+      "lat": 15,
+      "lng": 39,
+      "neighbors": [
+        "ETHIOPIA",
+        "SUDAN",
+        "DJIBOUTI"
+      ]
+    },
+    "ESTONIA": {
+      "name": "Estonia",
+      "iso": "EE",
+      "lat": 59,
+      "lng": 26,
+      "neighbors": [
+        "RUSSIA",
+        "LATVIA"
+      ]
+    },
+    "ESWATINI": {
+      "name": "Eswatini",
+      "iso": "SZ",
+      "lat": -26.5,
+      "lng": 31.5,
+      "neighbors": [
+        "SOUTH AFRICA",
+        "MOZAMBIQUE"
+      ]
+    },
+    "ETHIOPIA": {
+      "name": "Ethiopia",
+      "iso": "ET",
+      "lat": 8,
+      "lng": 38,
+      "neighbors": [
+        "ERITREA",
+        "KENYA",
+        "SUDAN",
+        "SOUTH SUDAN",
+        "SOMALIA",
+        "DJIBOUTI"
+      ]
+    },
+    "FIJI": {
+      "name": "Fiji",
+      "iso": "FJ",
+      "lat": -18,
+      "lng": 175,
+      "neighbors": [],
+      "islandDistractors": [
+        "VANUATU",
+        "NEW ZEALAND",
+        "AUSTRALIA"
+      ]
+    },
+    "FINLAND": {
+      "name": "Finland",
+      "iso": "FI",
+      "lat": 64,
+      "lng": 26,
+      "neighbors": [
+        "NORWAY",
+        "RUSSIA",
+        "SWEDEN"
+      ]
+    },
+    "FRANCE": {
+      "name": "France",
+      "iso": "FR",
+      "lat": 46,
+      "lng": 2,
+      "neighbors": [
+        "SWITZERLAND",
+        "GERMANY",
+        "BELGIUM",
+        "LUXEMBOURG",
+        "ITALY",
+        "ANDORRA",
+        "MONACO",
+        "SPAIN"
+      ]
+    },
+    "GABON": {
+      "name": "Gabon",
+      "iso": "GA",
+      "lat": -1,
+      "lng": 11.75,
+      "neighbors": [
+        "CAMEROON",
+        "EQUATORIAL GUINEA",
+        "REPUBLIC OF THE CONGO"
+      ]
+    },
+    "GAMBIA": {
+      "name": "Gambia",
+      "iso": "GM",
+      "lat": 13.46666666,
+      "lng": -16.56666666,
+      "neighbors": [
+        "SENEGAL"
+      ]
+    },
+    "GEORGIA": {
+      "name": "Georgia",
+      "iso": "GE",
+      "lat": 42,
+      "lng": 43.5,
+      "neighbors": [
+        "ARMENIA",
+        "AZERBAIJAN",
+        "TURKEY",
+        "RUSSIA"
+      ]
+    },
+    "GERMANY": {
+      "name": "Germany",
+      "iso": "DE",
+      "lat": 51,
+      "lng": 9,
+      "neighbors": [
+        "SWITZERLAND",
+        "POLAND",
+        "THE NETHERLANDS",
+        "DENMARK",
+        "BELGIUM",
+        "CZECHIA",
+        "LUXEMBOURG",
+        "FRANCE",
+        "AUSTRIA"
+      ]
+    },
+    "GHANA": {
+      "name": "Ghana",
+      "iso": "GH",
+      "lat": 8,
+      "lng": -2,
+      "neighbors": [
+        "IVORY COAST",
+        "TOGO",
+        "BURKINA FASO"
+      ]
+    },
+    "GREECE": {
+      "name": "Greece",
+      "iso": "GR",
+      "lat": 39,
+      "lng": 22,
+      "neighbors": [
+        "ALBANIA",
+        "NORTH MACEDONIA",
+        "TURKEY",
+        "BULGARIA"
+      ]
+    },
+    "GRENADA": {
+      "name": "Grenada",
+      "iso": "GD",
+      "lat": 12.11666666,
+      "lng": -61.66666666,
+      "neighbors": []
+    },
+    "GUATEMALA": {
+      "name": "Guatemala",
+      "iso": "GT",
+      "lat": 15.5,
+      "lng": -90.25,
+      "neighbors": [
+        "MEXICO",
+        "HONDURAS",
+        "BELIZE",
+        "EL SALVADOR"
+      ]
+    },
+    "GUINEA": {
+      "name": "Guinea",
+      "iso": "GN",
+      "lat": 11,
+      "lng": -10,
+      "neighbors": [
+        "LIBERIA",
+        "SENEGAL",
+        "SIERRA LEONE",
+        "IVORY COAST",
+        "GUINEA BISSAU",
+        "MALI"
+      ]
+    },
+    "GUINEA BISSAU": {
+      "name": "Guinea-Bissau",
+      "iso": "GW",
+      "lat": 12,
+      "lng": -15,
+      "neighbors": [
+        "SENEGAL",
+        "GUINEA"
+      ]
+    },
+    "GUYANA": {
+      "name": "Guyana",
+      "iso": "GY",
+      "lat": 5,
+      "lng": -59,
+      "neighbors": [
+        "SURINAME",
+        "BRAZIL",
+        "VENEZUELA"
+      ]
+    },
+    "HAITI": {
+      "name": "Haiti",
+      "iso": "HT",
+      "lat": 19,
+      "lng": -72.41666666,
+      "neighbors": [
+        "DOMINICAN REPUBLIC"
+      ],
+      "islandDistractors": [
+        "DOMINICAN REPUBLIC",
+        "CUBA",
+        "JAMAICA"
+      ]
+    },
+    "HONDURAS": {
+      "name": "Honduras",
+      "iso": "HN",
+      "lat": 15,
+      "lng": -86.5,
+      "neighbors": [
+        "GUATEMALA",
+        "NICARAGUA",
+        "EL SALVADOR"
+      ]
+    },
+    "HUNGARY": {
+      "name": "Hungary",
+      "iso": "HU",
+      "lat": 47,
+      "lng": 20,
+      "neighbors": [
+        "SLOVAKIA",
+        "SLOVENIA",
+        "ROMANIA",
+        "UKRAINE",
+        "CROATIA",
+        "AUSTRIA",
+        "SERBIA"
+      ]
+    },
+    "ICELAND": {
+      "name": "Iceland",
+      "iso": "IS",
+      "lat": 65,
+      "lng": -18,
+      "neighbors": [],
+      "islandDistractors": [
+        "NORWAY",
+        "UNITED KINGDOM",
+        "IRELAND"
+      ]
+    },
+    "INDIA": {
+      "name": "India",
+      "iso": "IN",
+      "lat": 20,
+      "lng": 77,
+      "neighbors": [
+        "CHINA",
+        "NEPAL",
+        "MYANMAR",
+        "BHUTAN",
+        "PAKISTAN",
+        "BANGLADESH"
+      ]
+    },
+    "INDONESIA": {
+      "name": "Indonesia",
+      "iso": "ID",
+      "lat": -5,
+      "lng": 120,
+      "neighbors": [
+        "PAPUA NEW GUINEA",
+        "TIMOR LESTE",
+        "MALAYSIA"
+      ],
+      "islandDistractors": [
+        "MALAYSIA",
+        "PAPUA NEW GUINEA",
+        "AUSTRALIA"
+      ]
+    },
+    "IRAN": {
+      "name": "Iran",
+      "iso": "IR",
+      "lat": 32,
+      "lng": 53,
+      "neighbors": [
+        "TURKMENISTAN",
+        "AFGHANISTAN",
+        "IRAQ",
+        "ARMENIA",
+        "PAKISTAN",
+        "AZERBAIJAN",
+        "TURKEY"
+      ]
+    },
+    "IRAQ": {
+      "name": "Iraq",
+      "iso": "IQ",
+      "lat": 33,
+      "lng": 44,
+      "neighbors": [
+        "SYRIA",
+        "SAUDI ARABIA",
+        "IRAN",
+        "JORDAN",
+        "TURKEY",
+        "KUWAIT"
+      ]
+    },
+    "IRELAND": {
+      "name": "Ireland",
+      "iso": "IE",
+      "lat": 53,
+      "lng": -8,
+      "neighbors": [
+        "UNITED KINGDOM"
+      ],
+      "islandDistractors": [
+        "UNITED KINGDOM",
+        "FRANCE",
+        "ICELAND"
+      ]
+    },
+    "ISRAEL": {
+      "name": "Israel",
+      "iso": "IL",
+      "lat": 31.47,
+      "lng": 35.13,
+      "neighbors": [
+        "SYRIA",
+        "JORDAN",
+        "LEBANON",
+        "EGYPT"
+      ]
+    },
+    "ITALY": {
+      "name": "Italy",
+      "iso": "IT",
+      "lat": 42.83333333,
+      "lng": 12.83333333,
+      "neighbors": [
+        "SWITZERLAND",
+        "SLOVENIA",
+        "SAN MARINO",
+        "FRANCE",
+        "AUSTRIA"
+      ]
+    },
+    "IVORY COAST": {
+      "name": "Ivory Coast",
+      "iso": "CI",
+      "lat": 8,
+      "lng": -5,
+      "neighbors": [
+        "LIBERIA",
+        "GHANA",
+        "GUINEA",
+        "BURKINA FASO",
+        "MALI"
+      ]
+    },
+    "JAMAICA": {
+      "name": "Jamaica",
+      "iso": "JM",
+      "lat": 18.25,
+      "lng": -77.5,
+      "neighbors": [],
+      "islandDistractors": [
+        "CUBA",
+        "HAITI",
+        "DOMINICAN REPUBLIC"
+      ]
+    },
+    "JAPAN": {
+      "name": "Japan",
+      "iso": "JP",
+      "lat": 36,
+      "lng": 138,
+      "neighbors": [],
+      "islandDistractors": [
+        "SOUTH KOREA",
+        "CHINA",
+        "PHILIPPINES"
+      ]
+    },
+    "JORDAN": {
+      "name": "Jordan",
+      "iso": "JO",
+      "lat": 31,
+      "lng": 36,
+      "neighbors": [
+        "SYRIA",
+        "SAUDI ARABIA",
+        "IRAQ",
+        "ISRAEL"
+      ]
+    },
+    "KAZAKHSTAN": {
+      "name": "Kazakhstan",
+      "iso": "KZ",
+      "lat": 48,
+      "lng": 68,
+      "neighbors": [
+        "TURKMENISTAN",
+        "CHINA",
+        "KYRGYZSTAN",
+        "UZBEKISTAN",
+        "RUSSIA"
+      ]
+    },
+    "KENYA": {
+      "name": "Kenya",
+      "iso": "KE",
+      "lat": 1,
+      "lng": 38,
+      "neighbors": [
+        "ETHIOPIA",
+        "TANZANIA",
+        "SOUTH SUDAN",
+        "SOMALIA",
+        "UGANDA"
+      ]
+    },
+    "KIRIBATI": {
+      "name": "Kiribati",
+      "iso": "KI",
+      "lat": 1.41666666,
+      "lng": 173,
+      "neighbors": []
+    },
+    "KUWAIT": {
+      "name": "Kuwait",
+      "iso": "KW",
+      "lat": 29.5,
+      "lng": 45.75,
+      "neighbors": [
+        "SAUDI ARABIA",
+        "IRAQ"
+      ]
+    },
+    "KYRGYZSTAN": {
+      "name": "Kyrgyzstan",
+      "iso": "KG",
+      "lat": 41,
+      "lng": 75,
+      "neighbors": [
+        "CHINA",
+        "TAJIKISTAN",
+        "UZBEKISTAN",
+        "KAZAKHSTAN"
+      ]
+    },
+    "LAOS": {
+      "name": "Laos",
+      "iso": "LA",
+      "lat": 18,
+      "lng": 105,
+      "neighbors": [
+        "CHINA",
+        "MYANMAR",
+        "CAMBODIA",
+        "THAILAND",
+        "VIETNAM"
+      ]
+    },
+    "LATVIA": {
+      "name": "Latvia",
+      "iso": "LV",
+      "lat": 57,
+      "lng": 25,
+      "neighbors": [
+        "LITHUANIA",
+        "ESTONIA",
+        "BELARUS",
+        "RUSSIA"
+      ]
+    },
+    "LEBANON": {
+      "name": "Lebanon",
+      "iso": "LB",
+      "lat": 33.83333333,
+      "lng": 35.83333333,
+      "neighbors": [
+        "SYRIA",
+        "ISRAEL"
+      ]
+    },
+    "LESOTHO": {
+      "name": "Lesotho",
+      "iso": "LS",
+      "lat": -29.5,
+      "lng": 28.5,
+      "neighbors": [
+        "SOUTH AFRICA"
+      ]
+    },
+    "LIBERIA": {
+      "name": "Liberia",
+      "iso": "LR",
+      "lat": 6.5,
+      "lng": -9.5,
+      "neighbors": [
+        "SIERRA LEONE",
+        "IVORY COAST",
+        "GUINEA"
+      ]
+    },
+    "LIBYA": {
+      "name": "Libya",
+      "iso": "LY",
+      "lat": 25,
+      "lng": 17,
+      "neighbors": [
+        "CHAD",
+        "NIGER",
+        "ALGERIA",
+        "SUDAN",
+        "TUNISIA",
+        "EGYPT"
+      ]
+    },
+    "LIECHTENSTEIN": {
+      "name": "Liechtenstein",
+      "iso": "LI",
+      "lat": 47.26666666,
+      "lng": 9.53333333,
+      "neighbors": [
+        "SWITZERLAND",
+        "AUSTRIA"
+      ]
+    },
+    "LITHUANIA": {
+      "name": "Lithuania",
+      "iso": "LT",
+      "lat": 56,
+      "lng": 24,
+      "neighbors": [
+        "POLAND",
+        "BELARUS",
+        "RUSSIA",
+        "LATVIA"
+      ]
+    },
+    "LUXEMBOURG": {
+      "name": "Luxembourg",
+      "iso": "LU",
+      "lat": 49.75,
+      "lng": 6.16666666,
+      "neighbors": [
+        "GERMANY",
+        "BELGIUM",
+        "FRANCE"
+      ]
+    },
+    "MADAGASCAR": {
+      "name": "Madagascar",
+      "iso": "MG",
+      "lat": -20,
+      "lng": 47,
+      "neighbors": [],
+      "islandDistractors": [
+        "MOZAMBIQUE",
+        "MAURITIUS",
+        "SOUTH AFRICA"
+      ]
+    },
+    "MALAWI": {
+      "name": "Malawi",
+      "iso": "MW",
+      "lat": -13.5,
+      "lng": 34,
+      "neighbors": [
+        "TANZANIA",
+        "MOZAMBIQUE",
+        "ZAMBIA"
+      ]
+    },
+    "MALAYSIA": {
+      "name": "Malaysia",
+      "iso": "MY",
+      "lat": 2.5,
+      "lng": 112.5,
+      "neighbors": [
+        "BRUNEI",
+        "THAILAND",
+        "INDONESIA"
+      ]
+    },
+    "MALDIVES": {
+      "name": "Maldives",
+      "iso": "MV",
+      "lat": 3.25,
+      "lng": 73,
+      "neighbors": [],
+      "islandDistractors": [
+        "INDIA",
+        "SRI LANKA",
+        "INDONESIA"
+      ]
+    },
+    "MALI": {
+      "name": "Mali",
+      "iso": "ML",
+      "lat": 17,
+      "lng": -4,
+      "neighbors": [
+        "SENEGAL",
+        "NIGER",
+        "ALGERIA",
+        "IVORY COAST",
+        "GUINEA",
+        "MAURITANIA",
+        "BURKINA FASO"
+      ]
+    },
+    "MALTA": {
+      "name": "Malta",
+      "iso": "MT",
+      "lat": 35.83333333,
+      "lng": 14.58333333,
+      "neighbors": [],
+      "islandDistractors": [
+        "ITALY",
+        "TUNISIA",
+        "GREECE"
+      ]
+    },
+    "MARSHALL ISLANDS": {
+      "name": "Marshall Islands",
+      "iso": "MH",
+      "lat": 9,
+      "lng": 168,
+      "neighbors": []
+    },
+    "MAURITANIA": {
+      "name": "Mauritania",
+      "iso": "MR",
+      "lat": 20,
+      "lng": -12,
+      "neighbors": [
+        "SENEGAL",
+        "ALGERIA",
+        "MALI"
+      ]
+    },
+    "MAURITIUS": {
+      "name": "Mauritius",
+      "iso": "MU",
+      "lat": -20.28333333,
+      "lng": 57.55,
+      "neighbors": [],
+      "islandDistractors": [
+        "MADAGASCAR",
+        "SOUTH AFRICA",
+        "INDIA"
+      ]
+    },
+    "MEXICO": {
+      "name": "Mexico",
+      "iso": "MX",
+      "lat": 23,
+      "lng": -102,
+      "neighbors": [
+        "GUATEMALA",
+        "UNITED STATES",
+        "BELIZE"
+      ]
+    },
+    "MICRONESIA": {
+      "name": "Micronesia",
+      "iso": "FM",
+      "lat": 6.91666666,
+      "lng": 158.25,
+      "neighbors": []
+    },
+    "MOLDOVA": {
+      "name": "Moldova",
+      "iso": "MD",
+      "lat": 47,
+      "lng": 29,
+      "neighbors": [
+        "ROMANIA",
+        "UKRAINE"
+      ]
+    },
+    "MONACO": {
+      "name": "Monaco",
+      "iso": "MC",
+      "lat": 43.73333333,
+      "lng": 7.4,
+      "neighbors": [
+        "FRANCE"
+      ]
+    },
+    "MONGOLIA": {
+      "name": "Mongolia",
+      "iso": "MN",
+      "lat": 46,
+      "lng": 105,
+      "neighbors": [
+        "CHINA",
+        "RUSSIA"
+      ]
+    },
+    "MONTENEGRO": {
+      "name": "Montenegro",
+      "iso": "ME",
+      "lat": 42.5,
+      "lng": 19.3,
+      "neighbors": [
+        "ALBANIA",
+        "CROATIA",
+        "BOSNIA AND HERZEGOVINA",
+        "SERBIA"
+      ]
+    },
+    "MOROCCO": {
+      "name": "Morocco",
+      "iso": "MA",
+      "lat": 32,
+      "lng": -5,
+      "neighbors": [
+        "ALGERIA",
+        "SPAIN"
+      ]
+    },
+    "MOZAMBIQUE": {
+      "name": "Mozambique",
+      "iso": "MZ",
+      "lat": -18.25,
+      "lng": 35,
+      "neighbors": [
+        "ZIMBABWE",
+        "TANZANIA",
+        "ESWATINI",
+        "SOUTH AFRICA",
+        "ZAMBIA",
+        "MALAWI"
+      ]
+    },
+    "MYANMAR": {
+      "name": "Myanmar",
+      "iso": "MM",
+      "lat": 22,
+      "lng": 98,
+      "neighbors": [
+        "CHINA",
+        "LAOS",
+        "THAILAND",
+        "BANGLADESH",
+        "INDIA"
+      ]
+    },
+    "NAMIBIA": {
+      "name": "Namibia",
+      "iso": "NA",
+      "lat": -22,
+      "lng": 17,
+      "neighbors": [
+        "SOUTH AFRICA",
+        "BOTSWANA",
+        "ZAMBIA",
+        "ANGOLA"
+      ]
+    },
+    "NAURU": {
+      "name": "Nauru",
+      "iso": "NR",
+      "lat": -0.53333333,
+      "lng": 166.91666666,
+      "neighbors": []
+    },
+    "NEPAL": {
+      "name": "Nepal",
+      "iso": "NP",
+      "lat": 28,
+      "lng": 84,
+      "neighbors": [
+        "CHINA",
+        "INDIA"
+      ]
+    },
+    "NEW ZEALAND": {
+      "name": "New Zealand",
+      "iso": "NZ",
+      "lat": -41,
+      "lng": 174,
+      "neighbors": [],
+      "islandDistractors": [
+        "AUSTRALIA",
+        "FIJI",
+        "PAPUA NEW GUINEA"
+      ]
+    },
+    "NICARAGUA": {
+      "name": "Nicaragua",
+      "iso": "NI",
+      "lat": 13,
+      "lng": -85,
+      "neighbors": [
+        "COSTA RICA",
+        "HONDURAS"
+      ]
+    },
+    "NIGER": {
+      "name": "Niger",
+      "iso": "NE",
+      "lat": 16,
+      "lng": 8,
+      "neighbors": [
+        "CHAD",
+        "BENIN",
+        "ALGERIA",
+        "LIBYA",
+        "BURKINA FASO",
+        "NIGERIA",
+        "MALI"
+      ]
+    },
+    "NIGERIA": {
+      "name": "Nigeria",
+      "iso": "NG",
+      "lat": 10,
+      "lng": 8,
+      "neighbors": [
+        "CHAD",
+        "NIGER",
+        "BENIN",
+        "CAMEROON"
+      ]
+    },
+    "NORTH KOREA": {
+      "name": "North Korea",
+      "iso": "KP",
+      "lat": 40,
+      "lng": 127,
+      "neighbors": [
+        "CHINA",
+        "SOUTH KOREA",
+        "RUSSIA"
+      ]
+    },
+    "NORTH MACEDONIA": {
+      "name": "North Macedonia",
+      "iso": "MK",
+      "lat": 41.83333333,
+      "lng": 22,
+      "neighbors": [
+        "ALBANIA",
+        "GREECE",
+        "BULGARIA",
+        "SERBIA"
+      ]
+    },
+    "NORWAY": {
+      "name": "Norway",
+      "iso": "NO",
+      "lat": 62,
+      "lng": 10,
+      "neighbors": [
+        "FINLAND",
+        "RUSSIA",
+        "SWEDEN"
+      ]
+    },
+    "OMAN": {
+      "name": "Oman",
+      "iso": "OM",
+      "lat": 21,
+      "lng": 57,
+      "neighbors": [
+        "SAUDI ARABIA",
+        "YEMEN",
+        "UNITED ARAB EMIRATES"
+      ]
+    },
+    "PAKISTAN": {
+      "name": "Pakistan",
+      "iso": "PK",
+      "lat": 30,
+      "lng": 70,
+      "neighbors": [
+        "CHINA",
+        "AFGHANISTAN",
+        "IRAN",
+        "INDIA"
+      ]
+    },
+    "PALAU": {
+      "name": "Palau",
+      "iso": "PW",
+      "lat": 7.5,
+      "lng": 134.5,
+      "neighbors": []
+    },
+    "PANAMA": {
+      "name": "Panama",
+      "iso": "PA",
+      "lat": 9,
+      "lng": -80,
+      "neighbors": [
+        "COSTA RICA",
+        "COLOMBIA"
+      ]
+    },
+    "PAPUA NEW GUINEA": {
+      "name": "Papua New Guinea",
+      "iso": "PG",
+      "lat": -6,
+      "lng": 147,
+      "neighbors": [
+        "INDONESIA"
+      ],
+      "islandDistractors": [
+        "INDONESIA",
+        "AUSTRALIA",
+        "PHILIPPINES"
+      ]
+    },
+    "PARAGUAY": {
+      "name": "Paraguay",
+      "iso": "PY",
+      "lat": -23,
+      "lng": -58,
+      "neighbors": [
+        "BOLIVIA",
+        "BRAZIL",
+        "ARGENTINA"
+      ]
+    },
+    "PERU": {
+      "name": "Peru",
+      "iso": "PE",
+      "lat": -10,
+      "lng": -76,
+      "neighbors": [
+        "ECUADOR",
+        "CHILE",
+        "BOLIVIA",
+        "BRAZIL",
+        "COLOMBIA"
+      ]
+    },
+    "PHILIPPINES": {
+      "name": "Philippines",
+      "iso": "PH",
+      "lat": 13,
+      "lng": 122,
+      "neighbors": [],
+      "islandDistractors": [
+        "INDONESIA",
+        "MALAYSIA",
+        "VIETNAM"
+      ]
+    },
+    "POLAND": {
+      "name": "Poland",
+      "iso": "PL",
+      "lat": 52,
+      "lng": 20,
+      "neighbors": [
+        "GERMANY",
+        "LITHUANIA",
+        "SLOVAKIA",
+        "CZECHIA",
+        "BELARUS",
+        "UKRAINE",
+        "RUSSIA"
+      ]
+    },
+    "PORTUGAL": {
+      "name": "Portugal",
+      "iso": "PT",
+      "lat": 39.5,
+      "lng": -8,
+      "neighbors": [
+        "SPAIN"
+      ]
+    },
+    "QATAR": {
+      "name": "Qatar",
+      "iso": "QA",
+      "lat": 25.5,
+      "lng": 51.25,
+      "neighbors": [
+        "SAUDI ARABIA"
+      ]
+    },
+    "REPUBLIC OF THE CONGO": {
+      "name": "Republic of the Congo",
+      "iso": "CG",
+      "lat": -1,
+      "lng": 15,
+      "neighbors": [
+        "CENTRAL AFRICAN REPUBLIC",
+        "GABON",
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "CAMEROON",
+        "ANGOLA"
+      ]
+    },
+    "ROMANIA": {
+      "name": "Romania",
+      "iso": "RO",
+      "lat": 46,
+      "lng": 25,
+      "neighbors": [
+        "MOLDOVA",
+        "HUNGARY",
+        "UKRAINE",
+        "BULGARIA",
+        "SERBIA"
+      ]
+    },
+    "RUSSIA": {
+      "name": "Russia",
+      "iso": "RU",
+      "lat": 60,
+      "lng": 100,
+      "neighbors": [
+        "GEORGIA",
+        "CHINA",
+        "BELARUS",
+        "UKRAINE",
+        "KAZAKHSTAN",
+        "LATVIA",
+        "POLAND",
+        "ESTONIA",
+        "LITHUANIA",
+        "FINLAND",
+        "MONGOLIA",
+        "NORWAY",
+        "AZERBAIJAN",
+        "NORTH KOREA"
+      ]
+    },
+    "RWANDA": {
+      "name": "Rwanda",
+      "iso": "RW",
+      "lat": -2,
+      "lng": 30,
+      "neighbors": [
+        "TANZANIA",
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "BURUNDI",
+        "UGANDA"
+      ]
+    },
+    "SAINT KITTS AND NEVIS": {
+      "name": "Saint Kitts and Nevis",
+      "iso": "KN",
+      "lat": 17.33333333,
+      "lng": -62.75,
+      "neighbors": []
+    },
+    "SAINT LUCIA": {
+      "name": "Saint Lucia",
+      "iso": "LC",
+      "lat": 13.88333333,
+      "lng": -60.96666666,
+      "neighbors": []
+    },
+    "SAINT VINCENT AND THE GRENADINES": {
+      "name": "Saint Vincent and the Grenadines",
+      "iso": "VC",
+      "lat": 13.25,
+      "lng": -61.2,
+      "neighbors": []
+    },
+    "SAMOA": {
+      "name": "Samoa",
+      "iso": "WS",
+      "lat": -13.58333333,
+      "lng": -172.33333333,
+      "neighbors": []
+    },
+    "SAN MARINO": {
+      "name": "San Marino",
+      "iso": "SM",
+      "lat": 43.76666666,
+      "lng": 12.41666666,
+      "neighbors": [
+        "ITALY"
+      ]
+    },
+    "SAO TOME AND PRINCIPE": {
+      "name": "Sao Tome and Principe",
+      "iso": "ST",
+      "lat": 1,
+      "lng": 7,
+      "neighbors": []
+    },
+    "SAUDI ARABIA": {
+      "name": "Saudi Arabia",
+      "iso": "SA",
+      "lat": 25,
+      "lng": 45,
+      "neighbors": [
+        "QATAR",
+        "OMAN",
+        "IRAQ",
+        "YEMEN",
+        "JORDAN",
+        "UNITED ARAB EMIRATES",
+        "KUWAIT"
+      ]
+    },
+    "SENEGAL": {
+      "name": "Senegal",
+      "iso": "SN",
+      "lat": 14,
+      "lng": -14,
+      "neighbors": [
+        "GUINEA",
+        "MAURITANIA",
+        "GUINEA BISSAU",
+        "GAMBIA",
+        "MALI"
+      ]
+    },
+    "SERBIA": {
+      "name": "Serbia",
+      "iso": "RS",
+      "lat": 44,
+      "lng": 21,
+      "neighbors": [
+        "ALBANIA",
+        "HUNGARY",
+        "NORTH MACEDONIA",
+        "ROMANIA",
+        "CROATIA",
+        "BOSNIA AND HERZEGOVINA",
+        "BULGARIA",
+        "MONTENEGRO"
+      ]
+    },
+    "SEYCHELLES": {
+      "name": "Seychelles",
+      "iso": "SC",
+      "lat": -4.58333333,
+      "lng": 55.66666666,
+      "neighbors": [],
+      "islandDistractors": [
+        "MADAGASCAR",
+        "MAURITIUS",
+        "INDIA"
+      ]
+    },
+    "SIERRA LEONE": {
+      "name": "Sierra Leone",
+      "iso": "SL",
+      "lat": 8.5,
+      "lng": -11.5,
+      "neighbors": [
+        "LIBERIA",
+        "GUINEA"
+      ]
+    },
+    "SINGAPORE": {
+      "name": "Singapore",
+      "iso": "SG",
+      "lat": 1.36666666,
+      "lng": 103.8,
+      "neighbors": [],
+      "islandDistractors": [
+        "MALAYSIA",
+        "INDONESIA",
+        "THAILAND"
+      ]
+    },
+    "SLOVAKIA": {
+      "name": "Slovakia",
+      "iso": "SK",
+      "lat": 48.66666666,
+      "lng": 19.5,
+      "neighbors": [
+        "POLAND",
+        "HUNGARY",
+        "CZECHIA",
+        "UKRAINE",
+        "AUSTRIA"
+      ]
+    },
+    "SLOVENIA": {
+      "name": "Slovenia",
+      "iso": "SI",
+      "lat": 46.11666666,
+      "lng": 14.81666666,
+      "neighbors": [
+        "HUNGARY",
+        "ITALY",
+        "CROATIA",
+        "AUSTRIA"
+      ]
+    },
+    "SOLOMON ISLANDS": {
+      "name": "Solomon Islands",
+      "iso": "SB",
+      "lat": -8,
+      "lng": 159,
+      "neighbors": []
+    },
+    "SOMALIA": {
+      "name": "Somalia",
+      "iso": "SO",
+      "lat": 10,
+      "lng": 49,
+      "neighbors": [
+        "ETHIOPIA",
+        "KENYA",
+        "DJIBOUTI"
+      ]
+    },
+    "SOUTH AFRICA": {
+      "name": "South Africa",
+      "iso": "ZA",
+      "lat": -29,
+      "lng": 24,
+      "neighbors": [
+        "ZIMBABWE",
+        "ESWATINI",
+        "MOZAMBIQUE",
+        "BOTSWANA",
+        "NAMIBIA",
+        "LESOTHO"
+      ]
+    },
+    "SOUTH KOREA": {
+      "name": "South Korea",
+      "iso": "KR",
+      "lat": 37,
+      "lng": 127.5,
+      "neighbors": [
+        "NORTH KOREA"
+      ]
+    },
+    "SOUTH SUDAN": {
+      "name": "South Sudan",
+      "iso": "SS",
+      "lat": 7,
+      "lng": 30,
+      "neighbors": [
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "CENTRAL AFRICAN REPUBLIC",
+        "ETHIOPIA",
+        "KENYA",
+        "SUDAN",
+        "UGANDA"
+      ]
+    },
+    "SPAIN": {
+      "name": "Spain",
+      "iso": "ES",
+      "lat": 40,
+      "lng": -4,
+      "neighbors": [
+        "ANDORRA",
+        "PORTUGAL",
+        "FRANCE",
+        "MOROCCO"
+      ]
+    },
+    "SRI LANKA": {
+      "name": "Sri Lanka",
+      "iso": "LK",
+      "lat": 7,
+      "lng": 81,
+      "neighbors": [],
+      "islandDistractors": [
+        "INDIA",
+        "MALDIVES",
+        "BANGLADESH"
+      ]
+    },
+    "SUDAN": {
+      "name": "Sudan",
+      "iso": "SD",
+      "lat": 15,
+      "lng": 30,
+      "neighbors": [
+        "SOUTH SUDAN",
+        "CHAD",
+        "EGYPT",
+        "ETHIOPIA",
+        "ERITREA",
+        "LIBYA",
+        "CENTRAL AFRICAN REPUBLIC"
+      ]
+    },
+    "SURINAME": {
+      "name": "Suriname",
+      "iso": "SR",
+      "lat": 4,
+      "lng": -56,
+      "neighbors": [
+        "GUYANA",
+        "BRAZIL"
+      ]
+    },
+    "SWEDEN": {
+      "name": "Sweden",
+      "iso": "SE",
+      "lat": 62,
+      "lng": 15,
+      "neighbors": [
+        "NORWAY",
+        "FINLAND"
+      ]
+    },
+    "SWITZERLAND": {
+      "name": "Switzerland",
+      "iso": "CH",
+      "lat": 47,
+      "lng": 8,
+      "neighbors": [
+        "GERMANY",
+        "ITALY",
+        "LIECHTENSTEIN",
+        "FRANCE",
+        "AUSTRIA"
+      ]
+    },
+    "SYRIA": {
+      "name": "Syria",
+      "iso": "SY",
+      "lat": 35,
+      "lng": 38,
+      "neighbors": [
+        "IRAQ",
+        "JORDAN",
+        "ISRAEL",
+        "TURKEY",
+        "LEBANON"
+      ]
+    },
+    "TAJIKISTAN": {
+      "name": "Tajikistan",
+      "iso": "TJ",
+      "lat": 39,
+      "lng": 71,
+      "neighbors": [
+        "CHINA",
+        "AFGHANISTAN",
+        "KYRGYZSTAN",
+        "UZBEKISTAN"
+      ]
+    },
+    "TANZANIA": {
+      "name": "Tanzania",
+      "iso": "TZ",
+      "lat": -6,
+      "lng": 35,
+      "neighbors": [
+        "MOZAMBIQUE",
+        "KENYA",
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "RWANDA",
+        "ZAMBIA",
+        "BURUNDI",
+        "UGANDA",
+        "MALAWI"
+      ]
+    },
+    "THAILAND": {
+      "name": "Thailand",
+      "iso": "TH",
+      "lat": 15,
+      "lng": 100,
+      "neighbors": [
+        "LAOS",
+        "MYANMAR",
+        "CAMBODIA",
+        "MALAYSIA"
+      ]
+    },
+    "THE NETHERLANDS": {
+      "name": "The Netherlands",
+      "iso": "NL",
+      "lat": 52.5,
+      "lng": 5.75,
+      "neighbors": [
+        "GERMANY",
+        "BELGIUM"
+      ]
+    },
+    "TIMOR LESTE": {
+      "name": "Timor Leste",
+      "iso": "TL",
+      "lat": -8.83333333,
+      "lng": 125.91666666,
+      "neighbors": [
+        "INDONESIA"
+      ],
+      "islandDistractors": [
+        "INDONESIA",
+        "AUSTRALIA",
+        "PHILIPPINES"
+      ]
+    },
+    "TOGO": {
+      "name": "Togo",
+      "iso": "TG",
+      "lat": 8,
+      "lng": 1.16666666,
+      "neighbors": [
+        "BENIN",
+        "GHANA",
+        "BURKINA FASO"
+      ]
+    },
+    "TONGA": {
+      "name": "Tonga",
+      "iso": "TO",
+      "lat": -20,
+      "lng": -175,
+      "neighbors": []
+    },
+    "TRINIDAD AND TOBAGO": {
+      "name": "Trinidad and Tobago",
+      "iso": "TT",
+      "lat": 11,
+      "lng": -61,
+      "neighbors": []
+    },
+    "TUNISIA": {
+      "name": "Tunisia",
+      "iso": "TN",
+      "lat": 34,
+      "lng": 9,
+      "neighbors": [
+        "ALGERIA",
+        "LIBYA"
+      ]
+    },
+    "TURKEY": {
+      "name": "Turkey",
+      "iso": "TR",
+      "lat": 39,
+      "lng": 35,
+      "neighbors": [
+        "SYRIA",
+        "GEORGIA",
+        "IRAQ",
+        "IRAN",
+        "GREECE",
+        "ARMENIA",
+        "AZERBAIJAN",
+        "BULGARIA"
+      ]
+    },
+    "TURKMENISTAN": {
+      "name": "Turkmenistan",
+      "iso": "TM",
+      "lat": 40,
+      "lng": 60,
+      "neighbors": [
+        "AFGHANISTAN",
+        "IRAN",
+        "UZBEKISTAN",
+        "KAZAKHSTAN"
+      ]
+    },
+    "TUVALU": {
+      "name": "Tuvalu",
+      "iso": "TV",
+      "lat": -8,
+      "lng": 178,
+      "neighbors": []
+    },
+    "UGANDA": {
+      "name": "Uganda",
+      "iso": "UG",
+      "lat": 1,
+      "lng": 32,
+      "neighbors": [
+        "TANZANIA",
+        "KENYA",
+        "SOUTH SUDAN",
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "RWANDA"
+      ]
+    },
+    "UKRAINE": {
+      "name": "Ukraine",
+      "iso": "UA",
+      "lat": 49,
+      "lng": 32,
+      "neighbors": [
+        "POLAND",
+        "MOLDOVA",
+        "HUNGARY",
+        "SLOVAKIA",
+        "BELARUS",
+        "ROMANIA",
+        "RUSSIA"
+      ]
+    },
+    "UNITED ARAB EMIRATES": {
+      "name": "United Arab Emirates",
+      "iso": "AE",
+      "lat": 24,
+      "lng": 54,
+      "neighbors": [
+        "SAUDI ARABIA",
+        "OMAN"
+      ]
+    },
+    "UNITED KINGDOM": {
+      "name": "United Kingdom",
+      "iso": "GB",
+      "lat": 54,
+      "lng": -2,
+      "neighbors": [
+        "IRELAND"
+      ],
+      "islandDistractors": [
+        "IRELAND",
+        "FRANCE",
+        "NORWAY"
+      ]
+    },
+    "UNITED STATES": {
+      "name": "United States",
+      "iso": "US",
+      "lat": 38,
+      "lng": -97,
+      "neighbors": [
+        "CANADA",
+        "MEXICO",
+        "CUBA"
+      ]
+    },
+    "URUGUAY": {
+      "name": "Uruguay",
+      "iso": "UY",
+      "lat": -33,
+      "lng": -56,
+      "neighbors": [
+        "BRAZIL",
+        "ARGENTINA"
+      ]
+    },
+    "UZBEKISTAN": {
+      "name": "Uzbekistan",
+      "iso": "UZ",
+      "lat": 41,
+      "lng": 64,
+      "neighbors": [
+        "TURKMENISTAN",
+        "AFGHANISTAN",
+        "KYRGYZSTAN",
+        "TAJIKISTAN",
+        "KAZAKHSTAN"
+      ]
+    },
+    "VANUATU": {
+      "name": "Vanuatu",
+      "iso": "VU",
+      "lat": -16,
+      "lng": 167,
+      "neighbors": []
+    },
+    "VENEZUELA": {
+      "name": "Venezuela",
+      "iso": "VE",
+      "lat": 8,
+      "lng": -66,
+      "neighbors": [
+        "GUYANA",
+        "BRAZIL",
+        "COLOMBIA"
+      ]
+    },
+    "VIETNAM": {
+      "name": "Vietnam",
+      "iso": "VN",
+      "lat": 16.16666666,
+      "lng": 107.83333333,
+      "neighbors": [
+        "CHINA",
+        "LAOS",
+        "CAMBODIA"
+      ]
+    },
+    "YEMEN": {
+      "name": "Yemen",
+      "iso": "YE",
+      "lat": 15,
+      "lng": 48,
+      "neighbors": [
+        "SAUDI ARABIA",
+        "OMAN"
+      ]
+    },
+    "ZAMBIA": {
+      "name": "Zambia",
+      "iso": "ZM",
+      "lat": -15,
+      "lng": 30,
+      "neighbors": [
+        "ZIMBABWE",
+        "TANZANIA",
+        "MOZAMBIQUE",
+        "DEMOCRATIC REPUBLIC OF THE CONGO",
+        "NAMIBIA",
+        "MALAWI",
+        "ANGOLA"
+      ]
+    },
+    "ZIMBABWE": {
+      "name": "Zimbabwe",
+      "iso": "ZW",
+      "lat": -20,
+      "lng": 30,
+      "neighbors": [
+        "SOUTH AFRICA",
+        "MOZAMBIQUE",
+        "BOTSWANA",
+        "ZAMBIA"
+      ]
+    }
+  }
+}

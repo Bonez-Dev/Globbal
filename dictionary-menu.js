@@ -3,7 +3,51 @@
  * Standalone dictionary panel for pages that do not load app.js / app-online.js (e.g. Globbal main menu).
  */
 (function dictionaryMenu() {
+  const DICTIONARY_RETURN_KEY = "globble-dictionary-return-v1";
   const DICTIONARY_LIST_PREVIEW_LIMIT = 12000;
+
+  function sameOriginPath(urlString) {
+    if (!urlString) {
+      return null;
+    }
+    try {
+      const resolved = new URL(urlString, window.location.href);
+      if (resolved.origin !== window.location.origin) {
+        return null;
+      }
+      return resolved.pathname + resolved.search + resolved.hash;
+    } catch {
+      return null;
+    }
+  }
+
+  function rememberDictionaryReturnUrl(urlString) {
+    const path = sameOriginPath(urlString);
+    if (!path) {
+      return;
+    }
+    try {
+      sessionStorage.setItem(DICTIONARY_RETURN_KEY, path);
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function readStoredDictionaryReturnUrl() {
+    try {
+      return sessionStorage.getItem(DICTIONARY_RETURN_KEY);
+    } catch {
+      return null;
+    }
+  }
+
+  function clearStoredDictionaryReturnUrl() {
+    try {
+      sessionStorage.removeItem(DICTIONARY_RETURN_KEY);
+    } catch {
+      /* ignore */
+    }
+  }
 
   const CATEGORIES = [
     { id: "countries", label: "Countries" },
@@ -24,9 +68,13 @@
       label: "Plains & valleys"
     },
     {
+      id: "islands",
+      label: "Islands",
+      criteria: "Islands of 400 sq mi or larger"
+    },
+    {
       id: "islandsContinents",
-      label: "Islands & continents",
-      criteria: "Islands over 10 sq mi"
+      label: "Continents"
     },
     { id: "worldCities", label: "World cities", criteria: "Population greater than 10,000" },
     { id: "usaCities", label: "USA cities", criteria: "Population greater than 10,000" }
@@ -158,30 +206,6 @@
     return "—";
   }
 
-  function formatIslandContinentKind(kind) {
-    if (kind === "island") {
-      return "Island";
-    }
-    if (kind === "continent") {
-      return "Continent";
-    }
-    return "—";
-  }
-
-  function formatAreaSqMi(meta) {
-    if (!meta) {
-      return "—";
-    }
-    if (meta.areaSqMi != null && Number.isFinite(Number(meta.areaSqMi))) {
-      return `${Number(meta.areaSqMi).toLocaleString()} sq mi`;
-    }
-    if (meta.areaKm2 != null && Number.isFinite(Number(meta.areaKm2))) {
-      const sqMi = Math.round((Number(meta.areaKm2) / 2.58999) * 10) / 10;
-      return `${sqMi.toLocaleString()} sq mi`;
-    }
-    return "—";
-  }
-
   function getLandformRegion(meta) {
     if (!meta) {
       return "—";
@@ -264,6 +288,41 @@
       return meta.river.region;
     }
     return "—";
+  }
+
+  function getIslandAreaKm2(meta) {
+    if (!meta) {
+      return null;
+    }
+    if (meta.kind === "island" && meta.areaKm2 != null) {
+      return meta.areaKm2;
+    }
+    if (meta.island?.areaKm2 != null) {
+      return meta.island.areaKm2;
+    }
+    return null;
+  }
+
+  function getIslandRegion(meta) {
+    if (!meta) {
+      return "—";
+    }
+    if (meta.kind === "island" && meta.region) {
+      return meta.region;
+    }
+    if (meta.island?.region) {
+      return meta.island.region;
+    }
+    return "—";
+  }
+
+  function formatIslandArea(meta) {
+    const areaKm2 = getIslandAreaKm2(meta);
+    if (areaKm2 == null || !Number.isFinite(Number(areaKm2)) || Number(areaKm2) <= 0) {
+      return "—";
+    }
+    const sqMi = Math.round((Number(areaKm2) / 2.58999) * 10) / 10;
+    return `${sqMi.toLocaleString()} sq mi`;
   }
 
   function getDivisionPopulation(meta) {
@@ -446,20 +505,29 @@
       return tr;
     }
 
+    if (categoryId === "islands") {
+      const tdIsland = document.createElement("td");
+      tdIsland.textContent = word;
+      const tdRegion = document.createElement("td");
+      tdRegion.textContent = getIslandRegion(meta);
+      const tdArea = document.createElement("td");
+      tdArea.className = "dictionary-population";
+      tdArea.textContent = formatIslandArea(meta);
+      tr.appendChild(tdIsland);
+      tr.appendChild(tdRegion);
+      tr.appendChild(tdArea);
+      return tr;
+    }
+
     if (categoryId === "islandsContinents") {
       const tdName = document.createElement("td");
-      tdName.className = "dictionary-place-name";
       tdName.textContent = word;
-      const tdType = document.createElement("td");
-      tdType.textContent = formatIslandContinentKind(meta?.kind);
       const tdRegion = document.createElement("td");
-      tdRegion.className = "dictionary-place-detail";
       tdRegion.textContent = getLandformRegion(meta);
       const tdArea = document.createElement("td");
       tdArea.className = "dictionary-population";
-      tdArea.textContent = formatAreaSqMi(meta);
+      tdArea.textContent = formatAreaKm2(meta?.areaKm2);
       tr.appendChild(tdName);
-      tr.appendChild(tdType);
       tr.appendChild(tdRegion);
       tr.appendChild(tdArea);
       return tr;
@@ -562,8 +630,11 @@
     if (categoryId === "landforms") {
       return "<tr><th scope=\"col\" class=\"dictionary-place-name\">Place</th><th scope=\"col\">Type</th><th scope=\"col\" class=\"dictionary-place-detail\">Region</th></tr>";
     }
+    if (categoryId === "islands") {
+      return "<tr><th scope=\"col\">Island</th><th scope=\"col\">Region</th><th scope=\"col\" class=\"dictionary-population\">Area</th></tr>";
+    }
     if (categoryId === "islandsContinents") {
-      return "<tr><th scope=\"col\" class=\"dictionary-place-name\">Place</th><th scope=\"col\">Type</th><th scope=\"col\" class=\"dictionary-place-detail\">Region</th><th scope=\"col\" class=\"dictionary-population\">Area (sq mi)</th></tr>";
+      return "<tr><th scope=\"col\">Continent</th><th scope=\"col\">Region</th><th scope=\"col\" class=\"dictionary-population\">Area</th></tr>";
     }
     if (categoryId === "oceansSeas") {
       return "<tr><th scope=\"col\">Ocean / sea</th><th scope=\"col\">Region</th><th scope=\"col\" class=\"dictionary-population\">Area</th></tr>";
@@ -630,8 +701,10 @@
       table.classList.add("dictionary-table-rivers");
     } else if (categoryId === "landforms") {
       table.classList.add("dictionary-table-landforms");
+    } else if (categoryId === "islands") {
+      table.classList.add("dictionary-table-rivers");
     } else if (categoryId === "islandsContinents") {
-      table.classList.add("dictionary-table-islands-continents");
+      table.classList.add("dictionary-table-water-bodies");
     } else if (categoryId === "oceansSeas" || categoryId === "baysGulfsBights") {
       table.classList.add("dictionary-table-water-bodies");
     } else if (
@@ -787,6 +860,9 @@
   }
 
   function openDictionaryPanel() {
+    if (!document.body.classList.contains("dictionary-page")) {
+      rememberDictionaryReturnUrl(window.location.pathname + window.location.search + window.location.hash);
+    }
     invalidateDictionaryWordCache();
     if (!dictionaryDialog.open) {
       dictionaryDialog.showModal();
@@ -809,29 +885,43 @@
 
   function resolveDictionaryReturnUrl() {
     const returnParam = new URLSearchParams(window.location.search).get("return");
-    if (!returnParam) {
-      return null;
+    const fromQuery = sameOriginPath(returnParam);
+    if (fromQuery) {
+      return fromQuery;
     }
-    try {
-      const resolved = new URL(returnParam, window.location.href);
-      if (resolved.origin !== window.location.origin) {
-        return null;
-      }
-      return resolved.pathname + resolved.search + resolved.hash;
-    } catch {
-      return null;
-    }
+    return sameOriginPath(readStoredDictionaryReturnUrl());
   }
 
   function returnFromDictionary() {
+    const isFullDictionaryPage = document.body.classList.contains("dictionary-page");
     const returnUrl = resolveDictionaryReturnUrl();
+
+    if (!isFullDictionaryPage) {
+      closeDictionaryPanel();
+      return;
+    }
+
     closeDictionaryPanel();
+    clearStoredDictionaryReturnUrl();
+
     if (returnUrl) {
       window.location.href = returnUrl;
       return;
     }
-    window.location.href = "./splash.html";
+
+    if (window.history.length > 1) {
+      window.history.back();
+      return;
+    }
+
+    window.location.href = "./index.html";
   }
+
+  window.GlobbleDictionaryNav = {
+    rememberReturnUrl: rememberDictionaryReturnUrl,
+    resolveReturnUrl: resolveDictionaryReturnUrl,
+    clearReturnUrl: clearStoredDictionaryReturnUrl
+  };
 
   if (openDictionaryBtn) {
     openDictionaryBtn.addEventListener("click", openDictionaryPanel);
@@ -898,6 +988,10 @@
     });
 
   if (window.location.search.includes("dictionary=1") || window.location.hash === "#dictionary") {
+    const returnParam = new URLSearchParams(window.location.search).get("return");
+    if (returnParam) {
+      rememberDictionaryReturnUrl(returnParam);
+    }
     document.body.classList.add("dictionary-page");
     openDictionaryPanel();
   }
