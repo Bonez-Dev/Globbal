@@ -3957,7 +3957,7 @@ body.dictionary-page .landing-shell .splash-vignette {
 
 .landing-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  grid-template-columns: 1fr;
   gap: 0.85rem;
   margin-top: 0.35rem;
   margin-bottom: 1.5rem;
