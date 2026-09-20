@@ -3684,20 +3684,25 @@ html:has(.landing-body) {
   background: #000;
 }
 
-.sign-in-page .splash-parchment-sheet,
-.about-parchment-page .splash-parchment-sheet {
+.sign-in-page .splash-parchment-sheet {
   transform: translate(-50%, calc(-50% - 2.2vh)) scale(0.71, 0.84);
   mix-blend-mode: normal;
 }
 
-.sign-in-page .splash-parchment-sheet-shade,
-.about-parchment-page .splash-parchment-sheet-shade {
+.sign-in-page .splash-parchment-sheet-shade {
   opacity: 0.35;
 }
 
-.sign-in-page .splash-vignette,
-.about-parchment-page .splash-vignette {
+.sign-in-page .splash-vignette {
   opacity: 0.35;
+}
+
+.about-parchment-page .splash-parchment-sheet-shade {
+  opacity: 0.32;
+}
+
+.about-parchment-page .splash-vignette {
+  opacity: 0.28;
 }
 
 .sign-in-page {
