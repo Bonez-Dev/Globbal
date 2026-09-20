@@ -78,7 +78,7 @@ async function start() {
         }
 
         if (urlPath === "/") {
-          urlPath = "/mobile-preview.html";
+          urlPath = "/splash.html";
         }
 
         const file = safeJoin(ROOT, urlPath.replace(/^\//, "").replace(/\\/g, "/"));
@@ -97,7 +97,7 @@ async function start() {
     .listen(PORT, "127.0.0.1", () => {
       process.stdout.write(
         `Globbal — serving files from:\n  ${ROOT}\n` +
-          `Open http://127.0.0.1:${PORT}/ for mobile preview (390×844).\n` +
+          `Open http://127.0.0.1:${PORT}/ for splash (mobile preview: /mobile-preview.html).\n` +
           `Accounts API: enabled (${accountsStore.mode}${
             accountsStore.mode === "file" ? ", local data/accounts-store.json" : ""
           })\n`

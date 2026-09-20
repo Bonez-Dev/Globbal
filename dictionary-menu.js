@@ -914,7 +914,7 @@
       return;
     }
 
-    window.location.href = "./index.html";
+    window.location.href = "./sign-in.html";
   }
 
   window.GlobbleDictionaryNav = {

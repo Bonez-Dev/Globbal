@@ -7,7 +7,7 @@
     return;
   }
 
-  const SIGN_IN_URL = "./index.html";
+  const SIGN_IN_URL = "./sign-in.html";
   const profileDisplayName = document.getElementById("profileDisplayName");
   const profileUsername = document.getElementById("profileUsername");
   const profileAvatar = document.getElementById("profileAvatar");

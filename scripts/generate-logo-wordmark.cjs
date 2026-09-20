@@ -23,7 +23,7 @@ const MACRON_WIDTH_FACTOR = 0.72;
 
 const HTML_TARGETS = [
   path.join(ROOT, "splash.html"),
-  path.join(ROOT, "index.html"),
+  path.join(ROOT, "sign-in.html"),
   path.join(ROOT, "logo-word-preview.html"),
   path.join(ROOT, "practice.html"),
   path.join(ROOT, "game-online.html"),

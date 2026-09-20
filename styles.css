@@ -3686,7 +3686,7 @@ html:has(.landing-body) {
 
 .sign-in-page .splash-parchment-sheet,
 .about-parchment-page .splash-parchment-sheet {
-  transform: translate(calc(-50% - 2.5vw), calc(-50% - 2.2vh)) scale(0.71, 0.84);
+  transform: translate(-50%, calc(-50% - 2.2vh)) scale(0.71, 0.84);
   mix-blend-mode: normal;
 }
 
@@ -3706,6 +3706,7 @@ html:has(.landing-body) {
   --sign-in-tray-pad-y: 0.55rem;
   --sign-in-tray-pad-x: 0.85rem;
   --sign-in-stack-gap: 0.5rem;
+  --sign-in-compose-pad-x: 1.45rem;
 }
 
 .sign-in-page .landing {
@@ -3717,9 +3718,20 @@ html:has(.landing-body) {
 .sign-in-page .landing-header {
   padding-top: calc(env(safe-area-inset-top, 0px) + 0.65rem + var(--landing-y-nudge, 0rem));
   padding-bottom: 0.1rem;
+  padding-left: max(var(--sign-in-compose-pad-x), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--sign-in-compose-pad-x), env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+}
+
+.sign-in-page .landing {
+  padding-left: max(var(--sign-in-compose-pad-x), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--sign-in-compose-pad-x), env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
 }
 
 .sign-in-page .landing-brand-tray {
+  width: 100%;
+  max-width: 100%;
   margin-top: 0.2rem;
   padding:
     calc(0.22rem + var(--landing-frame-rail, 7px))
@@ -3791,6 +3803,16 @@ html:has(.landing-body) {
 @media (min-width: 641px) {
   .landing-shell {
     --landing-compose-max: 430px;
+  }
+
+  .sign-in-page .landing-shell.parchment-shell {
+    width: min(100%, var(--landing-compose-max, 430px));
+    max-width: var(--landing-compose-max, 430px);
+    margin-inline: auto;
+  }
+
+  .sign-in-page .splash-parchment-sheet {
+    transform: translate(-50%, calc(-50% - 1.5vh)) scale(0.92, 0.98);
   }
 }
 

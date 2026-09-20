@@ -409,8 +409,8 @@ button {
 }
 
 .sign-in-page .landing {
-  padding: calc(0.25rem + var(--landing-y-nudge, 0rem)) max(1.25rem, env(safe-area-inset-left, 0px))
-    max(0.85rem, env(safe-area-inset-bottom, 0px)) max(1.25rem, env(safe-area-inset-right, 0px));
+  padding-top: calc(0.25rem + var(--landing-y-nudge, 0rem));
+  padding-bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
   overflow: hidden;
 }
 

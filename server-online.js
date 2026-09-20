@@ -691,8 +691,10 @@ async function start() {
         return;
       }
 
-      if (urlPath === "/") {
-        urlPath = "/splash.html";
+      if (urlPath === "/" || urlPath === "/index.html") {
+        res.writeHead(302, { Location: "/splash.html" });
+        res.end();
+        return;
       }
       const file = safeJoin(ROOT, urlPath.replace(/^\//, "").replace(/\\/g, "/"));
       if (!file) {
