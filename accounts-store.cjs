@@ -47,6 +47,22 @@ function looksLikeEmail(value) {
   return String(value || "").includes("@");
 }
 
+function resolvedEmailKey(user) {
+  if (!user) {
+    return "";
+  }
+  return normalizeEmail(user.emailKey || user.email || "");
+}
+
+function matchesUsername(user, usernameKey) {
+  if (!user || !usernameKey) {
+    return false;
+  }
+  const key = normalizeUsername(usernameKey);
+  const stored = normalizeUsername(user.usernameKey || user.username || "");
+  return stored === key;
+}
+
 function randomToken() {
   return crypto.randomBytes(32).toString("hex");
 }
@@ -310,13 +326,13 @@ function createFileBackend() {
     async findUserByUsername(username) {
       const data = readFileData();
       const key = normalizeUsername(username);
-      return data.users.find((u) => u.usernameKey === key) || null;
+      return data.users.find((u) => matchesUsername(u, key)) || null;
     },
     async findUserByEmail(email) {
       const data = readFileData();
       const key = normalizeEmail(email);
       if (!key) return null;
-      return data.users.find((u) => u.emailKey === key) || null;
+      return data.users.find((u) => resolvedEmailKey(u) === key) || null;
     },
     async findUserByLogin(identifier) {
       const raw = String(identifier || "").trim();
@@ -333,14 +349,19 @@ function createFileBackend() {
     async createPasswordReset(userId) {
       const data = readFileData();
       const user = data.users.find((u) => u._id === userId);
-      if (!user || !user.emailKey) {
+      const emailKey = resolvedEmailKey(user);
+      if (!user || !emailKey) {
         return null;
       }
       const token = randomToken();
       user.resetTokenHash = hashToken(token);
       user.resetExpiresAt = new Date(Date.now() + RESET_TTL_MS).toISOString();
+      if (!user.emailKey) {
+        user.emailKey = emailKey;
+        user.email = emailKey;
+      }
       writeFileData(data);
-      return { token, email: user.emailKey, username: user.username || user.usernameKey };
+      return { token, email: emailKey, username: user.username || user.usernameKey };
     },
     async resetPasswordWithToken(token, newPassword) {
       const data = readFileData();
@@ -816,12 +837,17 @@ async function createMongoBackend(uri) {
       }
     },
     async findUserByUsername(username) {
-      return users.findOne({ usernameKey: normalizeUsername(username) });
+      const key = normalizeUsername(username);
+      return users.findOne({
+        $or: [{ usernameKey: key }, { username: key }]
+      });
     },
     async findUserByEmail(email) {
       const key = normalizeEmail(email);
       if (!key) return null;
-      return users.findOne({ emailKey: key });
+      return users.findOne({
+        $or: [{ emailKey: key }, { email: key }]
+      });
     },
     async findUserByLogin(identifier) {
       const raw = String(identifier || "").trim();
@@ -840,22 +866,23 @@ async function createMongoBackend(uri) {
       const _id = oid(userId);
       if (!_id) return null;
       const user = await users.findOne({ _id });
-      if (!user || !user.emailKey) {
+      const emailKey = resolvedEmailKey(user);
+      if (!user || !emailKey) {
         return null;
       }
       const token = randomToken();
-      await users.updateOne(
-        { _id },
-        {
-          $set: {
-            resetTokenHash: hashToken(token),
-            resetExpiresAt: new Date(Date.now() + RESET_TTL_MS)
-          }
-        }
-      );
+      const resetFields = {
+        resetTokenHash: hashToken(token),
+        resetExpiresAt: new Date(Date.now() + RESET_TTL_MS)
+      };
+      if (!user.emailKey) {
+        resetFields.emailKey = emailKey;
+        resetFields.email = emailKey;
+      }
+      await users.updateOne({ _id }, { $set: resetFields });
       return {
         token,
-        email: user.emailKey,
+        email: emailKey,
         username: user.username || user.usernameKey
       };
     },

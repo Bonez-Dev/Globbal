@@ -8,13 +8,28 @@ html:has(.about-parchment-page) {
   overflow-x: hidden;
   overflow-y: auto;
   background: #000;
-  --about-compose-max: min(100%, 400px);
-  --about-compose-pad-x: 2.35rem;
+  --about-compose-max: min(100vw, 430px);
+  --about-compose-pad-x: clamp(1.75rem, 9.5vw, 2.35rem);
 }
 
 .about-parchment-page .landing-shell,
 .about-parchment-page .splash-parchment {
   background: #000;
+}
+
+.about-parchment-page .splash-parchment,
+.about-parchment-page .splash-vignette {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+}
+
+.about-parchment-page .splash-parchment-sheet-wrap {
+  top: env(safe-area-inset-top, 0px);
+  right: env(safe-area-inset-right, 0px);
+  bottom: env(safe-area-inset-bottom, 0px);
+  left: env(safe-area-inset-left, 0px);
+  overflow: hidden;
 }
 
 .about-parchment-page .landing-shell > .landing-header,
@@ -33,7 +48,7 @@ html:has(.about-parchment-page) {
   min-height: 100svh;
   overflow: visible;
   width: 100%;
-  max-width: var(--about-compose-max);
+  max-width: 100%;
   margin-inline: auto;
 }
 
@@ -41,15 +56,17 @@ html:has(.about-parchment-page) {
   overflow: visible;
 }
 
-/* Tall scroll art — larger than sign-in so prose stays on the sheet. */
+/* Fill viewport; +10% span each side, slightly left of center. */
 .about-parchment-page .splash-parchment-sheet {
   left: 50%;
-  top: 54%;
-  width: auto;
-  height: auto;
-  max-width: min(98vw, 440px);
-  transform: translate(-50%, -50%) scale(1, 1.42);
-  transform-origin: center center;
+  top: 0;
+  bottom: 0;
+  width: 152%;
+  height: 100%;
+  margin: 0;
+  object-fit: fill;
+  object-position: center center;
+  transform: translate(calc(-50% - 2.5vw), -2vh);
   mix-blend-mode: normal;
 }
 
@@ -94,15 +111,16 @@ html:has(.about-parchment-page) {
 
 .about-parchment-actions {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-top: 1.1rem;
+  margin-top: 1.65rem;
   padding-bottom: 0.35rem;
 }
 
 @media (max-height: 720px) {
-  .about-parchment-page .splash-parchment-sheet {
-    top: 56%;
-    transform: translate(-50%, -50%) scale(0.98, 1.28);
+  .about-parchment-page {
+    --about-compose-pad-x: clamp(1.55rem, 8.8vw, 2rem);
   }
 
   .about-parchment-prose {
@@ -115,33 +133,39 @@ html:has(.about-parchment-page) {
   }
 
   .about-parchment-actions {
-    margin-top: 0.75rem;
+    margin-top: 1.15rem;
   }
 }
 
 @media (min-width: 641px) {
   .about-parchment-page {
     --about-compose-max: 400px;
-    --about-compose-pad-x: 2.5rem;
+    --about-compose-pad-x: 2.4rem;
   }
+}
 
-  .about-parchment-page .splash-parchment-sheet {
-    top: 52%;
-    max-width: 420px;
-    transform: translate(-50%, -50%) scale(1.02, 1.48);
-  }
+.about-crossed-swords {
+  display: block;
+  width: min(11.5rem, 58vw);
+  height: auto;
+  margin-top: 0.95rem;
+  margin-inline: auto;
+  opacity: 0.88;
+  filter: sepia(0.35) saturate(0.85);
+  pointer-events: none;
+  user-select: none;
 }
 
 .about-parchment-actions .splash-enter {
   position: relative;
   z-index: 1;
   height: auto;
-  min-height: 2.4rem;
+  min-height: 2.75rem;
   max-height: none;
-  padding: 0.5rem 1.25rem;
+  padding: 0.62rem 1.55rem;
   font-family: "Globbal Nautical", "IM Fell English SC", Georgia, "Times New Roman", serif;
   font-weight: 400;
-  font-size: 1.14rem;
+  font-size: 1.26rem;
   line-height: 1.15;
   letter-spacing: 0.03em;
   color: var(--tile-engrave);

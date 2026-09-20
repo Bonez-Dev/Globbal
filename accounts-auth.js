@@ -3,7 +3,13 @@
  */
 (function accountsAuthPage() {
   const accounts = window.GlobbleAccounts;
+  const authBootstrapError = document.getElementById("authBootstrapError");
   if (!accounts) {
+    if (authBootstrapError) {
+      authBootstrapError.hidden = false;
+      authBootstrapError.textContent =
+        "Account sign-in did not load. Refresh the page or try again later.";
+    }
     return;
   }
 
@@ -22,15 +28,30 @@
   const forgotSubmitBtn = document.getElementById("forgotSubmitBtn");
   const forgotBackBtn = document.getElementById("forgotBackBtn");
   const forgotError = document.getElementById("forgotError");
+  const forgotResetHint = document.getElementById("forgotResetHint");
   const forgotDevLinkWrap = document.getElementById("forgotDevLinkWrap");
   const forgotDevLink = document.getElementById("forgotDevLink");
+
+  let passwordResetEmailConfigured = null;
+
+  function isProductionSite() {
+    return (
+      location.protocol === "https:" ||
+      (!/localhost|127\.0\.0\.1/i.test(location.hostname) && location.protocol !== "file:")
+    );
+  }
 
   function setAuthError(message) {
     if (authError) authError.textContent = message || "";
   }
 
-  function setForgotError(message) {
-    if (forgotError) forgotError.textContent = message || "";
+  function setForgotMessage(message, { isError = false } = {}) {
+    if (!forgotError) {
+      return;
+    }
+    forgotError.textContent = message || "";
+    forgotError.classList.toggle("is-success", Boolean(message) && !isError);
+    forgotError.classList.toggle("is-error", Boolean(message) && isError);
   }
 
   function setForgotDevLink(url) {
@@ -46,6 +67,30 @@
     }
   }
 
+  function updateForgotResetHint() {
+    if (!forgotResetHint) {
+      return;
+    }
+    if (passwordResetEmailConfigured === false && isProductionSite()) {
+      forgotResetHint.hidden = false;
+      forgotResetHint.textContent =
+        "Password reset email is not configured on this site yet. Submitting will show an error until the host sets up email (Resend).";
+      return;
+    }
+    forgotResetHint.hidden = true;
+    forgotResetHint.textContent = "";
+  }
+
+  async function loadAuthConfig() {
+    try {
+      const data = await accounts.api("/api/auth/config");
+      passwordResetEmailConfigured = !!data.passwordResetEmail;
+    } catch {
+      passwordResetEmailConfigured = null;
+    }
+    updateForgotResetHint();
+  }
+
   function setAuthPasswordVisible(visible) {
     if (!authPassword || !authPasswordToggle) {
       return;
@@ -59,11 +104,20 @@
   function showForgot(show) {
     if (authForm) authForm.hidden = !!show;
     if (forgotForm) forgotForm.hidden = !show;
-    setForgotError("");
+    setForgotMessage("");
     setForgotDevLink("");
     setAuthError("");
+    updateForgotResetHint();
     if (show && forgotLogin && authUsername?.value) {
       forgotLogin.value = authUsername.value.trim();
+    }
+    if (show) {
+      forgotForm?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      window.requestAnimationFrame(() => {
+        (forgotLogin || forgotSubmitBtn)?.focus({ preventScroll: true });
+      });
+    } else {
+      authForm?.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
   }
 
@@ -112,14 +166,15 @@
       let message = err.message || "Could not sign in.";
       if (err.status === 401 && /no account/i.test(message)) {
         message =
-          "No account found. Use Create account, or check you are on the same site where you registered.";
+          "No account found on this site. Use Create account, or sign in with the username (not display name) you used when you registered here.";
       } else if (err.status === 401 && /password/i.test(message)) {
         message = "Incorrect password. Passwords are case-sensitive.";
       } else if (err.status === 409) {
         message = err.message || "That username or email is already taken.";
       } else if (!err.status) {
-        message =
-          "Could not reach the account server. Use npm run start:local (or start:static with the API-enabled server), not opening HTML files directly.";
+        message = isProductionSite()
+          ? "Could not reach the account server. Check your connection and try again in a moment."
+          : "Could not reach the account server. Use npm run start:local (or start:static with the API-enabled server), not opening HTML files directly.";
       }
       setAuthError(message);
     } finally {
@@ -129,11 +184,11 @@
   }
 
   async function doForgot() {
-    setForgotError("");
+    setForgotMessage("");
     setForgotDevLink("");
     const login = (forgotLogin?.value || "").trim();
     if (!login) {
-      setForgotError("Enter your username or email.");
+      setForgotMessage("Enter your username or email.", { isError: true });
       return;
     }
     if (forgotSubmitBtn) forgotSubmitBtn.disabled = true;
@@ -142,16 +197,21 @@
         method: "POST",
         body: JSON.stringify({ login })
       });
-      setForgotError(data.message || "If that account has an email, we sent a reset link.");
+      setForgotMessage(
+        data.message || "If that account has an email, we sent a reset link.",
+        { isError: false }
+      );
       if (data.devResetUrl) {
         setForgotDevLink(data.devResetUrl);
       }
     } catch (err) {
-      setForgotError(err.message || "Could not send reset email.");
+      setForgotMessage(err.message || "Could not send reset email.", { isError: true });
     } finally {
       if (forgotSubmitBtn) forgotSubmitBtn.disabled = false;
     }
   }
+
+  void loadAuthConfig();
 
   authPasswordToggle?.addEventListener("click", () => {
     setAuthPasswordVisible(authPassword?.type === "password");
@@ -169,7 +229,10 @@
     event.preventDefault();
     doAuth("login");
   });
-  forgotPasswordBtn?.addEventListener("click", () => showForgot(true));
+  forgotPasswordBtn?.addEventListener("click", (event) => {
+    event.preventDefault();
+    showForgot(true);
+  });
   forgotBackBtn?.addEventListener("click", () => showForgot(false));
   forgotForm?.addEventListener("submit", (event) => {
     event.preventDefault();

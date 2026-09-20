@@ -4992,8 +4992,24 @@ a.landing-card:hover {
   border: 0;
   padding: 0;
   font: inherit;
-  text-decoration: none;
+  color: #e8c890;
+  background: transparent;
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
   cursor: pointer;
+}
+
+.landing-text-btn:hover,
+.landing-text-btn:focus-visible {
+  color: #f3d7a8;
+}
+
+.landing-error.is-success {
+  color: rgba(186, 228, 186, 0.95);
+}
+
+.landing-forgot-config-hint {
+  color: rgba(243, 215, 168, 0.92);
 }
 
 .landing-forgot-hint {

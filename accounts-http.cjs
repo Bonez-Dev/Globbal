@@ -66,6 +66,13 @@ function createAccountsHttp(store) {
 
   async function handle(req, res, urlPath) {
     try {
+      if (urlPath === "/api/auth/config" && req.method === "GET") {
+        sendJson(res, 200, {
+          passwordResetEmail: isPasswordResetEmailConfigured()
+        });
+        return true;
+      }
+
       if (urlPath === "/api/auth/register" && req.method === "POST") {
         const body = await readJsonBody(req);
         const username = store.normalizeUsername(body.username);
@@ -117,6 +124,13 @@ function createAccountsHttp(store) {
             error: store.looksLikeEmail(identifier)
               ? "No account with that email. Create an account first."
               : "No account with that username. Create an account first."
+          });
+          return true;
+        }
+        if (!row.passwordHash) {
+          sendJson(res, 401, {
+            error:
+              "This account has no password set. Use Forgot password (with the email on the account) or create a new account."
           });
           return true;
         }
