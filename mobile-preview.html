@@ -146,6 +146,7 @@
           <option value="./splash.html" selected>Splash screen</option>
           <option value="./practice.html">Practice game</option>
           <option value="./index.html">Sign in</option>
+          <option value="./about.html">About</option>
           <option value="./profile.html">Profile</option>
           <option value="./rules.html">Rules</option>
           <option value="./index.html?dictionary=1">Dictionary (sign in)</option>
@@ -234,7 +235,18 @@
 
       window.addEventListener("resize", fitPhoneScale);
 
+      const initialPage = new URLSearchParams(window.location.search).get("page");
+      if (initialPage) {
+        const match = Array.from(pageSelect.options).find(
+          (opt) => opt.value === initialPage || opt.value.endsWith("/" + initialPage)
+        );
+        if (match) {
+          pageSelect.value = match.value;
+        }
+      }
+
       applySize();
+      loadPage();
     </script>
   </body>
 </html>

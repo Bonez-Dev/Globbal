@@ -3493,13 +3493,13 @@ body.dictionary-page .dictionary-inner {
 /* Main menu landing & in-game nav */
 html:has(.landing-body) {
   height: 100%;
-  background: #8a6238;
+  background: #000;
 }
 
 .landing-body {
   margin: 0;
   overflow: hidden;
-  background: #8a6238;
+  background: #000;
   background-image: none;
   min-height: 100dvh;
   min-height: 100svh;
@@ -3654,6 +3654,10 @@ html:has(.landing-body) {
   background: #8a6238;
 }
 
+.landing-shell.parchment-shell .splash-parchment {
+  background: #000;
+}
+
 .parchment-shell .splash-parchment-sheet {
   position: absolute;
   left: 50%;
@@ -3671,6 +3675,117 @@ html:has(.landing-body) {
 /* Home / landing: nudge parchment left so the sheet reads more centered. */
 .landing-shell .splash-parchment-sheet {
   transform: translate(calc(-50% - 2.8vw), -50%);
+}
+
+/* Sign-in + about: same framed parchment on black. */
+.sign-in-page .splash-parchment,
+.about-parchment-page .splash-parchment {
+  --parchment-behind: #000;
+  background: #000;
+}
+
+.sign-in-page .splash-parchment-sheet,
+.about-parchment-page .splash-parchment-sheet {
+  transform: translate(calc(-50% - 2.5vw), calc(-50% - 2.2vh)) scale(0.71, 0.84);
+  mix-blend-mode: normal;
+}
+
+.sign-in-page .splash-parchment-sheet-shade,
+.about-parchment-page .splash-parchment-sheet-shade {
+  opacity: 0.35;
+}
+
+.sign-in-page .splash-vignette,
+.about-parchment-page .splash-vignette {
+  opacity: 0.35;
+}
+
+.sign-in-page {
+  overflow: hidden;
+  --sign-in-tray-gap: 0.32rem;
+  --sign-in-tray-pad-y: 0.55rem;
+  --sign-in-tray-pad-x: 0.85rem;
+  --sign-in-stack-gap: 0.5rem;
+}
+
+.sign-in-page .landing {
+  overflow: hidden;
+  padding-top: calc(0.25rem + var(--landing-y-nudge, 0rem));
+  padding-bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+}
+
+.sign-in-page .landing-header {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 0.65rem + var(--landing-y-nudge, 0rem));
+  padding-bottom: 0.1rem;
+}
+
+.sign-in-page .landing-brand-tray {
+  margin-top: 0.2rem;
+  padding:
+    calc(0.22rem + var(--landing-frame-rail, 7px))
+    calc(0.42rem + var(--landing-frame-rail, 7px))
+    calc(0.2rem + var(--landing-frame-rail, 7px));
+}
+
+.sign-in-page .landing-header .logo-wordmark-wrap {
+  padding-top: 0.32rem;
+}
+
+.sign-in-page .landing-grid {
+  gap: var(--sign-in-stack-gap);
+  margin-top: var(--sign-in-stack-gap);
+  margin-bottom: 0;
+}
+
+.sign-in-page .landing-card {
+  gap: var(--sign-in-tray-gap);
+  padding: var(--sign-in-tray-pad-y) var(--sign-in-tray-pad-x);
+}
+
+.sign-in-page .landing-card h2 {
+  font-size: 1.12rem;
+  line-height: 1.12;
+}
+
+.sign-in-page .landing-card p {
+  font-size: 0.82rem;
+  line-height: 1.28;
+}
+
+.sign-in-page .landing-account-card .landing-auth-form {
+  gap: 0.42rem;
+  margin-top: 0.2rem;
+}
+
+.sign-in-page .landing-auth-form label {
+  gap: 0.18rem;
+}
+
+.sign-in-page .landing-auth-actions {
+  gap: 0.38rem;
+}
+
+.sign-in-page .landing-auth-links {
+  margin: 0;
+}
+
+.sign-in-page .landing-account-card #authError {
+  margin: 0;
+  min-height: 0;
+}
+
+.sign-in-page .landing-sign-in-nav-card .landing-actions {
+  gap: 0.42rem;
+  margin: 0;
+}
+
+.sign-in-page .landing-sign-in-nav-hint {
+  margin: 0.12rem 0 0;
+  text-align: center;
+  font-family: "Globbal Nautical", "IM Fell English SC", Georgia, "Times New Roman", serif;
+  font-size: clamp(0.88rem, 3.6vw, 1.05rem);
+  line-height: 1.28;
+  color: rgba(236, 224, 204, 0.82);
 }
 
 @media (min-width: 641px) {
@@ -4170,9 +4285,59 @@ a.landing-card:hover {
   gap: 0.75rem;
 }
 
+.landing-actions.landing-actions-trio {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.landing-actions.landing-actions-duo {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.landing-solo-card-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 0.25rem;
+}
+
+.landing-solo-card .landing-solo-card-actions {
+  margin-bottom: 0.35rem;
+}
+
+.landing-games-refresh-actions {
+  margin-top: 0;
+}
+
+.landing-games .landing-disclosure-body {
+  gap: 0.35rem;
+  padding-bottom: 0.85rem;
+  border-top: none;
+}
+
+.landing-games .landing-disclosure-body .games-list {
+  margin-top: 0;
+}
+
+.landing-actions.landing-actions-trio .landing-action-btn,
+.landing-actions.landing-actions-trio #openAboutBtn,
+.landing-actions.landing-actions-trio #openSoloBtn,
+.landing-actions.landing-actions-trio #openDictionaryBtn,
+.landing-actions.landing-actions-trio #openRulesBtn {
+  padding: 0.55rem 0.45rem;
+  font-size: clamp(0.88rem, 3.4vw, 1.22rem);
+}
+
 .landing-actions .landing-action-btn,
+.landing-actions #openAboutBtn,
+.landing-actions #openSoloBtn,
 .landing-actions #openDictionaryBtn,
-.landing-actions #openRulesBtn {
+.landing-actions #openRulesBtn,
+.landing-solo-card .landing-action-btn,
+.landing-solo-card #openSoloBtn,
+.landing-solo-card-actions .landing-action-btn,
+.landing-solo-card-actions #openSoloBtn,
+.landing-solo-card-actions #gamesRefreshBtn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -4186,9 +4351,13 @@ a.landing-card:hover {
   border-left-color: var(--tile-border-mid);
   background-color: var(--tile);
   background-image: var(--tile-bg-image);
-  color: var(--tile-text);
-  font: inherit;
-  font-weight: 700;
+  color: var(--tile-engrave);
+  font-family: "Globbal Nautical", "IM Fell English SC", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 1.14rem;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  text-shadow: var(--tile-engrave-shadow);
   text-decoration: none;
   text-align: center;
   cursor: pointer;
@@ -4197,11 +4366,26 @@ a.landing-card:hover {
 }
 
 .landing-actions .landing-action-btn:hover,
+.landing-actions #openAboutBtn:hover,
+.landing-actions #openSoloBtn:hover,
 .landing-actions #openDictionaryBtn:hover,
-.landing-actions #openRulesBtn:hover {
+.landing-actions #openRulesBtn:hover,
+.landing-solo-card .landing-action-btn:hover,
+.landing-solo-card #openSoloBtn:hover,
+.landing-solo-card-actions .landing-action-btn:hover,
+.landing-solo-card-actions #openSoloBtn:hover,
+.landing-solo-card-actions #gamesRefreshBtn:hover {
   background-image: var(--tile-bg-image-hover);
   transform: translateY(-1px);
   box-shadow: var(--tile-shadow-hover);
+}
+
+.landing-solo-card-actions .landing-action-btn,
+.landing-solo-card-actions #openSoloBtn,
+.landing-solo-card-actions #gamesRefreshBtn {
+  width: auto;
+  min-width: 8.5rem;
+  padding: 0.55rem 1.35rem;
 }
 
 .landing-actions .hint {
@@ -4626,7 +4810,7 @@ a.landing-card:hover {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.55rem;
-  margin: 0.5rem 0 0.75rem;
+  margin: 0.5rem 0 0.3rem;
 }
 
 .profile-stat {
@@ -4653,8 +4837,14 @@ a.landing-card:hover {
 
 .profile-history-btn {
   width: 100%;
-  margin-top: 0.45rem;
+  margin-top: 0.15rem;
   margin-bottom: 0.35rem;
+}
+
+.landing-profile-card #profileError:empty {
+  display: none;
+  margin: 0;
+  min-height: 0;
 }
 
 .profile-signout {
@@ -4802,6 +4992,17 @@ a.landing-card:hover {
   display: flex;
   gap: 0.45rem;
   margin-top: 0.65rem;
+  margin-bottom: 0;
+}
+
+.landing-card #playerSearchError:empty {
+  display: none;
+  margin: 0;
+  min-height: 0;
+}
+
+.landing-card .player-search-results:empty {
+  margin-top: 0;
 }
 
 .player-search-row button {
@@ -4822,7 +5023,7 @@ a.landing-card:hover {
 .player-search-results,
 .games-list {
   list-style: none;
-  margin: 0.65rem 0 0;
+  margin: 0.35rem 0 0;
   padding: 0;
   display: grid;
   gap: 0.45rem;

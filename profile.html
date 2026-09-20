@@ -86,11 +86,11 @@
               </span>
             </summary>
             <div class="landing-disclosure-body">
-              <div class="games-toolbar">
-                <button type="button" id="gamesRefreshBtn">Refresh</button>
-              </div>
               <p id="gamesHint" class="hint">Loading…</p>
               <ul id="gamesList" class="games-list"></ul>
+              <div class="landing-solo-card-actions landing-games-refresh-actions">
+                <button type="button" id="gamesRefreshBtn" class="landing-action-btn">Refresh</button>
+              </div>
             </div>
           </details>
 
@@ -111,19 +111,18 @@
             <ul id="playerSearchResults" class="player-search-results"></ul>
           </section>
 
-          <a class="landing-card" href="./practice.html">
-            <h2>Local</h2>
+          <section class="landing-card landing-solo-card">
+            <h2>Solo</h2>
             <p>Two-player rules on one device — play on your own anytime.</p>
-            <span class="landing-cta">Play local →</span>
-          </a>
+            <div class="landing-solo-card-actions">
+              <a href="./practice.html" class="landing-action-btn" id="openSoloBtn">Solo</a>
+            </div>
+          </section>
         </div>
 
-        <div class="landing-actions">
+        <div class="landing-actions landing-actions-duo">
           <a href="./rules.html" class="landing-action-btn" id="openRulesBtn">Rules</a>
-          <button type="button" id="openDictionaryBtn" class="landing-action-btn">Browse dictionary</button>
-          <p class="hint" id="dictionaryHint">
-            Modern places plus historical countries, regions, cities, and kingdoms/empires in folders at the bottom.
-          </p>
+          <button type="button" id="openDictionaryBtn" class="landing-action-btn">Dictionary</button>
         </div>
       </main>
 
@@ -246,8 +245,7 @@
           document.body.appendChild(menu);
         };
         el.onerror = function () {
-          const hint = document.getElementById("dictionaryHint");
-          if (hint) hint.textContent = "Dictionary failed to load.";
+          /* Dictionary script failed — open dialog will no-op until reload. */
         };
         document.body.appendChild(el);
       })();

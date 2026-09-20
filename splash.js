@@ -5,7 +5,7 @@
     return;
   }
 
-  const MENU_URL = "./index.html";
+  const MENU_URL = "./about.html";
   const FADE_MS = 520;
   let leaving = false;
 

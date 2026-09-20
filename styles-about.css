@@ -1,0 +1,91 @@
+/* About page: wordmark tray + prose on parchment (no oak cards). */
+
+html:has(.about-parchment-page) {
+  background: #000;
+}
+
+.about-parchment-page {
+  overflow: auto;
+  background: #000;
+}
+
+.about-parchment-page .landing-shell,
+.about-parchment-page .splash-parchment {
+  background: #000;
+}
+
+.about-parchment-page .landing-shell > .landing-header,
+.about-parchment-page .landing-shell > .about-parchment-content {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--landing-compose-max, 430px);
+  margin-inline: auto;
+  transform: translateY(calc(-1 * var(--play-y-nudge, 0rem)));
+}
+
+.about-parchment-page .landing-shell {
+  min-height: 100dvh;
+  min-height: 100svh;
+}
+
+.about-parchment-page .landing-header {
+  padding-bottom: 0.5rem;
+}
+
+.about-parchment-content {
+  flex: 1;
+  width: 100%;
+  max-width: var(--landing-compose-max, 430px);
+  margin-inline: auto;
+  padding: 1.35rem 2.65rem 2rem;
+  padding-left: max(2.65rem, env(safe-area-inset-left, 0px) + 1.45rem);
+  padding-right: max(2.65rem, env(safe-area-inset-right, 0px) + 1.45rem);
+  padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px) + 1.25rem);
+}
+
+.about-parchment-prose {
+  margin: 0;
+  color: #0f0a06;
+  font-family: "Eagle Lake", "Segoe Script", "Brush Script MT", cursive;
+  font-size: clamp(1.18rem, 4.8vw, 1.48rem);
+  line-height: 1.72;
+  letter-spacing: 0.01em;
+  text-align: center;
+  text-wrap: pretty;
+}
+
+.about-parchment-prose + .about-parchment-prose {
+  margin-top: 1.15rem;
+}
+
+.about-parchment-actions {
+  display: flex;
+  justify-content: center;
+  margin-top: 1.85rem;
+}
+
+.about-parchment-actions .splash-enter {
+  position: relative;
+  z-index: 1;
+  height: auto;
+  min-height: 2.4rem;
+  max-height: none;
+  padding: 0.5rem 1.25rem;
+  font-family: "Globbal Nautical", "IM Fell English SC", Georgia, "Times New Roman", serif;
+  font-weight: 400;
+  font-size: 1.14rem;
+  line-height: 1.15;
+  letter-spacing: 0.03em;
+  color: var(--tile-engrave);
+  text-shadow: var(--tile-engrave-shadow);
+  text-decoration: none;
+  text-align: center;
+}
+
+.about-parchment-page .landing-brand-tray object.logo-wordmark {
+  display: block;
+  width: min(408px, 94vw);
+  height: auto;
+  pointer-events: none;
+}

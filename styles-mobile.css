@@ -408,6 +408,20 @@ button {
     max(2rem, env(safe-area-inset-bottom, 0px) + 1rem) max(1rem, env(safe-area-inset-right, 0px));
 }
 
+.sign-in-page .landing {
+  padding: calc(0.25rem + var(--landing-y-nudge, 0rem)) max(1.25rem, env(safe-area-inset-left, 0px))
+    max(0.85rem, env(safe-area-inset-bottom, 0px)) max(1.25rem, env(safe-area-inset-right, 0px));
+  overflow: hidden;
+}
+
+.sign-in-page .landing-header {
+  padding-top: calc(env(safe-area-inset-top, 0px) + 0.65rem + var(--landing-y-nudge, 0rem));
+}
+
+.sign-in-page .landing-header .logo-wordmark-wrap {
+  padding-top: 0.32rem;
+}
+
 .landing-header {
   padding-top: calc(env(safe-area-inset-top, 0px) + 1.35rem + var(--landing-y-nudge, 0rem));
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
