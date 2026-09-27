@@ -5,6 +5,30 @@
  */
 (function globbleAmbientSound() {
   const MUTE_KEY = "globble-sound-muted-v1";
+  const BONUS_SUPPRESS_KEY = "globble-bonus-active-v1";
+  const AMBIENT_KILL_KEY = "globble-ambient-kill-v1";
+  const AMBIENT_STOP_KEY = "globble-ambient-stop-v1";
+  const AMBIENT_BC = "globble-ambient-v1";
+
+  function readMuted() {
+    try {
+      return localStorage.getItem(MUTE_KEY) === "1";
+    } catch {
+      return false;
+    }
+  }
+
+  function isBonusDocument() {
+    if (window.GlobbleBonusAmbientGuard?.isBonusPage?.()) {
+      return true;
+    }
+    return String(location.pathname || "").toLowerCase().includes("bonus");
+  }
+
+  if (isBonusDocument()) {
+    return;
+  }
+
   let muted = false;
   let context = null;
   let ambientBus = null;
@@ -14,10 +38,20 @@
   let seabirdTimer = null;
   let stoppedForSubmit = false;
 
-  try {
-    muted = localStorage.getItem(MUTE_KEY) === "1";
-  } catch {
-    muted = false;
+  muted = readMuted();
+
+  function isBonusAmbientSuppressed() {
+    if (window.GlobbleBonusRound?.isMainAmbientSuppressed?.()) {
+      return true;
+    }
+    try {
+      if (localStorage.getItem(AMBIENT_KILL_KEY) === "1") {
+        return true;
+      }
+      return sessionStorage.getItem(BONUS_SUPPRESS_KEY) === "1";
+    } catch {
+      return false;
+    }
   }
 
   function isBoardVisible() {
@@ -37,8 +71,12 @@
 
   function ensureContext() {
     if (context) {
-      if (!muted && context.state === "suspended") {
-        void context.resume().then(startAmbient).catch(() => {});
+      if (!muted && !isBonusAmbientSuppressed() && context.state === "suspended") {
+        void context.resume().then(() => {
+          if (!isBonusAmbientSuppressed()) {
+            startAmbient();
+          }
+        }).catch(() => {});
       }
       return context;
     }
@@ -48,8 +86,12 @@
     }
     try {
       context = new AudioContextClass();
-      if (!muted && context.state === "suspended") {
-        void context.resume().then(startAmbient).catch(() => {});
+      if (!muted && !isBonusAmbientSuppressed() && context.state === "suspended") {
+        void context.resume().then(() => {
+          if (!isBonusAmbientSuppressed()) {
+            startAmbient();
+          }
+        }).catch(() => {});
       }
       return context;
     } catch {
@@ -127,7 +169,7 @@
   }
 
   function startAmbient() {
-    if (muted || stoppedForSubmit || ambientBus || !isBoardVisible()) {
+    if (muted || stoppedForSubmit || ambientBus || !isBoardVisible() || isBonusAmbientSuppressed()) {
       return;
     }
     const audio = ensureContext();
@@ -163,6 +205,21 @@
     }
   }
 
+  function shutdownForBonus() {
+    stopAmbient();
+    if (!context) {
+      return;
+    }
+    try {
+      if (context.state !== "closed") {
+        void context.close();
+      }
+    } catch {
+      /* ignore */
+    }
+    context = null;
+  }
+
   function updateButton() {
     const button = document.getElementById("soundToggleBtn");
     if (!button) return;
@@ -196,10 +253,11 @@
   }
 
   function primeFromGesture() {
-    if (!muted) {
-      ensureContext();
-      startAmbient();
+    if (muted || isBonusAmbientSuppressed()) {
+      return;
     }
+    ensureContext();
+    startAmbient();
   }
 
   function watchBoardReveal() {
@@ -210,7 +268,9 @@
     }
 
     const syncToBoard = () => {
-      if (isBoardVisible()) {
+      if (isBonusAmbientSuppressed()) {
+        shutdownForBonus();
+      } else if (isBoardVisible()) {
         startAmbient();
       } else {
         stopAmbient();
@@ -227,17 +287,61 @@
   document.addEventListener("pointerdown", primeFromGesture, { capture: true, once: true });
   document.addEventListener("keydown", primeFromGesture, { capture: true, once: true });
   document.addEventListener("visibilitychange", () => {
+    if (isBonusAmbientSuppressed()) {
+      shutdownForBonus();
+      return;
+    }
     if (document.hidden) {
-      stopAmbient();
+      shutdownForBonus();
     } else if (!muted) {
       startAmbient();
     }
   });
-  window.addEventListener("pagehide", stopAmbient);
+  window.addEventListener("pagehide", shutdownForBonus);
+  window.addEventListener("pageshow", (event) => {
+    if (isBonusAmbientSuppressed()) {
+      shutdownForBonus();
+      return;
+    }
+    if (event.persisted && !muted) {
+      startAmbient();
+    }
+  });
+  document.addEventListener("freeze", shutdownForBonus);
+
+  try {
+    const ambientChannel = new BroadcastChannel(AMBIENT_BC);
+    ambientChannel.onmessage = (event) => {
+      if (event.data?.type === "stop-for-bonus") {
+        shutdownForBonus();
+      }
+    };
+  } catch {
+    /* BroadcastChannel unavailable */
+  }
+
+  window.addEventListener("storage", (event) => {
+    if (event.key === AMBIENT_STOP_KEY) {
+      shutdownForBonus();
+      return;
+    }
+    if (event.key === BONUS_SUPPRESS_KEY && event.newValue === "1") {
+      shutdownForBonus();
+      return;
+    }
+    if (event.key === AMBIENT_KILL_KEY && event.newValue === "1") {
+      shutdownForBonus();
+    }
+  });
   document.addEventListener("DOMContentLoaded", () => {
+    if (isBonusAmbientSuppressed()) {
+      shutdownForBonus();
+    }
     updateButton();
     // Attempt immediate playback when the reveal curtain exposes the board.
-    ensureContext();
+    if (!isBonusAmbientSuppressed()) {
+      ensureContext();
+    }
     requestAnimationFrame(watchBoardReveal);
     document.getElementById("submitTurnBtn")?.addEventListener("click", () => {
       stoppedForSubmit = true;
@@ -257,6 +361,7 @@
     setMuted,
     startAmbient,
     stopAmbient,
+    shutdownForBonus,
     playShuffleRustle
   };
 })();

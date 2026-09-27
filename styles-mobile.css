@@ -39,7 +39,7 @@
 .gameplay-body {
   height: 100dvh;
   overflow: hidden;
-  background: #362518;
+  background: #000;
 }
 
 /* Full-bleed play surface: no parchment gutters around the game chrome */
@@ -48,7 +48,7 @@
   align-items: stretch;
   justify-content: stretch;
   padding: 0;
-  background: #362518;
+  background: #000;
 }
 
 .gameplay-body .play-stage.is-game-loaded > .splash-parchment,

@@ -49,7 +49,10 @@
       question,
       gameSnapshot
     });
-    location.href = "./bonus.html";
+    window.GlobbleBonusRound?.suppressMainAmbient?.();
+    window.GlobbleBonusAmbientGuard?.suppressMainAmbient?.();
+    window.GlobbleSound?.shutdownForBonus?.();
+    location.replace("./bonus.html");
   }
 
   window.GlobblePracticeBonus = {

@@ -1311,7 +1311,10 @@ function maybeLaunchOnlineBonus() {
   } catch {
     return;
   }
-  location.href = "./bonus.html";
+  window.GlobbleBonusRound?.suppressMainAmbient?.();
+  window.GlobbleBonusAmbientGuard?.suppressMainAmbient?.();
+  window.GlobbleSound?.shutdownForBonus?.();
+  location.replace("./bonus.html");
 }
 
 function applyOptimisticRecall() {
@@ -2080,7 +2083,21 @@ if (!applyStartupRouting()) {
   }
 }
 
-window.GlobbleGameLoadReveal?.notifyReady();
+let returningFromBonus = false;
+try {
+  returningFromBonus = sessionStorage.getItem("globble-return-from-bonus-v1") === "1";
+  if (returningFromBonus) {
+    sessionStorage.removeItem("globble-return-from-bonus-v1");
+  }
+} catch {
+  returningFromBonus = false;
+}
+
+if (returningFromBonus) {
+  window.GlobbleGameLoadReveal?.skipImmediate();
+} else {
+  window.GlobbleGameLoadReveal?.notifyReady();
+}
 
 window.GlobblePendingWordGlow?.registerRenderCallback(() => {
   renderBoard();

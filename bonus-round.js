@@ -95,13 +95,48 @@
     return Number(choiceIndex) === Number(question.correctIndex) ? BONUS_POINTS : 0;
   }
 
+  const BONUS_AMBIENT_SUPPRESS_KEY = "globble-bonus-active-v1";
+
+  function suppressMainAmbient() {
+    try {
+      sessionStorage.setItem(BONUS_AMBIENT_SUPPRESS_KEY, "1");
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function releaseMainAmbient() {
+    try {
+      sessionStorage.removeItem(BONUS_AMBIENT_SUPPRESS_KEY);
+    } catch {
+      /* ignore */
+    }
+    try {
+      localStorage.removeItem("globble-ambient-kill-v1");
+    } catch {
+      /* ignore */
+    }
+  }
+
+  function isMainAmbientSuppressed() {
+    try {
+      return sessionStorage.getItem(BONUS_AMBIENT_SUPPRESS_KEY) === "1";
+    } catch {
+      return false;
+    }
+  }
+
   window.GlobbleBonusRound = {
     BONUS_POINTS,
     BONUS_TIMER_SEC,
     BONUS_INTERVAL,
+    BONUS_AMBIENT_SUPPRESS_KEY,
     firstBonusAt,
     shouldTriggerBonus,
     generateBonusQuestion,
-    scoreBonusAnswer
+    scoreBonusAnswer,
+    suppressMainAmbient,
+    releaseMainAmbient,
+    isMainAmbientSuppressed
   };
 })();

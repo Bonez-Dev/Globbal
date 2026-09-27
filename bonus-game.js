@@ -1,7 +1,12 @@
 import { launchBonusFireworks } from "./bonus-fireworks.js";
+import {
+  getBonusCelebrationDurationMs,
+  playBonusCelebration
+} from "./bonus-celebration-sound.js";
 
 const TIMER_SEC = window.GlobbleBonusRound?.BONUS_TIMER_SEC || 30;
 const BONUS_SESSION_KEY = "globble-bonus-session-v1";
+const RETURN_FROM_BONUS_KEY = "globble-return-from-bonus-v1";
 
 const shellEl = document.getElementById("bonusShell");
 const loadingEl = document.getElementById("bonusLoading");
@@ -15,6 +20,17 @@ const statusEl = document.getElementById("bonusStatus");
 
 let globe = null;
 let timerId = null;
+
+function suppressGameAmbient() {
+  window.GlobbleBonusRound?.suppressMainAmbient?.();
+  window.GlobbleBonusAmbientGuard?.suppressMainAmbient?.();
+  window.GlobbleSound?.shutdownForBonus?.();
+}
+
+function releaseGameAmbient() {
+  window.GlobbleBonusRound?.releaseMainAmbient?.();
+  window.GlobbleBonusAmbientGuard?.releaseMainAmbient?.();
+}
 let timeLeft = TIMER_SEC;
 let answered = false;
 let session = null;
@@ -46,6 +62,42 @@ function clearSession() {
   }
 }
 
+function isLocalPreviewHost() {
+  const host = location.hostname;
+  if (host === "localhost" || host === "127.0.0.1") {
+    return true;
+  }
+  try {
+    return new URLSearchParams(location.search).get("preview") === "1";
+  } catch {
+    return false;
+  }
+}
+
+async function createPreviewSession() {
+  const response = await fetch("./data/bonus-country-data.json");
+  if (!response.ok) {
+    throw new Error("Bonus country data is missing. Run npm run build:bonus-countries.");
+  }
+  const countryData = await response.json();
+  const question = window.GlobbleBonusRound.generateBonusQuestion(countryData);
+  const preview = {
+    mode: "practice",
+    returnUrl: "./practice.html",
+    submittingPlayer: 0,
+    activePlayerIndex: 0,
+    playerNames: ["Player 1", "Player 2"],
+    results: [null, null],
+    question,
+    gameSnapshot: {
+      players: [{ name: "Player 1" }, { name: "Player 2" }]
+    },
+    preview: true
+  };
+  saveSession(preview);
+  return preview;
+}
+
 function showPanel(mode) {
   loadingEl.hidden = mode !== "loading";
   waitingEl.hidden = mode !== "waiting";
@@ -67,6 +119,7 @@ function showFatalError(message) {
   btn.textContent = "Return to game";
   btn.addEventListener("click", () => {
     clearSession();
+    releaseGameAmbient();
     location.href = returnUrl();
   });
   loadingEl.append(text, btn);
@@ -138,7 +191,10 @@ async function ensureGlobe() {
     return true;
   }
   try {
-    const { BonusGlobe } = await import("./bonus-globe.js");
+    const { BonusGlobe, BONUS_GLOBE_DRAG_VERSION } = await import("./bonus-globe.js?v=globe-arcball12");
+    if (globeHostEl && BONUS_GLOBE_DRAG_VERSION) {
+      globeHostEl.dataset.globeDragVersion = BONUS_GLOBE_DRAG_VERSION;
+    }
     globe = new BonusGlobe(globeHostEl);
     await globe.ready();
     return true;
@@ -150,7 +206,18 @@ async function ensureGlobe() {
   }
 }
 
+function finishPreviewBonus() {
+  releaseGameAmbient();
+  clearSession();
+  location.replace("./practice.html");
+}
+
 async function finishPracticeAndReturn() {
+  if (session?.preview) {
+    finishPreviewBonus();
+    return;
+  }
+  releaseGameAmbient();
   const snap = session.gameSnapshot;
   snap.players[0].score += Number(session.results[0] || 0);
   snap.players[1].score += Number(session.results[1] || 0);
@@ -168,12 +235,23 @@ async function finishPracticeAndReturn() {
     })
   );
   clearSession();
-  location.href = session.returnUrl || "./practice.html";
+  try {
+    sessionStorage.setItem(RETURN_FROM_BONUS_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+  location.replace(session.returnUrl || "./practice.html");
 }
 
 function finishOnlineAndReturn() {
+  releaseGameAmbient();
   clearSession();
-  location.href = returnUrl();
+  try {
+    sessionStorage.setItem(RETURN_FROM_BONUS_KEY, "1");
+  } catch {
+    /* ignore */
+  }
+  location.replace(returnUrl());
 }
 
 function pickChoice(choiceIndex) {
@@ -204,8 +282,11 @@ async function handleAnswer(choiceIndex) {
   globe?.flashMarker(correct ? "correct" : "wrong");
   statusEl.textContent = correct ? `Correct! +${points} points.` : "Not quite — 0 points.";
   statusEl.className = `bonus-status ${correct ? "is-success" : "is-error"}`;
+  const postAnswerDelayMs = correct ? getBonusCelebrationDurationMs() : 1200;
+
   if (correct) {
     launchBonusFireworks();
+    playBonusCelebration();
   }
 
   if (session.mode === "online") {
@@ -215,7 +296,7 @@ async function handleAnswer(choiceIndex) {
       statusEl.textContent = `${err.message || "Could not save answer."} Returning to game…`;
       statusEl.className = "bonus-status is-error";
     }
-    window.setTimeout(finishOnlineAndReturn, 1200);
+    window.setTimeout(finishOnlineAndReturn, postAnswerDelayMs);
     return;
   }
 
@@ -223,18 +304,11 @@ async function handleAnswer(choiceIndex) {
   if (session.activePlayerIndex === session.submittingPlayer) {
     session.activePlayerIndex = session.submittingPlayer === 0 ? 1 : 0;
     saveSession(session);
-    window.setTimeout(showHandoffThenNextPlayer, 1400);
+    window.setTimeout(() => startPlayerTurn(), postAnswerDelayMs);
     return;
   }
 
-  window.setTimeout(finishPracticeAndReturn, 1200);
-}
-
-function showHandoffThenNextPlayer() {
-  showPanel("waiting");
-  const nextName = formatPlayerName(session.activePlayerIndex, session.playerNames);
-  waitingEl.textContent = `${nextName} — same question, your turn!`;
-  window.setTimeout(() => startPlayerTurn(), 1200);
+  window.setTimeout(finishPracticeAndReturn, postAnswerDelayMs);
 }
 
 function handleTimeout() {
@@ -409,6 +483,7 @@ async function initOnlineBonus() {
 
   if (!syncSessionFromOnlineState(connection.gameState)) {
     clearSession();
+    releaseGameAmbient();
     location.href = returnUrl();
     return;
   }
@@ -417,12 +492,14 @@ async function initOnlineBonus() {
   const bs = connection.gameState.bonusState;
   if (bs.answers?.[myIndex] != null) {
     clearSession();
+    releaseGameAmbient();
     location.href = returnUrl();
     return;
   }
 
   if (bs.activePlayerIndex !== myIndex) {
     clearSession();
+    releaseGameAmbient();
     location.href = returnUrl();
     return;
   }
@@ -431,17 +508,29 @@ async function initOnlineBonus() {
 }
 
 async function init() {
+  suppressGameAmbient();
+  window.addEventListener("pagehide", releaseGameAmbient, { once: true });
   try {
     session = loadSession();
     if (!session?.question) {
-      showFatalError("No bonus round in progress.");
-      return;
+      if (isLocalPreviewHost()) {
+        session = await createPreviewSession();
+      } else {
+        showFatalError(
+          "No bonus round in progress. Start one from Practice or an online match."
+        );
+        return;
+      }
     }
 
     // Practice bonus needs CDN assets for the globe — skip cleanly when offline.
     if (session.mode === "practice" && typeof navigator !== "undefined" && navigator.onLine === false) {
-      statusEl.textContent = "Bonus round skipped (offline). Returning…";
-      await finishPracticeAndReturn();
+      if (session.preview) {
+        finishPreviewBonus();
+      } else {
+        statusEl.textContent = "Bonus round skipped (offline). Returning…";
+        await finishPracticeAndReturn();
+      }
       return;
     }
 

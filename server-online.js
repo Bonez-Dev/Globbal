@@ -86,6 +86,7 @@ function sendStaticFile(req, res, file, ext) {
         liveJs === "rack-reorder.js" ||
         liveJs === "rack-shuffle.js" ||
         liveJs === "ambient-sound.js" ||
+        liveJs === "bonus-ambient-guard.js" ||
         liveJs === "board-zoom.js" ||
         liveJs === "styles.css" ||
         liveJs === "styles-splash.css" ||

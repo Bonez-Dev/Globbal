@@ -52,6 +52,21 @@
     });
   }
 
-  shell.classList.add("is-game-loading");
-  window.GlobbleGameLoadReveal = { notifyReady, skipImmediate };
+  const returningFromBonus = (() => {
+    try {
+      return sessionStorage.getItem("globble-return-from-bonus-v1") === "1";
+    } catch {
+      return false;
+    }
+  })();
+
+  if (returningFromBonus || document.documentElement.classList.contains("globble-skip-game-load-curtain")) {
+    shell.classList.remove("is-game-loading");
+    settled = true;
+    finalizeCurtainRemoval();
+    window.GlobbleGameLoadReveal = { notifyReady() {}, skipImmediate() {} };
+  } else {
+    shell.classList.add("is-game-loading");
+    window.GlobbleGameLoadReveal = { notifyReady, skipImmediate };
+  }
 })();

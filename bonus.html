@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Globbal — Bonus Round</title>
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
-    <link rel="stylesheet" href="./styles-bonus.css?v=1" />
+    <link rel="stylesheet" href="./styles-bonus.css?v=4" />
   </head>
   <body class="bonus-body">
     <div id="bonusLoading" class="bonus-loading">Loading bonus round…</div>
@@ -25,7 +25,7 @@
 
       <div class="bonus-globe-wrap">
         <div id="bonusGlobeHost" class="bonus-globe-host"></div>
-        <p class="bonus-globe-hint">Drag to spin the globe</p>
+        <p class="bonus-globe-hint">Drag to spin · Scroll or pinch to zoom</p>
       </div>
 
       <p class="bonus-question">What country is this?</p>
@@ -33,8 +33,9 @@
       <p id="bonusStatus" class="bonus-status" aria-live="polite"></p>
     </main>
 
+    <script src="./bonus-ambient-guard.js?v=bonus-silence3"></script>
     <script src="./accounts-client.js"></script>
     <script src="./bonus-round.js"></script>
-    <script type="module" src="./bonus-game.js?v=offline-skip1"></script>
+    <script type="module" src="./bonus-game.js?v=return-direct1"></script>
   </body>
 </html>

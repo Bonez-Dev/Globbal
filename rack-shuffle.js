@@ -44,7 +44,17 @@
   function primeAudioFromShuffleControl(event) {
     const target = event.target;
     if (target instanceof Element && target.closest("#shuffleRackBtn")) {
-      if (!window.GlobbleSound?.isMuted?.()) {
+      let bonusActive = false;
+      try {
+        bonusActive = sessionStorage.getItem("globble-bonus-active-v1") === "1";
+      } catch {
+        bonusActive = false;
+      }
+      if (
+        !window.GlobbleSound?.isMuted?.() &&
+        !window.GlobbleBonusRound?.isMainAmbientSuppressed?.() &&
+        !bonusActive
+      ) {
         window.GlobbleSound?.startAmbient?.();
       }
     }

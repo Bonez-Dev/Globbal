@@ -175,15 +175,16 @@ h2 {
 
 html:has(.gameplay-body) {
   height: 100%;
-  background: #362518;
+  background: #000;
 }
 
 /* Full-screen gameplay: board + rack focus */
 .gameplay-body {
   height: 100dvh;
   overflow: hidden;
-  background: #362518;
+  background: #000;
   background-image: none;
+  --play-parchment-x-nudge: 2.8vw;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
@@ -3675,6 +3676,20 @@ html:has(.landing-body) {
 /* Home / landing: nudge parchment left so the sheet reads more centered. */
 .landing-shell .splash-parchment-sheet {
   transform: translate(calc(-50% - 2.8vw), -50%);
+}
+
+/* Online / practice: black letterbox + parchment aligned with play column. */
+.gameplay-body .play-stage.parchment-shell {
+  background: #000;
+}
+
+.gameplay-body .play-stage.parchment-shell .splash-parchment {
+  --parchment-behind: #000;
+  background: #000;
+}
+
+.gameplay-body .play-stage.parchment-shell .splash-parchment-sheet {
+  transform: translate(calc(-50% - var(--play-parchment-x-nudge, 2.8vw)), -50%);
 }
 
 /* Sign-in + about: same framed parchment on black. */

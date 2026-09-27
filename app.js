@@ -2038,9 +2038,24 @@ function restorePracticeSnapshot(snapshot) {
 
 window.GlobblePracticeResume?.registerCapture(capturePracticeSnapshot);
 
-if (window.GlobblePracticeResume?.tryRestore(restorePracticeSnapshot)) {
+let returningFromBonus = false;
+try {
+  returningFromBonus = sessionStorage.getItem("globble-return-from-bonus-v1") === "1";
+  if (returningFromBonus) {
+    sessionStorage.removeItem("globble-return-from-bonus-v1");
+  }
+} catch {
+  returningFromBonus = false;
+}
+
+const restoredPractice =
+  window.GlobblePracticeResume?.tryRestore(restorePracticeSnapshot) === true;
+
+if (restoredPractice) {
   window.GlobbleGameLoadReveal?.skipImmediate();
-  // Restored in-progress practice game after dictionary visit.
+} else if (returningFromBonus) {
+  window.GlobbleGameLoadReveal?.skipImmediate();
+  initGame();
 } else if (shouldStartDemoGame()) {
   initDemoGame();
   window.GlobbleGameLoadReveal?.notifyReady();
