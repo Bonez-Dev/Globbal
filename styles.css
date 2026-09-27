@@ -185,7 +185,8 @@ html:has(.gameplay-body) {
   background: #000;
   background-image: none;
   --play-parchment-x-nudge: 0.7vw;
-  --play-parchment-fit-inset: 1.25vh;
+  /* Small gap so ragged edges show; sheet sized to viewport, not a shrunken wrapper. */
+  --play-parchment-fit-gap: 0.55vh;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
@@ -3690,14 +3691,16 @@ html:has(.landing-body) {
 }
 
 .gameplay-body .play-stage.parchment-shell .splash-parchment-sheet-wrap {
-  inset: var(--play-parchment-fit-inset, 1.25vh) 0;
+  inset: 0;
 }
 
 .gameplay-body .play-stage.parchment-shell .splash-parchment-sheet {
-  max-height: 100%;
+  height: calc(100dvh - 2 * var(--play-parchment-fit-gap, 0.55vh));
   width: auto;
-  height: auto;
+  max-width: calc(100vw - 2 * var(--play-parchment-fit-gap, 0.55vh));
   object-fit: contain;
+  object-position: center;
+  mix-blend-mode: normal;
   transform: translate(calc(-50% - var(--play-parchment-x-nudge, 0.7vw)), -50%);
 }
 

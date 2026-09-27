@@ -51,7 +51,6 @@
   background: #000;
 }
 
-.gameplay-body .play-stage.is-game-loaded > .splash-parchment,
 .gameplay-body .play-stage.is-game-loaded > .splash-vignette {
   display: none;
 }
