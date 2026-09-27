@@ -184,7 +184,7 @@ html:has(.gameplay-body) {
   overflow: hidden;
   background: #000;
   background-image: none;
-  --play-parchment-x-nudge: 2.8vw;
+  --play-parchment-x-nudge: 1.5vw;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
