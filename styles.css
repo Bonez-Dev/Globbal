@@ -185,8 +185,7 @@ html:has(.gameplay-body) {
   background: #000;
   background-image: none;
   --play-parchment-x-nudge: 0.7vw;
-  --play-parchment-y-nudge: 0vh;
-  --play-parchment-y-scale: 0.91;
+  --play-parchment-fit-inset: 1.25vh;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
@@ -3690,12 +3689,16 @@ html:has(.landing-body) {
   background: #000;
 }
 
+.gameplay-body .play-stage.parchment-shell .splash-parchment-sheet-wrap {
+  inset: var(--play-parchment-fit-inset, 1.25vh) 0;
+}
+
 .gameplay-body .play-stage.parchment-shell .splash-parchment-sheet {
-  transform: translate(
-      calc(-50% - var(--play-parchment-x-nudge, 1.1vw)),
-      calc(-50% - var(--play-parchment-y-nudge, 0vh))
-    )
-    scale(1, var(--play-parchment-y-scale, 1));
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  transform: translate(calc(-50% - var(--play-parchment-x-nudge, 0.7vw)), -50%);
 }
 
 /* Sign-in + about: same framed parchment on black. */
