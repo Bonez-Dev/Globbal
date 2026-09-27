@@ -42,37 +42,13 @@
   background: #000;
 }
 
-/* Parchment margin around play chrome on all sides */
+/* Full-bleed play surface; parchment stays visible behind chrome */
 .gameplay-body .play-stage.parchment-shell {
   --play-y-nudge: 0rem;
-  align-items: center;
-  justify-content: center;
-  padding:
-    max(var(--play-parchment-frame, 12px), env(safe-area-inset-top, 0px))
-    var(--play-parchment-frame, 12px)
-    max(var(--play-parchment-frame, 12px), env(safe-area-inset-bottom, 0px))
-    var(--play-parchment-frame, 12px);
+  align-items: stretch;
+  justify-content: stretch;
+  padding: 0;
   background: #000;
-  box-sizing: border-box;
-}
-
-.gameplay-body .play-stage.parchment-shell .play-layout {
-  --play-column: min(
-    calc(100vw - 2 * var(--play-parchment-frame, 12px)),
-    calc(
-      (
-        100dvh
-        - env(safe-area-inset-top, 0px)
-        - env(safe-area-inset-bottom, 0px)
-        - 2 * var(--play-parchment-frame, 12px)
-        - var(--controls-rack-band)
-        - var(--rack-band)
-        - var(--play-brand-band)
-        - var(--game-stats-tray-band)
-        - var(--play-layout-stack-pad)
-      ) * 15 / var(--board-aspect-rows, 19)
-    )
-  );
 }
 
 .gameplay-body .play-stage.is-game-loaded > .splash-vignette {
