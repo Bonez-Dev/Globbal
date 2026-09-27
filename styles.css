@@ -185,8 +185,8 @@ html:has(.gameplay-body) {
   background: #000;
   background-image: none;
   --play-parchment-x-nudge: 0.7vw;
-  --play-parchment-y-nudge: 2.4vh;
-  --play-parchment-y-scale: 0.82;
+  --play-parchment-y-nudge: 0vh;
+  --play-parchment-y-scale: 0.91;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
