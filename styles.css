@@ -186,7 +186,7 @@ html:has(.gameplay-body) {
   background-image: none;
   --play-parchment-x-nudge: 0.7vw;
   /* Small gap so ragged edges show; sheet sized to viewport, not a shrunken wrapper. */
-  --play-parchment-fit-gap: 0.55vh;
+  --play-parchment-fit-gap: 0.2vh;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
