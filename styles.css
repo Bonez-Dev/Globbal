@@ -185,9 +185,9 @@ html:has(.gameplay-body) {
   background: #000;
   background-image: none;
   --play-parchment-x-nudge: 0.7vw;
-  --play-parchment-stretch-w: calc(100vw + 2.4vw);
-  --play-parchment-stretch-h: calc(100dvh + 1.4vh);
-  --play-parchment-stretch-y-shift: 0.55vh;
+  --play-parchment-stretch-w: calc(100vw + 3.2vw);
+  --play-parchment-stretch-h: calc(100dvh + 2vh);
+  --play-parchment-stretch-y-shift: 0.75vh;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
@@ -3696,15 +3696,15 @@ html:has(.landing-body) {
 }
 
 .gameplay-body .play-stage.parchment-shell .splash-parchment-sheet {
-  width: var(--play-parchment-stretch-w, calc(100vw + 2.4vw));
-  height: var(--play-parchment-stretch-h, calc(100dvh + 1.4vh));
+  width: var(--play-parchment-stretch-w, calc(100vw + 3.2vw));
+  height: var(--play-parchment-stretch-h, calc(100dvh + 2vh));
   max-width: none;
   object-fit: fill;
   object-position: center;
   mix-blend-mode: normal;
   transform: translate(
     calc(-50% - var(--play-parchment-x-nudge, 0.7vw)),
-    calc(-50% + var(--play-parchment-stretch-y-shift, 0.55vh))
+    calc(-50% + var(--play-parchment-stretch-y-shift, 0.75vh))
   );
 }
 
