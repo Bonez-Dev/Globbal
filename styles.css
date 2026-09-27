@@ -175,18 +175,15 @@ h2 {
 
 html:has(.gameplay-body) {
   height: 100%;
-  background: #000;
+  background: #362518;
 }
 
 /* Full-screen gameplay: board + rack focus */
 .gameplay-body {
   height: 100dvh;
   overflow: hidden;
-  background: #000;
+  background: #362518;
   background-image: none;
-  --play-parchment-x-nudge: 0.7vw;
-  --play-parchment-fit-gap: 0.35vh;
-  --play-parchment-frame: clamp(8px, 1.8vmin, 16px);
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
   --play-tray-oak-surface:
@@ -3678,63 +3675,6 @@ html:has(.landing-body) {
 /* Home / landing: nudge parchment left so the sheet reads more centered. */
 .landing-shell .splash-parchment-sheet {
   transform: translate(calc(-50% - 2.8vw), -50%);
-}
-
-/* Online / practice: modest parchment gutter + tight board oak frame. */
-.gameplay-body .play-stage.parchment-shell {
-  background: #000;
-  padding: var(--play-parchment-frame, 10px);
-  box-sizing: border-box;
-  align-items: center;
-  justify-content: center;
-}
-
-.gameplay-body .play-stage.parchment-shell > .play-layout {
-  width: 100%;
-  max-width: 100%;
-  height: 100%;
-  max-height: 100%;
-  box-sizing: border-box;
-  --play-width: min(
-    calc(100% - 8px),
-    calc(
-      (
-        100%
-        - var(--rack-band)
-        - var(--controls-rack-band)
-        - var(--play-brand-band)
-        - var(--game-stats-tray-band)
-        - 20px
-      ) * 15 / var(--board-aspect-rows, 19)
-    )
-  );
-}
-
-.gameplay-body .play-stage.parchment-shell .play-focus .board-wrap {
-  width: fit-content;
-  max-width: 100%;
-  align-self: center;
-  flex: 1 1 auto;
-  min-height: 0;
-}
-
-.gameplay-body .play-stage.parchment-shell .splash-parchment {
-  --parchment-behind: #000;
-  background: #000;
-}
-
-.gameplay-body .play-stage.parchment-shell .splash-parchment-sheet-wrap {
-  inset: 0;
-}
-
-.gameplay-body .play-stage.parchment-shell .splash-parchment-sheet {
-  height: calc(100dvh - 2 * var(--play-parchment-fit-gap, 0.45vh));
-  width: auto;
-  max-width: calc(100vw - 2 * var(--play-parchment-fit-gap, 0.45vh));
-  object-fit: contain;
-  object-position: center;
-  mix-blend-mode: normal;
-  transform: translate(calc(-50% - var(--play-parchment-x-nudge, 0.7vw)), -50%);
 }
 
 /* Sign-in + about: same framed parchment on black. */
