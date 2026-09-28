@@ -422,6 +422,10 @@ button {
   padding-top: 0.32rem;
 }
 
+.sign-in-page .splash-parchment-sheet {
+  transform: translate(-50%, calc(-50% - 1.4vh)) scale(0.76, 0.84);
+}
+
 .landing-header {
   padding-top: calc(env(safe-area-inset-top, 0px) + 1.35rem + var(--landing-y-nudge, 0rem));
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
