@@ -3689,6 +3689,12 @@ html:has(.landing-body) {
   mix-blend-mode: normal;
 }
 
+@media (max-width: 640px) {
+  .sign-in-page .splash-parchment-sheet {
+    transform: translate(-50%, calc(-50% - 0.5vh)) scale(0.78, 0.84);
+  }
+}
+
 .sign-in-page .splash-parchment-sheet-shade {
   opacity: 0.35;
 }
