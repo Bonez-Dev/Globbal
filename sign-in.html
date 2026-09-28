@@ -8,14 +8,22 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" href="./assets/logo-mark.svg" type="image/svg+xml" />
     <link rel="preload" href="./assets/parch2copy.png" as="image" />
-    <link rel="stylesheet" href="./styles.css?v=signin-mobile-parch2" />
+    <link rel="stylesheet" href="./styles.css?v=signin-mobile-parch3" />
     <link rel="stylesheet" href="./styles-splash.css?v=parch4" />
     <link rel="stylesheet" href="./assets/fonts/globble-logo.css" />
     <link
       rel="stylesheet"
-      href="./styles-mobile.css?v=signin3"
-      media="screen and (max-width: 640px), screen and (max-height: 640px) and (orientation: landscape)"
+      href="./styles-mobile.css?v=signin4"
+      media="screen and (max-width: 768px), screen and (max-height: 520px) and (orientation: landscape)"
     />
+    <style>
+      @media screen and (max-width: 768px),
+        screen and (max-height: 520px) and (orientation: landscape) {
+        body.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
+          transform: translate(-50%, calc(-50% + 1.35vh)) scale(0.86, 0.84) !important;
+        }
+      }
+    </style>
   </head>
   <body class="landing-body sign-in-page">
     <div class="landing-shell parchment-shell">

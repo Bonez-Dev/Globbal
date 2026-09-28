@@ -422,8 +422,8 @@ button {
   padding-top: 0.32rem;
 }
 
-.sign-in-page .splash-parchment-sheet {
-  transform: translate(-50%, calc(-50% - 0.5vh)) scale(0.78, 0.84);
+body.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
+  transform: translate(-50%, calc(-50% + 1.35vh)) scale(0.86, 0.84);
 }
 
 .landing-header {

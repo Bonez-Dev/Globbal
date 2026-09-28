@@ -3689,9 +3689,10 @@ html:has(.landing-body) {
   mix-blend-mode: normal;
 }
 
-@media (max-width: 640px) {
-  .sign-in-page .splash-parchment-sheet {
-    transform: translate(-50%, calc(-50% - 0.5vh)) scale(0.78, 0.84);
+@media screen and (max-width: 768px),
+  screen and (max-height: 520px) and (orientation: landscape) {
+  body.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
+    transform: translate(-50%, calc(-50% + 1.35vh)) scale(0.86, 0.84);
   }
 }
 
