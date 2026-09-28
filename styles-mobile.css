@@ -423,7 +423,7 @@ button {
 }
 
 body.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
-  transform: translate(-50%, calc(-50% + 1.35vh)) scale(0.86, 0.84);
+  transform: translate(-50%, calc(-50% + 1.35vh)) scale(0.82, 0.82);
 }
 
 .landing-header {

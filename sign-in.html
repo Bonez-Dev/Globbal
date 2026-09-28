@@ -8,19 +8,19 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" href="./assets/logo-mark.svg" type="image/svg+xml" />
     <link rel="preload" href="./assets/parch2copy.png" as="image" />
-    <link rel="stylesheet" href="./styles.css?v=signin-mobile-parch3" />
+    <link rel="stylesheet" href="./styles.css?v=signin-mobile-parch4" />
     <link rel="stylesheet" href="./styles-splash.css?v=parch4" />
     <link rel="stylesheet" href="./assets/fonts/globble-logo.css" />
     <link
       rel="stylesheet"
-      href="./styles-mobile.css?v=signin4"
+      href="./styles-mobile.css?v=signin5"
       media="screen and (max-width: 768px), screen and (max-height: 520px) and (orientation: landscape)"
     />
     <style>
       @media screen and (max-width: 768px),
         screen and (max-height: 520px) and (orientation: landscape) {
         body.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
-          transform: translate(-50%, calc(-50% + 1.35vh)) scale(0.86, 0.84) !important;
+          transform: translate(-50%, calc(-50% + 1.35vh)) scale(0.82, 0.82) !important;
         }
       }
     </style>
@@ -273,11 +273,11 @@
     <script>
       (function loadDictionaryScript() {
         const el = document.createElement("script");
-        el.src = "./dictionary.js";
+        el.src = "./dictionary.js?v=signin-hint2";
         el.async = true;
         el.onload = function () {
           const menu = document.createElement("script");
-          menu.src = "./dictionary-menu.js";
+          menu.src = "./dictionary-menu.js?v=signin-hint2";
           document.body.appendChild(menu);
         };
         el.onerror = function () {
