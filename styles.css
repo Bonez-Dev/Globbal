@@ -3692,7 +3692,7 @@ html:has(.landing-body) {
 @media screen and (max-width: 768px),
   screen and (max-height: 520px) and (orientation: landscape) {
   body.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
-    transform: translate(calc(-50% - 3.4vw), calc(-50% + 1.35vh)) scale(0.72, 0.82);
+    transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.78, 0.82);
   }
 }
 
