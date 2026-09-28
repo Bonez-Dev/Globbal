@@ -796,7 +796,7 @@
       return;
     }
     const total = formatCount(words.length);
-    dictionaryHintEl.textContent = `${total} legal words — modern places plus historical countries, regions, cities, and kingdoms/empires in folders at the bottom.`;
+    dictionaryHintEl.textContent = `${total} legal words — modern places plus historical countries, regions, cities, and kingdoms/empires.`;
   }
 
   function refreshDictionaryPanel() {
