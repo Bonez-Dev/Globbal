@@ -2555,6 +2555,22 @@ body.wiki-reveal-open .play-layout {
   display: block;
 }
 
+.landing-music-toggle {
+  position: fixed;
+  z-index: 120;
+  right: max(0.85rem, env(safe-area-inset-right, 0px));
+  bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+  width: 2.65rem;
+  min-width: 2.65rem;
+  height: 2.65rem;
+  min-height: 2.65rem;
+}
+
+.landing-music-toggle svg {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
 .score-home-btn:focus-visible,
 .score-dictionary-btn:focus-visible,
 .score-sound-btn:focus-visible {

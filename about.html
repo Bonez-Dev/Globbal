@@ -23,7 +23,7 @@
       media="screen and (max-width: 640px), screen and (max-height: 640px) and (orientation: landscape)"
     />
   </head>
-  <body class="landing-body about-parchment-page">
+  <body class="landing-body about-parchment-page" data-landing-music="loop">
     <div class="landing-shell parchment-shell">
       <div class="splash-parchment" aria-hidden="true">
         <div class="splash-parchment-sheet-wrap">
@@ -76,7 +76,14 @@
             decoding="async"
           />
         </div>
+        <p class="about-parchment-prose about-music-credits">
+          Music: <em>Rum &rsquo;n The Barrel</em> by Shane Ivers (CC BY 4.0,
+          <a href="https://www.silvermansound.com" rel="noopener noreferrer">silvermansound.com</a>);
+          splash theme <em>The World&rsquo;s Most Epic Sea Shanty</em> by Alexander Nakarada (CC BY 4.0,
+          <a href="https://creatorchords.com" rel="noopener noreferrer">creatorchords.com</a>).
+        </p>
       </main>
     </div>
+    <script src="./landing-music.js?v=1"></script>
   </body>
 </html>
