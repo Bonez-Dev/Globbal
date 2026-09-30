@@ -9,8 +9,8 @@
 
   const MUTE_KEY = "globble-sound-muted-v1";
   const TRACKS = {
-    loop: { src: "./assets/audio/rum-n-the-barrel.mp3", volume: 0.34, loop: true },
-    hero: { src: "./assets/audio/epic-sea-shanty.mp3", volume: 0.38, loop: false }
+    loop: { src: "./assets/audio/rum-n-the-barrel.mp3", volume: 0.38, loop: true },
+    hero: { src: "./assets/audio/epic-sea-shanty.mp3", volume: 0.42, loop: false }
   };
   const HERO_PLAY_MS = 58000;
   const FADE_MS = 4200;
@@ -23,9 +23,10 @@
 
   let muted = false;
   let audio = null;
-  let started = false;
+  let playing = false;
   let fadeTimer = null;
   let stopTimer = null;
+  let gestureBound = false;
 
   function readMuted() {
     try {
@@ -61,6 +62,7 @@
         requestAnimationFrame(step);
       } else {
         el.pause();
+        playing = false;
       }
     };
     requestAnimationFrame(step);
@@ -68,6 +70,7 @@
 
   function stopPlayback() {
     clearTimers();
+    playing = false;
     if (!audio) {
       return;
     }
@@ -87,26 +90,54 @@
     stopTimer = window.setTimeout(stopPlayback, HERO_PLAY_MS + 120);
   }
 
-  function startPlayback() {
-    if (started || muted) {
-      return;
+  function ensureAudio() {
+    if (audio) {
+      return audio;
     }
-    started = true;
     audio = new Audio(track.src);
     audio.loop = track.loop;
     audio.volume = track.volume;
     audio.preload = "auto";
-    void audio.play().catch(() => {
-      started = false;
-      audio = null;
+    audio.setAttribute("playsinline", "");
+    audio.addEventListener("playing", () => {
+      playing = true;
     });
-    scheduleHeroEnd();
+    audio.addEventListener("pause", () => {
+      if (audio?.paused) {
+        playing = false;
+      }
+    });
+    return audio;
   }
 
-  function primeFromGesture() {
-    if (!muted) {
-      startPlayback();
+  async function startPlayback() {
+    if (muted || playing) {
+      return;
     }
+    const el = ensureAudio();
+    el.volume = track.volume;
+    try {
+      await el.play();
+      playing = true;
+      scheduleHeroEnd();
+    } catch {
+      playing = false;
+    }
+  }
+
+  function bindGestureUnlock() {
+    if (gestureBound) {
+      return;
+    }
+    gestureBound = true;
+    const onGesture = () => {
+      if (!muted) {
+        void startPlayback();
+      }
+    };
+    document.addEventListener("pointerdown", onGesture, { capture: true });
+    document.addEventListener("touchstart", onGesture, { capture: true, passive: true });
+    document.addEventListener("keydown", onGesture, { capture: true });
   }
 
   function updateButton() {
@@ -129,12 +160,8 @@
     }
     if (muted) {
       stopPlayback();
-    } else if (started && audio) {
-      audio.volume = track.volume;
-      void audio.play().catch(() => {});
-      scheduleHeroEnd();
     } else {
-      startPlayback();
+      void startPlayback();
     }
     updateButton();
     document.dispatchEvent(
@@ -157,14 +184,21 @@
       '<path class="sound-wave" fill="currentColor" d="M16 8.2a5 5 0 0 1 0 7.6M18.7 5.5a8.8 8.8 0 0 1 0 13" />' +
       '<path class="sound-muted-slash" fill="currentColor" d="M16 9l5 6M21 9l-5 6" />' +
       "</svg>";
-    button.addEventListener("click", () => setMuted(!muted));
+    button.addEventListener("click", (event) => {
+      event.stopPropagation();
+      setMuted(!muted);
+    });
     document.body.appendChild(button);
   }
 
-  muted = readMuted();
+  function init() {
+    muted = readMuted();
+    injectToggle();
+    updateButton();
+    bindGestureUnlock();
+  }
 
-  document.addEventListener("pointerdown", primeFromGesture, { capture: true, once: true });
-  document.addEventListener("keydown", primeFromGesture, { capture: true, once: true });
+  muted = readMuted();
 
   window.addEventListener("splashBeforeNavigate", () => fadeOut(380));
 
@@ -174,7 +208,7 @@
     }
     if (document.hidden) {
       audio.pause();
-    } else if (!muted && started) {
+    } else if (!muted && playing) {
       void audio.play().catch(() => {});
     }
   });
@@ -191,24 +225,23 @@
       if (muted) {
         stopPlayback();
       } else {
-        startPlayback();
+        void startPlayback();
       }
       updateButton();
     }
   });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    injectToggle();
-    updateButton();
-    if (!muted) {
-      startPlayback();
-    }
-  });
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
 
   window.GlobbleLandingMusic = {
     isMuted: () => muted,
     setMuted,
     fadeOut,
-    stopPlayback
+    stopPlayback,
+    startPlayback
   };
 })();

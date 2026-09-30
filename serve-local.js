@@ -22,7 +22,8 @@ const MIME = {
   ".svg": "image/svg+xml",
   ".webp": "image/webp",
   ".woff": "font/woff",
-  ".woff2": "font/woff2"
+  ".woff2": "font/woff2",
+  ".mp3": "audio/mpeg"
 };
 
 function safeJoin(base, target) {

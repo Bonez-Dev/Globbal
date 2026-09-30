@@ -48,7 +48,8 @@ const MIME = {
   ".woff": "font/woff",
   ".woff2": "font/woff2",
   ".csv": "text/csv; charset=utf-8",
-  ".txt": "text/plain; charset=utf-8"
+  ".txt": "text/plain; charset=utf-8",
+  ".mp3": "audio/mpeg"
 };
 
 const GZIP_EXTS = new Set([".html", ".js", ".css", ".json", ".svg", ".txt", ".csv"]);
@@ -86,6 +87,7 @@ function sendStaticFile(req, res, file, ext) {
         liveJs === "rack-reorder.js" ||
         liveJs === "rack-shuffle.js" ||
         liveJs === "ambient-sound.js" ||
+        liveJs === "landing-music.js" ||
         liveJs === "bonus-ambient-guard.js" ||
         liveJs === "board-zoom.js" ||
         liveJs === "styles.css" ||
