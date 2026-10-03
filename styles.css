@@ -3726,16 +3726,16 @@ html:has(.landing-body) {
   --sign-in-compose-pad-x: 1.45rem;
   --profile-parch-shift-x: -1.4vw;
   --profile-parch-shift-y: 1.35vh;
-  --profile-parch-width: min(94vw, 26.75rem);
-  --profile-parch-max-h: min(90dvh, 33rem);
+  --profile-parch-fit-w: min(94vw, 32rem);
+  --profile-parch-fit-h: min(92dvh, 40rem);
 }
 
 .profile-page .landing-shell.parchment-shell .splash-parchment-sheet {
-  width: var(--profile-parch-width);
+  width: var(--profile-parch-fit-w);
   height: auto;
-  max-height: var(--profile-parch-max-h);
+  max-height: var(--profile-parch-fit-h);
   object-fit: contain;
-  mix-blend-mode: lighten;
+  mix-blend-mode: normal;
   transform: translate(
     calc(-50% + var(--profile-parch-shift-x)),
     calc(-50% + var(--profile-parch-shift-y))
@@ -3880,8 +3880,8 @@ html:has(.landing-body) {
   .profile-page {
     --profile-parch-shift-x: -0.55vw;
     --profile-parch-shift-y: 1.1vh;
-    --profile-parch-width: min(92vw, 27rem);
-    --profile-parch-max-h: min(88dvh, 33.5rem);
+    --profile-parch-fit-w: min(92vw, 34rem);
+    --profile-parch-fit-h: min(90dvh, 42rem);
   }
 }
 
