@@ -3700,31 +3700,51 @@ html:has(.landing-body) {
   transform: translate(calc(-50% - 2.8vw), -50%);
 }
 
-/* Sign-in + about: same framed parchment on black. */
+/* Sign-in, profile, about: framed parchment on black. */
 .sign-in-page .splash-parchment,
+.profile-page .splash-parchment,
 .about-parchment-page .splash-parchment {
   --parchment-behind: #000;
   background: #000;
 }
 
-.sign-in-page .splash-parchment-sheet {
+.sign-in-page .splash-parchment-sheet,
+.profile-page .splash-parchment-sheet {
   transform: translate(-50%, calc(-50% - 2.2vh)) scale(0.71, 0.84);
   mix-blend-mode: normal;
 }
 
 @media screen and (max-width: 768px),
   screen and (max-height: 520px) and (orientation: landscape) {
-  body.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
+  :is(.sign-in-page, .profile-page) .landing-shell.parchment-shell .splash-parchment-sheet {
     transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.78, 0.82);
   }
 }
 
-.sign-in-page .splash-parchment-sheet-shade {
+.sign-in-page .splash-parchment-sheet-shade,
+.profile-page .splash-parchment-sheet-shade {
   opacity: 0.35;
 }
 
-.sign-in-page .splash-vignette {
+.sign-in-page .splash-vignette,
+.profile-page .splash-vignette {
   opacity: 0.35;
+}
+
+.profile-page {
+  --sign-in-compose-pad-x: 1.45rem;
+}
+
+.profile-page .landing-header {
+  padding-left: max(var(--sign-in-compose-pad-x), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--sign-in-compose-pad-x), env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
+}
+
+.profile-page .landing {
+  padding-left: max(var(--sign-in-compose-pad-x), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--sign-in-compose-pad-x), env(safe-area-inset-right, 0px));
+  box-sizing: border-box;
 }
 
 .about-parchment-page .splash-parchment-sheet-shade {
@@ -3848,13 +3868,13 @@ html:has(.landing-body) {
     --landing-compose-max: 430px;
   }
 
-  .sign-in-page .landing-shell.parchment-shell {
+  :is(.sign-in-page, .profile-page) .landing-shell.parchment-shell {
     width: min(100%, var(--landing-compose-max, 430px));
     max-width: var(--landing-compose-max, 430px);
     margin-inline: auto;
   }
 
-  .sign-in-page .splash-parchment-sheet {
+  :is(.sign-in-page, .profile-page) .splash-parchment-sheet {
     transform: translate(-50%, calc(-50% - 1.5vh)) scale(0.92, 0.98);
   }
 }
