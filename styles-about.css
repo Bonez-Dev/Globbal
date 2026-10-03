@@ -12,11 +12,6 @@ html:has(.about-parchment-page) {
   --about-compose-pad-x: clamp(1.75rem, 9.5vw, 2.35rem);
 }
 
-.about-parchment-page .landing-shell,
-.about-parchment-page .splash-parchment {
-  background: #000;
-}
-
 .about-parchment-page .splash-parchment,
 .about-parchment-page .splash-vignette {
   position: fixed;

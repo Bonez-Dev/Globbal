@@ -3677,8 +3677,18 @@ html:has(.landing-body) {
   background: #8a6238;
 }
 
-.landing-shell.parchment-shell .splash-parchment {
-  background: #000;
+.landing-body .landing-shell.parchment-shell .splash-parchment {
+  --parchment-behind: #000;
+  background:
+    radial-gradient(ellipse 95% 82% at 50% 36%, rgba(210, 160, 80, 0.32), transparent 58%),
+    #000;
+}
+
+.landing-body .landing-shell.parchment-shell .splash-vignette {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 90% 42% at 50% 18%, rgba(255, 240, 200, 0.36), transparent 68%),
+    radial-gradient(ellipse 92% 88% at 50% 50%, transparent 58%, rgba(54, 34, 12, 0.26) 100%);
 }
 
 .parchment-shell .splash-parchment-sheet {
@@ -3700,13 +3710,6 @@ html:has(.landing-body) {
   transform: translate(calc(-50% - 2.8vw), -50%);
 }
 
-/* Sign-in + about: framed parchment on black. Profile keeps menu gold vignette below. */
-.sign-in-page .splash-parchment,
-.about-parchment-page .splash-parchment {
-  --parchment-behind: #000;
-  background: #000;
-}
-
 .sign-in-page .splash-parchment-sheet {
   transform: translate(-50%, calc(-50% - 2.2vh)) scale(0.71, 0.84);
   mix-blend-mode: normal;
@@ -3719,33 +3722,12 @@ html:has(.landing-body) {
   }
 }
 
-.sign-in-page .splash-parchment-sheet-shade {
-  opacity: 0.35;
-}
-
-.sign-in-page .splash-vignette {
-  opacity: 0.35;
-}
-
 .profile-page {
   --sign-in-compose-pad-x: 1.45rem;
   --profile-parch-shift-x: -1.4vw;
   --profile-parch-shift-y: 1.35vh;
   --profile-parch-width: min(94vw, 26.75rem);
   --profile-parch-max-h: min(90dvh, 33rem);
-}
-
-.profile-page .landing-shell.parchment-shell .splash-parchment {
-  background:
-    radial-gradient(ellipse 95% 82% at 50% 36%, rgba(210, 160, 80, 0.32), transparent 58%),
-    #000;
-}
-
-.profile-page .landing-shell.parchment-shell .splash-vignette {
-  opacity: 1;
-  background:
-    radial-gradient(ellipse 90% 42% at 50% 18%, rgba(255, 240, 200, 0.36), transparent 68%),
-    radial-gradient(ellipse 92% 88% at 50% 50%, transparent 58%, rgba(54, 34, 12, 0.26) 100%);
 }
 
 .profile-page .landing-shell.parchment-shell .splash-parchment-sheet {
@@ -3770,14 +3752,6 @@ html:has(.landing-body) {
   padding-left: max(var(--sign-in-compose-pad-x), env(safe-area-inset-left, 0px));
   padding-right: max(var(--sign-in-compose-pad-x), env(safe-area-inset-right, 0px));
   box-sizing: border-box;
-}
-
-.about-parchment-page .splash-parchment-sheet-shade {
-  opacity: 0.32;
-}
-
-.about-parchment-page .splash-vignette {
-  opacity: 0.28;
 }
 
 .sign-in-page {
