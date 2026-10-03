@@ -3712,20 +3712,10 @@ html:has(.landing-body) {
   mix-blend-mode: normal;
 }
 
-.profile-page .splash-parchment-sheet {
-  transform: translate(-50%, calc(-50% - 2.2vh)) scale(0.66, 0.78);
-  mix-blend-mode: lighten;
-}
-
 @media screen and (max-width: 768px),
   screen and (max-height: 520px) and (orientation: landscape) {
   .sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
     transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.78, 0.82);
-  }
-
-  .profile-page .landing-shell.parchment-shell .splash-parchment-sheet {
-    transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.72, 0.76);
-    mix-blend-mode: lighten;
   }
 }
 
@@ -3739,6 +3729,35 @@ html:has(.landing-body) {
 
 .profile-page {
   --sign-in-compose-pad-x: 1.45rem;
+  --profile-parch-shift-x: -1.4vw;
+  --profile-parch-shift-y: 1.35vh;
+  --profile-parch-width: min(94vw, 26.75rem);
+  --profile-parch-max-h: min(90dvh, 33rem);
+}
+
+.profile-page .landing-shell.parchment-shell .splash-parchment {
+  background:
+    radial-gradient(ellipse 95% 82% at 50% 36%, rgba(210, 160, 80, 0.32), transparent 58%),
+    #000;
+}
+
+.profile-page .landing-shell.parchment-shell .splash-vignette {
+  opacity: 1;
+  background:
+    radial-gradient(ellipse 90% 42% at 50% 18%, rgba(255, 240, 200, 0.36), transparent 68%),
+    radial-gradient(ellipse 92% 88% at 50% 50%, transparent 58%, rgba(54, 34, 12, 0.26) 100%);
+}
+
+.profile-page .landing-shell.parchment-shell .splash-parchment-sheet {
+  width: var(--profile-parch-width);
+  height: auto;
+  max-height: var(--profile-parch-max-h);
+  object-fit: contain;
+  mix-blend-mode: lighten;
+  transform: translate(
+    calc(-50% + var(--profile-parch-shift-x)),
+    calc(-50% + var(--profile-parch-shift-y))
+  );
 }
 
 .profile-page .landing-header {
@@ -3874,7 +3893,7 @@ html:has(.landing-body) {
     --landing-compose-max: 430px;
   }
 
-  :is(.sign-in-page, .profile-page) .landing-shell.parchment-shell {
+  .sign-in-page .landing-shell.parchment-shell {
     width: min(100%, var(--landing-compose-max, 430px));
     max-width: var(--landing-compose-max, 430px);
     margin-inline: auto;
@@ -3884,9 +3903,11 @@ html:has(.landing-body) {
     transform: translate(-50%, calc(-50% - 1.5vh)) scale(0.92, 0.98);
   }
 
-  .profile-page .splash-parchment-sheet {
-    transform: translate(-50%, calc(-50% - 1.5vh)) scale(0.86, 0.92);
-    mix-blend-mode: lighten;
+  .profile-page {
+    --profile-parch-shift-x: -0.55vw;
+    --profile-parch-shift-y: 1.1vh;
+    --profile-parch-width: min(92vw, 27rem);
+    --profile-parch-max-h: min(88dvh, 33.5rem);
   }
 }
 

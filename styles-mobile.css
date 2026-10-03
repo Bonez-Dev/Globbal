@@ -436,11 +436,6 @@ button {
   transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.78, 0.82);
 }
 
-.profile-page .landing-shell.parchment-shell .splash-parchment-sheet {
-  transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.72, 0.76);
-  mix-blend-mode: lighten;
-}
-
 .landing-header {
   padding-top: calc(env(safe-area-inset-top, 0px) + 1.35rem + var(--landing-y-nudge, 0rem));
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
