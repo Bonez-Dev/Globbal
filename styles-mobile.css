@@ -432,8 +432,13 @@ button {
   padding-right: max(var(--sign-in-compose-pad-x, 1.45rem), env(safe-area-inset-right, 0px));
 }
 
-:is(.sign-in-page, .profile-page) .landing-shell.parchment-shell .splash-parchment-sheet {
+.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
   transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.78, 0.82);
+}
+
+.profile-page .landing-shell.parchment-shell .splash-parchment-sheet {
+  transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.72, 0.76);
+  mix-blend-mode: lighten;
 }
 
 .landing-header {
