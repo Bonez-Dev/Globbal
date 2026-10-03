@@ -29,6 +29,15 @@
     return;
   }
 
+  if (document.body?.classList.contains("gameplay-body")) {
+    try {
+      localStorage.setItem("globble-stop-landing-mp3", String(Date.now()));
+    } catch {
+      /* ignore */
+    }
+    window.GlobbleLandingMusic?.stopPlayback?.();
+  }
+
   let muted = false;
   let context = null;
   let ambientBus = null;
@@ -177,10 +186,10 @@
       return;
     }
     ambientBus = audio.createGain();
-    ambientBus.gain.value = 0.32;
+    ambientBus.gain.value = 0.2;
     ambientBus.connect(audio.destination);
     // Soft continuous wind only — no random one-shot SFX.
-    addNoiseLayer({ cutoff: 1650, volume: 0.032, breezeRate: 0.047, breezeDepth: 0.012 });
+    addNoiseLayer({ cutoff: 1650, volume: 0.022, breezeRate: 0.047, breezeDepth: 0.008 });
   }
 
   function stopAmbient() {

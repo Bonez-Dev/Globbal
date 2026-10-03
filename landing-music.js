@@ -6,11 +6,14 @@
   if (document.documentElement.classList.contains("is-preview-embed")) {
     return;
   }
+  if (document.body?.classList.contains("gameplay-body")) {
+    return;
+  }
 
   const MUTE_KEY = "globble-sound-muted-v1";
   const TRACKS = {
-    loop: { src: "./assets/audio/rum-n-the-barrel.mp3", volume: 0.38, loop: true },
-    hero: { src: "./assets/audio/epic-sea-shanty.mp3", volume: 0.42, loop: false }
+    loop: { src: "./assets/audio/rum-n-the-barrel.mp3", volume: 0.28, loop: true },
+    hero: { src: "./assets/audio/epic-sea-shanty.mp3", volume: 0.32, loop: false }
   };
   const HERO_PLAY_MS = 58000;
   const FADE_MS = 4200;
@@ -77,9 +80,12 @@
     try {
       audio.pause();
       audio.currentTime = 0;
+      audio.src = "";
+      audio.load();
     } catch {
       /* ignore */
     }
+    audio = null;
   }
 
   function scheduleHeroEnd() {
@@ -216,6 +222,19 @@
   window.addEventListener("storage", (event) => {
     if (event.key === MUTE_KEY) {
       setMuted(event.newValue === "1");
+    }
+    if (event.key === "globble-stop-landing-mp3") {
+      stopPlayback();
+    }
+  });
+
+  window.addEventListener("pagehide", () => {
+    stopPlayback();
+  });
+
+  window.addEventListener("pageshow", (event) => {
+    if (event.persisted && !muted) {
+      void startPlayback();
     }
   });
 
