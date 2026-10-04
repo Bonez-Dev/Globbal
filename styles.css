@@ -4932,6 +4932,36 @@ a.landing-card:hover {
   margin-bottom: 0.35rem;
 }
 
+.landing-profile-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.55rem;
+  width: 100%;
+}
+
+.landing-profile-card-top h2 {
+  margin: 0;
+  min-width: 0;
+}
+
+.profile-tray-music-anchor {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.profile-page .landing-profile-card .landing-music-toggle--profile-tray {
+  position: relative;
+  right: auto;
+  bottom: auto;
+  z-index: 4;
+  width: 2.35rem;
+  min-width: 2.35rem;
+  height: 2.35rem;
+  min-height: 2.35rem;
+  margin: -0.12rem -0.08rem 0 0;
+}
+
 .landing-profile-card #profileError:empty {
   display: none;
   margin: 0;

@@ -8,7 +8,7 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" href="./assets/logo-mark.svg" type="image/svg+xml" />
     <link rel="preload" href="./assets/parch2copy.png?v=parch-alpha1" as="image" />
-    <link rel="stylesheet" href="./styles.css?v=profile-parch7" />
+    <link rel="stylesheet" href="./styles.css?v=profile-mute-tray1" />
     <link rel="stylesheet" href="./styles-splash.css?v=landing-glow1" />
     <link rel="stylesheet" href="./assets/fonts/globble-logo.css" />
     <link
@@ -49,7 +49,10 @@
       <main class="landing">
         <div class="landing-grid">
           <section class="landing-card landing-profile-card">
-            <h2>Profile</h2>
+            <div class="landing-profile-card-top">
+              <h2>Profile</h2>
+              <div id="landingMusicToggleAnchor" class="profile-tray-music-anchor"></div>
+            </div>
             <div class="profile-identity">
               <div class="profile-avatar" id="profileAvatar" aria-hidden="true">
                 <span class="profile-avatar-initials" id="profileAvatarInitials"></span>
@@ -230,7 +233,7 @@
       </form>
     </dialog>
 
-    <script src="./landing-music.js?v=3"></script>
+    <script src="./landing-music.js?v=4"></script>
     <script src="./accounts-client.js"></script>
     <script src="./accounts-profile.js?v=email-required1"></script>
     <script src="./dictionary-keys.js"></script>

@@ -194,7 +194,13 @@
       event.stopPropagation();
       setMuted(!muted);
     });
-    document.body.appendChild(button);
+    const anchor = document.getElementById("landingMusicToggleAnchor");
+    if (anchor) {
+      button.classList.add("landing-music-toggle--profile-tray");
+      anchor.appendChild(button);
+    } else {
+      document.body.appendChild(button);
+    }
   }
 
   function init() {
