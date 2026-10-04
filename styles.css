@@ -3560,9 +3560,10 @@ html:has(.landing-body) {
 .gameplay-body .play-stage.parchment-shell {
   --landing-parch-shift-x: -1.4vw;
   --landing-parch-shift-y: -2.45vh;
+  --landing-parch-scale-x: 1.15;
   --landing-parch-scale-y: 1.06;
   --landing-parch-origin-y: 62%;
-  --landing-parch-fit-w: min(106vw, 42rem);
+  --landing-parch-fit-w: min(122vw, 48.3rem);
   --landing-parch-fit-h: min(100dvh, 50rem);
 }
 
@@ -3577,7 +3578,7 @@ html:has(.landing-body) {
   transform: translate(
     calc(-50% + var(--landing-parch-shift-x)),
     calc(-50% + var(--landing-parch-shift-y))
-  ) scale(1, var(--landing-parch-scale-y, 1));
+  ) scale(var(--landing-parch-scale-x, 1), var(--landing-parch-scale-y, 1));
 }
 
 .landing-body .landing-shell > .landing-header,
@@ -3857,13 +3858,22 @@ html:has(.landing-body) {
     --landing-compose-max: 430px;
   }
 
-  .landing-body,
-  .gameplay-body .play-stage.parchment-shell {
+  .landing-body {
     --landing-parch-shift-x: -0.55vw;
     --landing-parch-shift-y: -2vh;
     --landing-parch-scale-y: 1.05;
     --landing-parch-origin-y: 64%;
     --landing-parch-fit-w: min(104vw, 44rem);
+    --landing-parch-fit-h: min(98dvh, 52rem);
+  }
+
+  .gameplay-body .play-stage.parchment-shell {
+    --landing-parch-shift-x: -0.55vw;
+    --landing-parch-shift-y: -2vh;
+    --landing-parch-scale-x: 1.15;
+    --landing-parch-scale-y: 1.05;
+    --landing-parch-origin-y: 64%;
+    --landing-parch-fit-w: min(120vw, 50.6rem);
     --landing-parch-fit-h: min(98dvh, 52rem);
   }
 }
