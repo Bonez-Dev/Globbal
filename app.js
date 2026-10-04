@@ -1060,10 +1060,7 @@ function cloneRackSnapshot(rack) {
 }
 
 function renderRack(dealIn = false) {
-  if (rackEl.dataset.shuffling === "1") {
-    return;
-  }
-  if (rackShuffleAnimating && !rackEl.classList.contains("is-shuffle-prep")) {
+  if (rackEl.dataset.shuffling === "1" || rackShuffleAnimating) {
     return;
   }
   if (rackShufflePendingAnimation) {
@@ -1131,7 +1128,9 @@ async function maybeRunShuffleAnimation() {
     await window.GlobbleRackShuffle.play(rackEl, { slotSources, button: shuffleRackBtn });
   } finally {
     rackShuffleAnimating = false;
+    rackEl.classList.remove("is-shuffle-prep");
     shuffleRackBtn.disabled = false;
+    renderRack();
   }
 }
 

@@ -571,7 +571,12 @@ function onWsMessage(ev) {
     }
   } else if (msg.type === "error") {
     rackShufflePendingAnimation = false;
+    rackShuffleAnimating = false;
     shufflePrevRack = null;
+    rackEl?.classList.remove("is-shuffle-prep");
+    if (rackEl) {
+      rackEl.dataset.shuffling = "0";
+    }
     pendingTileReturn = null;
     if (msg.error && msg.error.startsWith("Invalid word")) {
       window.GlobbleInvalidWordToast?.show(msg.error);
@@ -777,7 +782,7 @@ function renderBoard() {
 }
 
 function renderRack() {
-  if (rackShuffleAnimating && !rackEl.classList.contains("is-shuffle-prep")) {
+  if (rackEl.dataset.shuffling === "1" || rackShuffleAnimating) {
     return;
   }
   if (rackShufflePendingAnimation) {
@@ -855,6 +860,7 @@ async function maybeRunShuffleAnimation() {
   const tileEls = [...rackEl.querySelectorAll(".rack-slot .tile")];
   if (tileEls.length < 2 || !window.GlobbleRackShuffle) {
     shufflePrevRack = null;
+    rackEl.classList.remove("is-shuffle-prep");
     return;
   }
   const slotSources = shufflePrevRack
@@ -868,10 +874,13 @@ async function maybeRunShuffleAnimation() {
   rackShuffleAnimating = true;
   shuffleRackBtn.disabled = true;
   try {
+    await new Promise((resolve) => requestAnimationFrame(resolve));
     await window.GlobbleRackShuffle.play(rackEl, { slotSources, button: shuffleRackBtn });
   } finally {
     rackShuffleAnimating = false;
+    rackEl.classList.remove("is-shuffle-prep");
     setControlsDisabled(!!gameState?.gameOver);
+    renderRack();
   }
 }
 
@@ -1932,7 +1941,12 @@ recallTilesBtn.addEventListener("click", () => {
 });
 passTurnBtn.addEventListener("click", () => sendAction({ type: "pass" }));
 shuffleRackBtn.addEventListener("click", () => {
-  if (!canRackBoardInteract() || rackShuffleAnimating || rackEl.dataset.shuffling === "1") {
+  if (
+    !canRackBoardInteract() ||
+    rackShuffleAnimating ||
+    rackShufflePendingAnimation ||
+    rackEl.dataset.shuffling === "1"
+  ) {
     return;
   }
   // Play during the click gesture so browsers allow audio after the server round-trip.
