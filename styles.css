@@ -3702,7 +3702,7 @@ html:has(.landing-body) {
   transform: translate(-50%, -50%);
   object-fit: none;
   object-position: center;
-  mix-blend-mode: lighten;
+  mix-blend-mode: normal;
 }
 
 /* Home / landing: nudge parchment left so the sheet reads more centered. */

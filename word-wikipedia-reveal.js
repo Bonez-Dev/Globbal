@@ -369,7 +369,7 @@
         <div class="wiki-reveal-parchment-layer" aria-hidden="true">
           <img
             class="wiki-reveal-parchment-sheet"
-            src="./assets/parch2copy.png"
+            src="./assets/parch2copy.png?v=parch-alpha1"
             alt=""
             draggable="false"
           />

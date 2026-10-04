@@ -153,8 +153,7 @@
   transform: translate(-50%, -50%);
   object-fit: none;
   object-position: center;
-  /* Turn the asset’s black margins into the brown backdrop */
-  mix-blend-mode: lighten;
+  mix-blend-mode: normal;
   filter: sepia(0.84) brightness(0.83) saturate(1.46) contrast(1.05) hue-rotate(2deg);
 }
 
