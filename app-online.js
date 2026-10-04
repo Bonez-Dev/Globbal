@@ -82,6 +82,7 @@ let draggingTurnTilePos = null;
 let rackShuffleAnimating = false;
 let rackShufflePendingAnimation = false;
 let shufflePrevRack = null;
+let onlineShuffleSlotSources = null;
 let rackReturnAnimating = false;
 let rackRecallAnimating = false;
 let pendingTileReturn = null;
@@ -141,9 +142,10 @@ function setConnStatus(text) {
 function sendAction(payload) {
   if (!ws || ws.readyState !== WebSocket.OPEN) {
     messageEl.textContent = "Not connected.";
-    return;
+    return false;
   }
   ws.send(JSON.stringify(payload));
+  return true;
 }
 
 function setGameChatVisible(visible) {
@@ -572,11 +574,9 @@ function onWsMessage(ev) {
   } else if (msg.type === "error") {
     rackShufflePendingAnimation = false;
     rackShuffleAnimating = false;
+    onlineShuffleSlotSources = null;
     shufflePrevRack = null;
-    rackEl?.classList.remove("is-shuffle-prep");
-    if (rackEl) {
-      rackEl.dataset.shuffling = "0";
-    }
+    clearStaleRackShuffleUi();
     pendingTileReturn = null;
     if (msg.error && msg.error.startsWith("Invalid word")) {
       window.GlobbleInvalidWordToast?.show(msg.error);
@@ -680,7 +680,9 @@ function setControlsDisabled(disabled) {
   passTurnBtn.disabled = disabled || !myTurn;
   recallTilesBtn.disabled =
     disabled || !playable || !(gameState?.pendingPlacements || []).length;
-  shuffleRackBtn.disabled = disabled || !playable || rackShuffleAnimating;
+  if (shuffleRackBtn) {
+    shuffleRackBtn.disabled = disabled || !playable || rackShuffleAnimating;
+  }
 }
 
 function setLobbyPanelVisible(visible) {
@@ -781,7 +783,31 @@ function renderBoard() {
   boardEl.replaceChildren(frag);
 }
 
+function clearStaleRackShuffleUi() {
+  if (rackShuffleAnimating) {
+    return;
+  }
+  rackEl?.classList.remove("is-shuffle-prep", "rack-shuffling");
+  if (rackEl) {
+    rackEl.dataset.shuffling = "0";
+    rackEl.style.minHeight = "";
+  }
+}
+
+function restoreRackSnapshot(snapshot) {
+  const rack = gameState?.myRack;
+  if (!rack || !snapshot) {
+    return;
+  }
+  for (let i = 0; i < RACK_SIZE; i += 1) {
+    rack[i] = snapshot[i] ? { ...snapshot[i] } : null;
+  }
+}
+
 function renderRack() {
+  if (rackEl.dataset.shuffling === "1" && !rackShuffleAnimating) {
+    clearStaleRackShuffleUi();
+  }
   if (rackEl.dataset.shuffling === "1" || rackShuffleAnimating) {
     return;
   }
@@ -863,14 +889,17 @@ async function maybeRunShuffleAnimation() {
     rackEl.classList.remove("is-shuffle-prep");
     return;
   }
-  const slotSources = shufflePrevRack
-    ? window.GlobbleRackShuffle.computeSlotSources(
-        shufflePrevRack,
-        gameState.myRack || [],
-        RACK_SIZE
-      )
-    : null;
+  const slotSources =
+    onlineShuffleSlotSources ||
+    (shufflePrevRack
+      ? window.GlobbleRackShuffle.computeSlotSources(
+          shufflePrevRack,
+          gameState.myRack || [],
+          RACK_SIZE
+        )
+      : null);
   shufflePrevRack = null;
+  onlineShuffleSlotSources = null;
   rackShuffleAnimating = true;
   shuffleRackBtn.disabled = true;
   try {
@@ -1940,24 +1969,39 @@ recallTilesBtn.addEventListener("click", () => {
   void recallOnlineTurnTiles();
 });
 passTurnBtn.addEventListener("click", () => sendAction({ type: "pass" }));
-shuffleRackBtn.addEventListener("click", () => {
-  if (
-    !canRackBoardInteract() ||
-    rackShuffleAnimating ||
-    rackShufflePendingAnimation ||
-    rackEl.dataset.shuffling === "1"
-  ) {
-    return;
-  }
-  // Play during the click gesture so browsers allow audio after the server round-trip.
-  window.GlobbleSound?.playShuffleRustle?.({ durationMs: 420 });
-  shufflePrevRack = (gameState.myRack || []).map((tile) => (tile ? { ...tile } : null));
-  while (shufflePrevRack.length < RACK_SIZE) {
-    shufflePrevRack.push(null);
-  }
-  rackShufflePendingAnimation = true;
-  sendAction({ type: "shuffle" });
-});
+if (shuffleRackBtn) {
+  shuffleRackBtn.addEventListener("click", () => {
+    if (
+      !canRackBoardInteract() ||
+      rackShuffleAnimating ||
+      rackShufflePendingAnimation ||
+      rackEl.dataset.shuffling === "1"
+    ) {
+      return;
+    }
+    const rack = gameState?.myRack;
+    if (!rack || !window.GlobbleRackShuffle?.shuffleRackInPlace) {
+      return;
+    }
+    clearStaleRackShuffleUi();
+    window.GlobbleSound?.playShuffleRustle?.({ durationMs: 420 });
+    shufflePrevRack = (rack || []).map((tile) => (tile ? { ...tile } : null));
+    while (shufflePrevRack.length < RACK_SIZE) {
+      shufflePrevRack.push(null);
+    }
+    onlineShuffleSlotSources = window.GlobbleRackShuffle.shuffleRackInPlace(rack, RACK_SIZE);
+    rackShufflePendingAnimation = true;
+    renderRack();
+    if (!sendAction({ type: "shuffle" })) {
+      rackShufflePendingAnimation = false;
+      onlineShuffleSlotSources = null;
+      restoreRackSnapshot(shufflePrevRack);
+      shufflePrevRack = null;
+      clearStaleRackShuffleUi();
+      renderRack();
+    }
+  });
+}
 
 setControlsDisabled(true);
 

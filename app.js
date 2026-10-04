@@ -1059,7 +1059,21 @@ function cloneRackSnapshot(rack) {
   return rack.map((tile) => (tile ? { ...tile } : null));
 }
 
+function clearStaleRackShuffleUi() {
+  if (rackShuffleAnimating) {
+    return;
+  }
+  rackEl?.classList.remove("is-shuffle-prep", "rack-shuffling");
+  if (rackEl) {
+    rackEl.dataset.shuffling = "0";
+    rackEl.style.minHeight = "";
+  }
+}
+
 function renderRack(dealIn = false) {
+  if (rackEl.dataset.shuffling === "1" && !rackShuffleAnimating) {
+    clearStaleRackShuffleUi();
+  }
   if (rackEl.dataset.shuffling === "1" || rackShuffleAnimating) {
     return;
   }
@@ -1881,10 +1895,16 @@ async function shuffleRack() {
   ) {
     return;
   }
-  // Play during the click gesture so browsers allow audio (esp. after network delay online).
+  if (!window.GlobbleRackShuffle?.shuffleRackInPlace) {
+    return;
+  }
+  clearStaleRackShuffleUi();
   window.GlobbleSound?.playShuffleRustle?.({ durationMs: 420 });
   shufflePrevRack = cloneRackSnapshot(players[currentPlayer].rack);
-  shuffleSlotSources = shuffleRackSlots(players[currentPlayer].rack);
+  shuffleSlotSources = window.GlobbleRackShuffle.shuffleRackInPlace(
+    players[currentPlayer].rack,
+    RACK_SIZE
+  );
   selectedRackIndex = null;
   rackShufflePendingAnimation = true;
   renderRack();

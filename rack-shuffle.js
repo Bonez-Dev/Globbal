@@ -107,6 +107,50 @@
     return `${tile.letter}|${tile.value}|${tile.isBlank ? 1 : 0}`;
   }
 
+  function shuffleInPlace(array) {
+    for (let i = array.length - 1; i > 0; i -= 1) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  }
+
+  /** Mutates rack slot order; returns per-dest source slot indices for animation. */
+  function shuffleRackInPlace(rack, rackSize) {
+    const size = rackSize || rack?.length || 0;
+    const slotSources = new Array(size).fill(null);
+    if (!rack || size < 1) {
+      return slotSources;
+    }
+    while (rack.length < size) {
+      rack.push(null);
+    }
+    const occupied = [];
+    for (let i = 0; i < size; i += 1) {
+      if (rack[i]) {
+        occupied.push(i);
+      }
+    }
+    if (occupied.length < 2) {
+      return slotSources;
+    }
+    const tiles = occupied.map((slot) => rack[slot]);
+    const before = tiles.slice();
+    const srcByTile = new Map(tiles.map((tile, j) => [tile, occupied[j]]));
+    shuffleInPlace(tiles);
+    if (tiles.every((tile, index) => tile === before[index])) {
+      tiles.push(tiles.shift());
+    }
+    occupied.forEach((slot) => {
+      rack[slot] = null;
+    });
+    occupied.forEach((destSlot, j) => {
+      const tile = tiles[j];
+      rack[destSlot] = tile;
+      slotSources[destSlot] = srcByTile.get(tile);
+    });
+    return slotSources;
+  }
+
   function computeSlotSources(before, after, rackSize) {
     const size = rackSize || Math.max(before?.length || 0, after?.length || 0);
     const sources = new Array(size).fill(null);
@@ -477,15 +521,13 @@
     } finally {
       rackEl.dataset.shuffling = "0";
       rackEl.classList.remove("is-shuffle-prep");
-      if (button) {
-        button.disabled = false;
-      }
     }
   }
 
   window.GlobbleRackShuffle = {
     play,
     playRecall,
-    computeSlotSources
+    computeSlotSources,
+    shuffleRackInPlace
   };
 })();
