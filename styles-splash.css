@@ -5,12 +5,6 @@
   overflow: hidden;
   background: #000;
   --parchment-behind: #000;
-  --landing-parch-shift-x: -1.4vw;
-  --landing-parch-shift-y: -2.45vh;
-  --landing-parch-scale-y: 1.06;
-  --landing-parch-origin-y: 62%;
-  --landing-parch-fit-w: min(106vw, 42rem);
-  --landing-parch-fit-h: min(100dvh, 50rem);
   --tile: #dfd3bc;
   --tile-engrave: #2a1810;
   --tile-border-light: #f2e9dc;
@@ -152,18 +146,14 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: var(--landing-parch-fit-w, auto);
+  width: auto;
   height: auto;
   max-width: none;
-  max-height: var(--landing-parch-fit-h, none);
-  object-fit: contain;
+  max-height: none;
+  transform: translate(-50%, -50%);
+  object-fit: none;
   object-position: center;
   mix-blend-mode: normal;
-  transform-origin: 50% var(--landing-parch-origin-y, 58%);
-  transform: translate(
-    calc(-50% + var(--landing-parch-shift-x, 0px)),
-    calc(-50% + var(--landing-parch-shift-y, 0px))
-  ) scale(1, var(--landing-parch-scale-y, 1));
   filter: sepia(0.84) brightness(0.83) saturate(1.46) contrast(1.05) hue-rotate(2deg);
 }
 
@@ -305,7 +295,7 @@ body.splash-compass-active .splash-screen {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.75rem;
+  gap: 0.5rem;
   margin: 0;
   padding: 0 0.5rem;
   text-align: center;
@@ -430,21 +420,19 @@ body.splash-compass-active .splash-screen {
 }
 
 .splash-epigraph {
-  position: absolute;
+  position: static;
   z-index: 1;
-  left: max(var(--splash-gutter), env(safe-area-inset-left, 0px));
-  right: max(var(--splash-gutter), env(safe-area-inset-right, 0px));
-  bottom: max(0.85rem, env(safe-area-inset-bottom, 0px));
+  width: 100%;
   margin: 0;
   text-align: center;
   font-family: Georgia, "Times New Roman", Times, serif;
-  font-size: clamp(1rem, 4.8cqw, 1.28rem);
+  font-size: clamp(0.92rem, 4.2cqw, 1.15rem);
   font-style: italic;
   font-weight: 500;
   line-height: 1.35;
   letter-spacing: 0.02em;
-  color: #2f2016;
-  text-shadow: 0 1px 0 rgba(255, 248, 235, 0.35);
+  color: rgba(255, 240, 210, 0.92);
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
   pointer-events: none;
   animation: splash-content-in 900ms cubic-bezier(0.22, 1, 0.36, 1) 200ms both;
 }
@@ -512,15 +500,6 @@ body.splash-compass-active .splash-screen {
 
 /* Desktop / wide */
 @media (min-width: 641px) {
-  .splash-body {
-    --landing-parch-shift-x: -0.55vw;
-    --landing-parch-shift-y: -2vh;
-    --landing-parch-scale-y: 1.05;
-    --landing-parch-origin-y: 64%;
-    --landing-parch-fit-w: min(104vw, 44rem);
-    --landing-parch-fit-h: min(98dvh, 52rem);
-  }
-
   .splash-screen {
     --compose-max: 430px;
     --map-height-limit: min(88cqh, 820px);
