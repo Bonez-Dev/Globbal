@@ -2430,6 +2430,7 @@ body.wiki-reveal-open .play-layout {
 }
 
 .rack {
+  position: relative;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;

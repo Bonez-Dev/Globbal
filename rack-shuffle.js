@@ -88,15 +88,31 @@
   }
 
   function naturalSlotPositions(rackEl) {
-    const rackRect = rackEl.getBoundingClientRect();
     return [...rackEl.querySelectorAll(".rack-slot")].map((slot) => {
-      const rect = slot.getBoundingClientRect();
+      const slotRect = slot.getBoundingClientRect();
+      const tileEl = slot.querySelector(".tile");
+      const tileRect = tileEl?.getBoundingClientRect() || slotRect;
       return {
-        x: rect.left - rackRect.left,
-        y: rect.top - rackRect.top,
-        w: rect.width,
-        h: rect.height
+        x: tileRect.left,
+        y: tileRect.top,
+        w: tileRect.width,
+        h: tileRect.height,
+        toX: slotRect.left + (slotRect.width - tileRect.width) / 2,
+        toY: slotRect.top + (slotRect.height - tileRect.height) / 2
       };
+    });
+  }
+
+  function refreshDestPositions(rackEl, states) {
+    const slots = [...rackEl.querySelectorAll(".rack-slot")];
+    states.forEach((state) => {
+      const slot = slots[state.destSlot];
+      if (!slot) {
+        return;
+      }
+      const slotRect = slot.getBoundingClientRect();
+      state.toX = slotRect.left + (slotRect.width - state.w) / 2;
+      state.toY = slotRect.top + (slotRect.height - state.h) / 2;
     });
   }
 
@@ -201,7 +217,7 @@
         slotSources && slotSources[destSlot] != null ? slotSources[destSlot] : destSlot;
       const from = slotPositions[srcSlot] || slotPositions[destSlot];
       const to = slotPositions[destSlot];
-      if (!from || !to) {
+      if (!from || !to || from.w < 1 || from.h < 1) {
         return;
       }
       states.push({
@@ -213,8 +229,8 @@
         y: from.y,
         w: from.w,
         h: from.h,
-        toX: to.x,
-        toY: to.y
+        toX: to.toX,
+        toY: to.toY
       });
     });
 
@@ -275,10 +291,9 @@
     rackEl.classList.add("rack-shuffling");
     states.forEach((state) => {
       state.typography = captureTileTypography(state.el);
-      rackEl.appendChild(state.el);
       state.el.classList.add("tile-shuffle-active");
       applyFrozenTypography(state.el, state.typography);
-      state.el.style.position = "absolute";
+      state.el.style.position = "fixed";
       state.el.style.left = `${state.x}px`;
       state.el.style.top = `${state.y}px`;
       state.el.style.width = `${state.w}px`;
@@ -288,7 +303,9 @@
       state.el.style.pointerEvents = "none";
       state.el.style.transformOrigin = "center center";
       state.el.style.willChange = "transform";
+      state.el.style.zIndex = "10000";
       state.el.style.transform = "translate(0px, 0px) rotate(0deg) scale(1)";
+      document.body.appendChild(state.el);
     });
   }
 
@@ -441,6 +458,7 @@
     }
 
     pinTiles(rackEl, states);
+    refreshDestPositions(rackEl, states);
     // Sound is triggered from the Shuffle button click (user gesture).
 
     // Give the shuffle a distinct jump, travel, and landing. Keeping the
@@ -458,6 +476,7 @@
       };
     });
 
+    refreshDestPositions(rackEl, states);
     await animateStates(states, 240, (t, state) => {
       const e = easeInOutCubic(t);
       const jumpHeight = Math.max(52, state.h * 1.35);
@@ -505,6 +524,8 @@
     }
 
     const { slotSources, button } = options;
+    rackEl.classList.remove("is-shuffle-prep");
+    await new Promise((resolve) => requestAnimationFrame(resolve));
     let states = buildStates(rackEl, slotSources);
     if (states.length < 2) {
       rackEl.classList.remove("is-shuffle-prep");
