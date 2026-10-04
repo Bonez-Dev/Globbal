@@ -3725,7 +3725,9 @@ html:has(.landing-body) {
 .profile-page {
   --sign-in-compose-pad-x: 1.45rem;
   --profile-parch-shift-x: -1.4vw;
-  --profile-parch-shift-y: 1.35vh;
+  --profile-parch-shift-y: -1.25vh;
+  --profile-parch-scale-y: 1.06;
+  --profile-parch-origin-y: 62%;
   --profile-parch-fit-w: min(106vw, 42rem);
   --profile-parch-fit-h: min(100dvh, 50rem);
 }
@@ -3736,10 +3738,11 @@ html:has(.landing-body) {
   max-height: var(--profile-parch-fit-h);
   object-fit: contain;
   mix-blend-mode: normal;
+  transform-origin: 50% var(--profile-parch-origin-y, 58%);
   transform: translate(
     calc(-50% + var(--profile-parch-shift-x)),
     calc(-50% + var(--profile-parch-shift-y))
-  );
+  ) scale(1, var(--profile-parch-scale-y, 1));
 }
 
 .profile-page .landing-header {
@@ -3879,7 +3882,9 @@ html:has(.landing-body) {
 
   .profile-page {
     --profile-parch-shift-x: -0.55vw;
-    --profile-parch-shift-y: 1.1vh;
+    --profile-parch-shift-y: -0.85vh;
+    --profile-parch-scale-y: 1.05;
+    --profile-parch-origin-y: 64%;
     --profile-parch-fit-w: min(104vw, 44rem);
     --profile-parch-fit-h: min(98dvh, 52rem);
   }
