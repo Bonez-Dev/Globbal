@@ -3726,8 +3726,8 @@ html:has(.landing-body) {
   --sign-in-compose-pad-x: 1.45rem;
   --profile-parch-shift-x: -1.4vw;
   --profile-parch-shift-y: 1.35vh;
-  --profile-parch-fit-w: min(102vw, 39rem);
-  --profile-parch-fit-h: min(98dvh, 47rem);
+  --profile-parch-fit-w: min(106vw, 42rem);
+  --profile-parch-fit-h: min(100dvh, 50rem);
 }
 
 .profile-page .landing-shell.parchment-shell .splash-parchment-sheet {
@@ -3880,8 +3880,8 @@ html:has(.landing-body) {
   .profile-page {
     --profile-parch-shift-x: -0.55vw;
     --profile-parch-shift-y: 1.1vh;
-    --profile-parch-fit-w: min(100vw, 41rem);
-    --profile-parch-fit-h: min(96dvh, 49rem);
+    --profile-parch-fit-w: min(104vw, 44rem);
+    --profile-parch-fit-h: min(98dvh, 52rem);
   }
 }
 
