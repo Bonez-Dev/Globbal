@@ -8,12 +8,11 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" href="./assets/logo-mark.svg" type="image/svg+xml" />
     <link rel="preload" href="./assets/ancient-compass-map-original.png" as="image" />
-    <link rel="preload" href="./assets/parch2copy.png?v=parch-alpha1" as="image" />
-    <link rel="stylesheet" href="./styles.css?v=game-parch2" />
-    <link rel="stylesheet" href="./styles-splash.css?v=game-parch2" />
+    <link rel="stylesheet" href="./styles.css?v=game-online-no-parch1" />
+    <link rel="stylesheet" href="./styles-splash.css?v=game-online-no-parch1" />
     <link
       rel="stylesheet"
-      href="./styles-mobile.css?v=game-parch2"
+      href="./styles-mobile.css?v=game-online-no-parch1"
       media="screen and (max-width: 640px), screen and (max-height: 640px) and (orientation: landscape)"
     />
     <style>
@@ -75,21 +74,9 @@
       }
     </style>
   </head>
-  <body class="gameplay-body">
+  <body class="gameplay-body game-online-page">
     <main class="app app-gameplay">
       <div class="play-stage parchment-shell is-game-loading">
-        <div class="splash-parchment" aria-hidden="true">
-          <div class="splash-parchment-sheet-wrap">
-            <img
-              class="splash-parchment-sheet"
-              src="./assets/parch2copy.png?v=parch-alpha1"
-              alt=""
-              draggable="false"
-            />
-            <div class="splash-parchment-sheet-shade"></div>
-          </div>
-        </div>
-        <div class="splash-vignette" aria-hidden="true"></div>
         <div class="game-load-curtain" id="gameLoadCurtain" aria-hidden="true">
           <img
             class="splash-parchment-map"
