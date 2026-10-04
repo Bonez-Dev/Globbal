@@ -422,20 +422,6 @@ button {
   padding-top: 0.32rem;
 }
 
-.profile-page .landing-header {
-  padding-left: max(var(--sign-in-compose-pad-x, 1.45rem), env(safe-area-inset-left, 0px));
-  padding-right: max(var(--sign-in-compose-pad-x, 1.45rem), env(safe-area-inset-right, 0px));
-}
-
-.profile-page .landing {
-  padding-left: max(var(--sign-in-compose-pad-x, 1.45rem), env(safe-area-inset-left, 0px));
-  padding-right: max(var(--sign-in-compose-pad-x, 1.45rem), env(safe-area-inset-right, 0px));
-}
-
-.sign-in-page .landing-shell.parchment-shell .splash-parchment-sheet {
-  transform: translate(calc(-50% - 1.4vw), calc(-50% + 1.35vh)) scale(0.78, 0.82);
-}
-
 .landing-header {
   padding-top: calc(env(safe-area-inset-top, 0px) + 1.35rem + var(--landing-y-nudge, 0rem));
   padding-left: max(1rem, env(safe-area-inset-left, 0px));
