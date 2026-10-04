@@ -3725,7 +3725,7 @@ html:has(.landing-body) {
 .profile-page {
   --sign-in-compose-pad-x: 1.45rem;
   --profile-parch-shift-x: -1.4vw;
-  --profile-parch-shift-y: -1.25vh;
+  --profile-parch-shift-y: -2.45vh;
   --profile-parch-scale-y: 1.06;
   --profile-parch-origin-y: 62%;
   --profile-parch-fit-w: min(106vw, 42rem);
@@ -3882,7 +3882,7 @@ html:has(.landing-body) {
 
   .profile-page {
     --profile-parch-shift-x: -0.55vw;
-    --profile-parch-shift-y: -0.85vh;
+    --profile-parch-shift-y: -2vh;
     --profile-parch-scale-y: 1.05;
     --profile-parch-origin-y: 64%;
     --profile-parch-fit-w: min(104vw, 44rem);
