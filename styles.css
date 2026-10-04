@@ -175,14 +175,14 @@ h2 {
 
 html:has(.gameplay-body) {
   height: 100%;
-  background: #362518;
+  background: #000;
 }
 
 /* Full-screen gameplay: board + rack focus */
 .gameplay-body {
   height: 100dvh;
   overflow: hidden;
-  background: #362518;
+  background: #000;
   background-image: none;
   --play-tray-oak-base: #3a2416;
   --play-tray-oak-frame: #241610;
@@ -3557,7 +3557,17 @@ html:has(.landing-body) {
   --landing-parch-fit-h: min(100dvh, 50rem);
 }
 
-.landing-body .landing-shell.parchment-shell .splash-parchment-sheet {
+.gameplay-body .play-stage.parchment-shell {
+  --landing-parch-shift-x: -1.4vw;
+  --landing-parch-shift-y: -2.45vh;
+  --landing-parch-scale-y: 1.06;
+  --landing-parch-origin-y: 62%;
+  --landing-parch-fit-w: min(106vw, 42rem);
+  --landing-parch-fit-h: min(100dvh, 50rem);
+}
+
+.landing-body .landing-shell.parchment-shell .splash-parchment-sheet,
+.gameplay-body .play-stage.parchment-shell .splash-parchment-sheet {
   width: var(--landing-parch-fit-w);
   height: auto;
   max-height: var(--landing-parch-fit-h);
@@ -3704,14 +3714,16 @@ html:has(.landing-body) {
   background: #8a6238;
 }
 
-.landing-body .landing-shell.parchment-shell .splash-parchment {
+.landing-body .landing-shell.parchment-shell .splash-parchment,
+.gameplay-body .play-stage.parchment-shell .splash-parchment {
   --parchment-behind: #000;
   background:
     radial-gradient(ellipse 95% 82% at 50% 36%, rgba(210, 160, 80, 0.32), transparent 58%),
     #000;
 }
 
-.landing-body .landing-shell.parchment-shell .splash-vignette {
+.landing-body .landing-shell.parchment-shell .splash-vignette,
+.gameplay-body .play-stage.parchment-shell > .splash-vignette {
   opacity: 1;
   background:
     radial-gradient(ellipse 90% 42% at 50% 18%, rgba(255, 240, 200, 0.36), transparent 68%),
@@ -3845,7 +3857,8 @@ html:has(.landing-body) {
     --landing-compose-max: 430px;
   }
 
-  .landing-body {
+  .landing-body,
+  .gameplay-body .play-stage.parchment-shell {
     --landing-parch-shift-x: -0.55vw;
     --landing-parch-shift-y: -2vh;
     --landing-parch-scale-y: 1.05;
