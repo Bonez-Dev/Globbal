@@ -39,6 +39,22 @@ html:has(.about-parchment-page) {
 
 .about-parchment-page .landing-shell.parchment-shell {
   overflow: visible;
+  background: transparent;
+}
+
+/* Full-viewport backdrop (desktop + mobile) so scaled sheet is not clipped by shell height */
+.about-parchment-page .landing-shell.parchment-shell > .splash-parchment,
+.about-parchment-page .landing-shell.parchment-shell > .splash-vignette {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment,
+.landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment-sheet-wrap {
+  overflow: visible;
 }
 
 .about-parchment-page .landing-header {
@@ -205,18 +221,6 @@ html:has(.about-parchment-page) {
 
   .about-parchment-page .landing-header .logo-wordmark-wrap {
     padding-top: 0.12rem;
-  }
-
-  .about-parchment-page .landing-shell.parchment-shell > .splash-parchment,
-  .about-parchment-page .landing-shell.parchment-shell > .splash-vignette {
-    position: fixed;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-  }
-
-  .about-parchment-page .landing-shell.parchment-shell {
-    overflow: clip;
   }
 
   .landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment-sheet {
