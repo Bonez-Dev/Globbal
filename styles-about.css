@@ -223,7 +223,7 @@ html:has(.about-parchment-page) {
     width: min(128vw, 44rem);
     max-height: min(124dvh, 64rem);
     transform: translate(
-        calc(-50% + var(--landing-parch-shift-x, -0.9vw)),
+        calc(-50% + var(--landing-parch-shift-x, -1.35vw)),
         calc(-50% + var(--landing-parch-shift-y, -1.1vh))
       )
       scale(1, var(--landing-parch-scale-y, 1.28));
