@@ -196,7 +196,7 @@ html:has(.about-parchment-page) {
   .about-parchment-page {
     --about-compose-max: 400px;
     --about-compose-pad-x: clamp(1.45rem, 6.5vw, 2rem);
-    --landing-parch-shift-x: -1.7vw;
+    --landing-parch-shift-x: -2.05vw;
     --landing-parch-shift-y: 0.85vh;
     --landing-parch-scale-y: 1.24;
     --landing-parch-origin-y: 52%;
@@ -228,7 +228,7 @@ html:has(.about-parchment-page) {
     width: min(128vw, 44rem);
     max-height: min(124dvh, 64rem);
     transform: translate(
-        calc(-50% + var(--landing-parch-shift-x, -1.7vw)),
+        calc(-50% + var(--landing-parch-shift-x, -2.05vw)),
         calc(-50% + var(--landing-parch-shift-y, 0.85vh))
       )
       scale(1, var(--landing-parch-scale-y, 1.24));
