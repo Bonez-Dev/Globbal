@@ -12,6 +12,9 @@ html:has(.about-parchment-page) {
   --about-compose-pad-x: clamp(1.75rem, 9.5vw, 2.35rem);
   --landing-tray-drop: 0.18rem;
   --landing-parch-shift-y: -1.35vh;
+  --landing-parch-origin-y: 54%;
+  --landing-parch-scale-y: 1.12;
+  --landing-parch-fit-h: min(108dvh, 56rem);
 }
 
 .about-parchment-page #landingMusicToggle {
@@ -68,7 +71,7 @@ html:has(.about-parchment-page) {
       calc(-50% + var(--landing-parch-shift-x, -1.4vw)),
       calc(-50% + var(--landing-parch-shift-y, -1.35vh))
     )
-    scale(var(--landing-parch-scale-x, 1), var(--landing-parch-scale-y, 1.06));
+    scale(var(--landing-parch-scale-x, 1), var(--landing-parch-scale-y, 1.12));
 }
 
 .about-parchment-content {
@@ -182,10 +185,10 @@ html:has(.about-parchment-page) {
     --about-compose-pad-x: clamp(1.45rem, 6.5vw, 2rem);
     --landing-parch-shift-x: -0.9vw;
     --landing-parch-shift-y: -1.1vh;
-    --landing-parch-scale-y: 1.14;
-    --landing-parch-origin-y: 60%;
+    --landing-parch-scale-y: 1.24;
+    --landing-parch-origin-y: 52%;
     --landing-parch-fit-w: min(128vw, 44rem);
-    --landing-parch-fit-h: min(112dvh, 58rem);
+    --landing-parch-fit-h: min(120dvh, 62rem);
   }
 
   .about-parchment-page .landing-header {
@@ -222,11 +225,11 @@ html:has(.about-parchment-page) {
 
   .landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment-sheet {
     width: min(128vw, 44rem);
-    max-height: min(112dvh, 58rem);
+    max-height: min(120dvh, 62rem);
     transform: translate(
         calc(-50% + var(--landing-parch-shift-x, -0.9vw)),
         calc(-50% + var(--landing-parch-shift-y, -1.1vh))
       )
-      scale(1, var(--landing-parch-scale-y, 1.14));
+      scale(1, var(--landing-parch-scale-y, 1.24));
   }
 }
