@@ -1355,10 +1355,13 @@ body.wiki-reveal-open .play-layout {
   opacity: 0.45;
 }
 
-.game-stats-tray #playableWordsCount {
-  flex: 1 1 11.5em;
-  min-width: 11.5em;
-  text-align: center;
+@media (min-width: 641px) {
+  .game-stats-tray #bagCount,
+  .game-stats-tray #playableWordsCount {
+    flex: 1 1 0;
+    min-width: 0;
+    text-align: center;
+  }
 }
 
 .game-stats-buttons {
