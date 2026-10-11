@@ -13,8 +13,8 @@ html:has(.about-parchment-page) {
   --landing-tray-drop: 0.18rem;
   --landing-parch-shift-y: -1.35vh;
   --landing-parch-origin-y: 54%;
-  --landing-parch-scale-y: 1.2;
-  --landing-parch-fit-h: min(116dvh, 58rem);
+  --landing-parch-scale-y: 1.24;
+  --landing-parch-fit-h: min(120dvh, 60rem);
 }
 
 .about-parchment-page .landing-shell > .landing-header,
@@ -67,7 +67,7 @@ html:has(.about-parchment-page) {
       calc(-50% + var(--landing-parch-shift-x, -1.4vw)),
       calc(-50% + var(--landing-parch-shift-y, -1.35vh))
     )
-    scale(var(--landing-parch-scale-x, 1), var(--landing-parch-scale-y, 1.2));
+    scale(var(--landing-parch-scale-x, 1), var(--landing-parch-scale-y, 1.24));
 }
 
 .about-parchment-content {
@@ -179,7 +179,7 @@ html:has(.about-parchment-page) {
   .about-parchment-page {
     --about-compose-max: 400px;
     --about-compose-pad-x: clamp(1.45rem, 6.5vw, 2rem);
-    --landing-parch-shift-x: -0.9vw;
+    --landing-parch-shift-x: -1.35vw;
     --landing-parch-shift-y: -1.1vh;
     --landing-parch-scale-y: 1.28;
     --landing-parch-origin-y: 52%;
