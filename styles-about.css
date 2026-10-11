@@ -210,13 +210,13 @@ html:has(.about-parchment-page) {
   }
 
   .about-parchment-page .landing-header .logo-wordmark-wrap {
-    width: min(380px, calc(100vw - 2.75rem));
+    width: min(400px, calc(100vw - 2.35rem));
     max-width: 100%;
   }
 
   .about-parchment-page .landing-header .landing-brand-tray.rack-panel {
     width: fit-content;
-    max-width: min(380px, calc(100vw - 2.75rem));
+    max-width: min(400px, calc(100vw - 2.35rem));
     margin-inline: auto;
   }
 
