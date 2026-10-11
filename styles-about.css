@@ -10,6 +10,12 @@ html:has(.about-parchment-page) {
   background: #000;
   --about-compose-max: min(100vw, 430px);
   --about-compose-pad-x: clamp(1.75rem, 9.5vw, 2.35rem);
+  --landing-tray-drop: 0.18rem;
+  --landing-parch-shift-y: -1.35vh;
+}
+
+.about-parchment-page #landingMusicToggle {
+  display: none !important;
 }
 
 .about-parchment-page .landing-shell > .landing-header,
@@ -43,6 +49,26 @@ html:has(.about-parchment-page) {
 .about-parchment-page .landing-brand-tray {
   width: fit-content;
   max-width: min(100%, var(--about-compose-max, 430px));
+}
+
+.about-parchment-page .landing-header .landing-brand-tray.rack-panel {
+  margin-top: 0.12rem;
+  padding:
+    calc(0.12rem + var(--landing-frame-rail, 7px))
+    calc(0.32rem + var(--landing-frame-rail, 7px))
+    calc(0.1rem + var(--landing-frame-rail, 7px));
+}
+
+.about-parchment-page .landing-header .logo-wordmark-wrap {
+  padding-top: 0.22rem;
+}
+
+.landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment-sheet {
+  transform: translate(
+      calc(-50% + var(--landing-parch-shift-x, -1.4vw)),
+      calc(-50% + var(--landing-parch-shift-y, -1.35vh))
+    )
+    scale(var(--landing-parch-scale-x, 1), var(--landing-parch-scale-y, 1.06));
 }
 
 .about-parchment-content {
@@ -155,7 +181,7 @@ html:has(.about-parchment-page) {
     --about-compose-max: 400px;
     --about-compose-pad-x: clamp(1.45rem, 6.5vw, 2rem);
     --landing-parch-shift-x: -0.9vw;
-    --landing-parch-shift-y: -3.1vh;
+    --landing-parch-shift-y: -1.1vh;
     --landing-parch-scale-y: 1.14;
     --landing-parch-origin-y: 60%;
     --landing-parch-fit-w: min(128vw, 44rem);
@@ -176,8 +202,10 @@ html:has(.about-parchment-page) {
     width: fit-content;
     max-width: min(320px, calc(100vw - 5.5rem));
     margin-inline: auto;
-    padding-left: calc(0.38rem + var(--landing-frame-rail, 7px));
-    padding-right: calc(0.38rem + var(--landing-frame-rail, 7px));
+  }
+
+  .about-parchment-page .landing-header .logo-wordmark-wrap {
+    padding-top: 0.12rem;
   }
 
   .about-parchment-page .landing-shell.parchment-shell > .splash-parchment,
@@ -197,7 +225,7 @@ html:has(.about-parchment-page) {
     max-height: min(112dvh, 58rem);
     transform: translate(
         calc(-50% + var(--landing-parch-shift-x, -0.9vw)),
-        calc(-50% + var(--landing-parch-shift-y, -3.1vh))
+        calc(-50% + var(--landing-parch-shift-y, -1.1vh))
       )
       scale(1, var(--landing-parch-scale-y, 1.14));
   }

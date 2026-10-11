@@ -445,12 +445,20 @@ button {
   width: fit-content;
   max-width: min(320px, calc(100vw - 5.5rem));
   margin-inline: auto;
+  padding:
+    calc(0.1rem + var(--landing-frame-rail, 7px))
+    calc(0.28rem + var(--landing-frame-rail, 7px))
+    calc(0.08rem + var(--landing-frame-rail, 7px));
+}
+
+.about-parchment-page .landing-header .logo-wordmark-wrap {
+  padding-top: 0.12rem;
 }
 
 .landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment-sheet {
   width: min(128vw, 44rem);
   max-height: min(112dvh, 58rem);
-  transform: translate(calc(-50% + -0.9vw), calc(-50% + -3.1vh)) scale(1, 1.14);
+  transform: translate(calc(-50% + -0.9vw), calc(-50% + -1.1vh)) scale(1, 1.14);
 }
 
 .landing-grid {
