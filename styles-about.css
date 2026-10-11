@@ -41,8 +41,8 @@ html:has(.about-parchment-page) {
 }
 
 .about-parchment-page .landing-brand-tray {
-  width: 100%;
-  max-width: 100%;
+  width: fit-content;
+  max-width: min(100%, var(--about-compose-max, 430px));
 }
 
 .about-parchment-content {
@@ -137,9 +137,39 @@ html:has(.about-parchment-page) {
   text-align: center;
 }
 
+.about-parchment-page .landing-header .logo-wordmark-wrap {
+  width: min(408px, calc(100vw - 3.5rem));
+  max-width: 100%;
+}
+
 .about-parchment-page .landing-brand-tray object.logo-wordmark {
   display: block;
-  width: min(408px, 94vw);
+  width: 100%;
+  max-width: 100%;
   height: auto;
   pointer-events: none;
+}
+
+@media (max-width: 768px) {
+  .about-parchment-page {
+    --about-compose-max: min(100%, 430px);
+    --landing-parch-fit-w: min(114vw, 42rem);
+    --landing-parch-fit-h: min(104dvh, 54rem);
+    --landing-parch-scale-y: 1.08;
+    --landing-parch-shift-x: -1.15vw;
+    --landing-parch-shift-y: -2.65vh;
+    --landing-parch-origin-y: 61%;
+  }
+
+  .about-parchment-page .landing-shell.parchment-shell > .splash-parchment,
+  .about-parchment-page .landing-shell.parchment-shell > .splash-vignette {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .about-parchment-page .landing-shell.parchment-shell {
+    overflow: clip;
+  }
 }
