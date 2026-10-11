@@ -719,9 +719,9 @@ html:has(.gameplay-body) {
   border: 0;
   pointer-events: none;
   filter:
-    drop-shadow(0 0 6px rgba(255, 242, 215, 0.72))
-    drop-shadow(0 0 14px rgba(255, 228, 185, 0.42))
-    drop-shadow(0 0 24px rgba(255, 210, 155, 0.22))
+    drop-shadow(0 0 1.5px rgba(255, 242, 215, 0.82))
+    drop-shadow(0 0 4px rgba(255, 228, 185, 0.52))
+    drop-shadow(0 0 7px rgba(255, 210, 155, 0.28))
     drop-shadow(0 3px 8px rgba(40, 0, 0, 0.28));
 }
 
@@ -4134,9 +4134,9 @@ body.dictionary-page .landing-shell .splash-vignette {
   margin-inline: 0;
   transform: none;
   filter:
-    drop-shadow(0 0 6px rgba(255, 242, 215, 0.72))
-    drop-shadow(0 0 14px rgba(255, 228, 185, 0.42))
-    drop-shadow(0 0 24px rgba(255, 210, 155, 0.22))
+    drop-shadow(0 0 1.5px rgba(255, 242, 215, 0.82))
+    drop-shadow(0 0 4px rgba(255, 228, 185, 0.52))
+    drop-shadow(0 0 7px rgba(255, 210, 155, 0.28))
     drop-shadow(0 3px 8px rgba(40, 0, 0, 0.28));
 }
 
