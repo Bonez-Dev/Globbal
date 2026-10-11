@@ -1127,6 +1127,8 @@ function renderPendingTurnScore() {
 
 let playableWordCountJobId = 0;
 let playableWordCountWorker = null;
+let playableWordCountLastKey = "";
+let playableWordCountPendingKey = "";
 
 function formatPlayableWordCount(count) {
   return (
@@ -1165,7 +1167,28 @@ function rackSnapshotForPlayableCount() {
   );
 }
 
-function runPlayableWordCountOnMainThread(jobId) {
+function playableWordCountSnapshotKey(boardSnap, rackSnap) {
+  return JSON.stringify({ board: boardSnap, rack: rackSnap });
+}
+
+function resetPlayableWordCountCache() {
+  playableWordCountLastKey = "";
+  playableWordCountPendingKey = "";
+}
+
+function applyPlayableWordCountResult(jobId, key, count) {
+  if (jobId !== playableWordCountJobId || !playableWordsCountEl) {
+    return;
+  }
+  if (key !== playableWordCountPendingKey) {
+    return;
+  }
+  playableWordCountPendingKey = "";
+  playableWordCountLastKey = key;
+  playableWordsCountEl.textContent = formatPlayableWordCount(count);
+}
+
+function runPlayableWordCountOnMainThread(jobId, key) {
   window.setTimeout(() => {
     if (jobId !== playableWordCountJobId || !playableWordsCountEl || !gameState?.board) {
       return;
@@ -1177,10 +1200,7 @@ function runPlayableWordCountOnMainThread(jobId) {
       dictionary: onlineDictionary,
       startSquare: startSquare(board.length, board[0]?.length ?? board.length)
     });
-    if (jobId !== playableWordCountJobId || !playableWordsCountEl) {
-      return;
-    }
-    playableWordsCountEl.textContent = formatPlayableWordCount(count);
+    applyPlayableWordCountResult(jobId, key, count);
   }, 0);
 }
 
@@ -1196,16 +1216,17 @@ function getPlayableWordCountWorker() {
         return;
       }
       if (error) {
-        runPlayableWordCountOnMainThread(jobId);
+        runPlayableWordCountOnMainThread(jobId, playableWordCountPendingKey);
         return;
       }
-      playableWordsCountEl.textContent = formatPlayableWordCount(count);
+      applyPlayableWordCountResult(jobId, playableWordCountPendingKey, count);
     };
     playableWordCountWorker.onerror = () => {
       const jobId = playableWordCountJobId;
+      const key = playableWordCountPendingKey;
       playableWordCountWorker?.terminate();
       playableWordCountWorker = null;
-      runPlayableWordCountOnMainThread(jobId);
+      runPlayableWordCountOnMainThread(jobId, key);
     };
   } catch {
     playableWordCountWorker = null;
@@ -1220,6 +1241,7 @@ function schedulePlayableWordCount() {
 
   if (!gameState || gameState.lobby || gameState.gameOver) {
     playableWordsCountEl.textContent = "";
+    resetPlayableWordCountCache();
     return;
   }
 
@@ -1228,24 +1250,41 @@ function schedulePlayableWordCount() {
     return;
   }
 
+  const board = gameState.board;
+  if (!board?.length) {
+    playableWordsCountEl.textContent = "";
+    resetPlayableWordCountCache();
+    return;
+  }
+
+  const boardSnap = boardSnapshotForPlayableCount();
+  const rackSnap = rackSnapshotForPlayableCount();
+  const key = playableWordCountSnapshotKey(boardSnap, rackSnap);
+
+  if (key === playableWordCountLastKey) {
+    return;
+  }
+  if (key === playableWordCountPendingKey) {
+    return;
+  }
+
   const rack = gameState.myRack ?? [];
   if (!rack.some(Boolean)) {
+    playableWordCountLastKey = key;
+    playableWordCountPendingKey = "";
     playableWordsCountEl.textContent = formatPlayableWordCount(0);
     return;
   }
 
-  const board = gameState.board;
-  if (!board?.length) {
-    playableWordsCountEl.textContent = "";
-    return;
-  }
-
+  playableWordCountPendingKey = key;
   const jobId = ++playableWordCountJobId;
-  playableWordsCountEl.textContent = formatPlayableWordCount(NaN);
+  if (!playableWordsCountEl.textContent) {
+    playableWordsCountEl.textContent = formatPlayableWordCount(NaN);
+  }
   const payload = {
     jobId,
-    board: boardSnapshotForPlayableCount(),
-    rack: rackSnapshotForPlayableCount(),
+    board: boardSnap,
+    rack: rackSnap,
     startSquare: startSquare(board.length, board[0]?.length ?? board.length)
   };
 
@@ -1255,7 +1294,7 @@ function schedulePlayableWordCount() {
     return;
   }
 
-  runPlayableWordCountOnMainThread(jobId);
+  runPlayableWordCountOnMainThread(jobId, key);
 }
 
 function renderAll() {

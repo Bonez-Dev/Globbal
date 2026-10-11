@@ -274,6 +274,12 @@
   padding: 1px 0;
 }
 
+.game-stats-tray #playableWordsCount {
+  flex: 1 1 0;
+  min-width: 0;
+  font-size: 0.58rem;
+}
+
 .board-wrap {
   display: flex;
   flex: 1 1 auto;

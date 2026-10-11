@@ -1355,6 +1355,12 @@ body.wiki-reveal-open .play-layout {
   opacity: 0.45;
 }
 
+.game-stats-tray #playableWordsCount {
+  flex: 1 1 11.5em;
+  min-width: 11.5em;
+  text-align: center;
+}
+
 .game-stats-buttons {
   display: flex;
   align-items: stretch;
