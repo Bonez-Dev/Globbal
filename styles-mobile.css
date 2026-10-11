@@ -20,7 +20,7 @@
   --controls-rack-band: calc(
     var(--score-strip-height) + var(--mobile-action-band) + 2 * var(--rack-pad) + var(--play-gap) + 2px
   );
-  --play-wordmark-height: clamp(1.2rem, 4vmin, 2rem);
+  --play-wordmark-height: clamp(1.5rem, 5.5vmin, 2.4rem);
   --board-aspect-rows: 19;
   /* No ad/brand band on phones — use the full screen for play */
   /* Wordmark band at top — space freed by compacting the board */
@@ -196,7 +196,7 @@
 }
 
 .play-brand .logo-wordmark {
-  width: min(100%, calc(var(--play-column, 100vw) * 0.88));
+  width: min(100%, calc(var(--play-column, 100vw) * 0.94));
   max-height: var(--play-wordmark-height);
   height: auto;
   object-fit: contain;
@@ -431,11 +431,15 @@ button {
 
 .landing-header .logo-wordmark-wrap {
   padding-top: 0.7rem;
+  width: min(460px, calc(100vw - 2rem));
+  max-width: 100%;
 }
 
 .landing-brand-tray .logo-wordmark {
   width: 100%;
   max-width: 100%;
+  transform: scale(1.1);
+  transform-origin: center top;
 }
 
 /* About: match desktop column width; enlarge parchment on phones */
@@ -444,12 +448,12 @@ button {
 }
 
 .about-parchment-page .landing-header .logo-wordmark-wrap {
-  width: min(320px, calc(100vw - 5.5rem));
+  width: min(360px, calc(100vw - 3.25rem));
 }
 
 .about-parchment-page .landing-header .landing-brand-tray.rack-panel {
   width: fit-content;
-  max-width: min(320px, calc(100vw - 5.5rem));
+  max-width: min(360px, calc(100vw - 3.25rem));
   margin-inline: auto;
   padding:
     calc(0.1rem + var(--landing-frame-rail, 7px))

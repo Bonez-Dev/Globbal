@@ -494,7 +494,9 @@ body.splash-compass-active .splash-screen {
   }
 
   .splash-screen .logo-wordmark {
-    width: min(100%, 96cqw);
+    width: min(100%, 98cqw);
+    transform: scale(1.06, 1.32);
+    transform-origin: center center;
   }
 }
 
