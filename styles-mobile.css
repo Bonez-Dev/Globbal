@@ -459,7 +459,7 @@ button {
   width: min(128vw, 44rem);
   max-height: min(124dvh, 64rem);
   transform-origin: 50% 52%;
-  transform: translate(calc(-50% + -1.7vw), calc(-50% + -0.45vh)) scale(1, 1.28);
+  transform: translate(calc(-50% + -1.7vw), calc(-50% + 0.85vh)) scale(1, 1.24);
 }
 
 .landing-grid {

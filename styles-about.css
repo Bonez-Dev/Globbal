@@ -5,7 +5,8 @@ html:has(.about-parchment-page) {
 }
 
 .about-parchment-page {
-  overflow-x: hidden;
+  /* overflow-x: hidden + overflow-y: auto clips fixed/scaled parchment on mobile Safari */
+  overflow-x: clip;
   overflow-y: auto;
   background: #000;
   --about-compose-max: min(100vw, 430px);
@@ -196,8 +197,8 @@ html:has(.about-parchment-page) {
     --about-compose-max: 400px;
     --about-compose-pad-x: clamp(1.45rem, 6.5vw, 2rem);
     --landing-parch-shift-x: -1.7vw;
-    --landing-parch-shift-y: -0.45vh;
-    --landing-parch-scale-y: 1.28;
+    --landing-parch-shift-y: 0.85vh;
+    --landing-parch-scale-y: 1.24;
     --landing-parch-origin-y: 52%;
     --landing-parch-fit-w: min(128vw, 44rem);
     --landing-parch-fit-h: min(124dvh, 64rem);
@@ -228,8 +229,12 @@ html:has(.about-parchment-page) {
     max-height: min(124dvh, 64rem);
     transform: translate(
         calc(-50% + var(--landing-parch-shift-x, -1.7vw)),
-        calc(-50% + var(--landing-parch-shift-y, -0.45vh))
+        calc(-50% + var(--landing-parch-shift-y, 0.85vh))
       )
-      scale(1, var(--landing-parch-scale-y, 1.28));
+      scale(1, var(--landing-parch-scale-y, 1.24));
+  }
+
+  .landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment::after {
+    opacity: 0.45;
   }
 }
