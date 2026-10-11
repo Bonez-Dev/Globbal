@@ -142,7 +142,7 @@ html:has(.about-parchment-page) {
   max-width: 100%;
 }
 
-.about-parchment-page .landing-brand-tray object.logo-wordmark {
+.about-parchment-page .landing-brand-tray .logo-wordmark {
   display: block;
   width: 100%;
   max-width: 100%;
@@ -152,13 +152,32 @@ html:has(.about-parchment-page) {
 
 @media (max-width: 768px) {
   .about-parchment-page {
-    --about-compose-max: min(100%, 430px);
-    --landing-parch-fit-w: min(114vw, 42rem);
-    --landing-parch-fit-h: min(104dvh, 54rem);
-    --landing-parch-scale-y: 1.08;
-    --landing-parch-shift-x: -1.15vw;
-    --landing-parch-shift-y: -2.65vh;
-    --landing-parch-origin-y: 61%;
+    --about-compose-max: 400px;
+    --about-compose-pad-x: clamp(1.45rem, 6.5vw, 2rem);
+    --landing-parch-shift-x: -0.9vw;
+    --landing-parch-shift-y: -3.1vh;
+    --landing-parch-scale-y: 1.14;
+    --landing-parch-origin-y: 60%;
+    --landing-parch-fit-w: min(128vw, 44rem);
+    --landing-parch-fit-h: min(112dvh, 58rem);
+  }
+
+  .about-parchment-page .landing-header {
+    padding-left: max(1.25rem, env(safe-area-inset-left, 0px));
+    padding-right: max(1.25rem, env(safe-area-inset-right, 0px));
+  }
+
+  .about-parchment-page .landing-header .logo-wordmark-wrap {
+    width: min(320px, calc(100vw - 5.5rem));
+    max-width: 100%;
+  }
+
+  .about-parchment-page .landing-header .landing-brand-tray.rack-panel {
+    width: fit-content;
+    max-width: min(320px, calc(100vw - 5.5rem));
+    margin-inline: auto;
+    padding-left: calc(0.38rem + var(--landing-frame-rail, 7px));
+    padding-right: calc(0.38rem + var(--landing-frame-rail, 7px));
   }
 
   .about-parchment-page .landing-shell.parchment-shell > .splash-parchment,
@@ -171,5 +190,15 @@ html:has(.about-parchment-page) {
 
   .about-parchment-page .landing-shell.parchment-shell {
     overflow: clip;
+  }
+
+  .landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment-sheet {
+    width: min(128vw, 44rem);
+    max-height: min(112dvh, 58rem);
+    transform: translate(
+        calc(-50% + var(--landing-parch-shift-x, -0.9vw)),
+        calc(-50% + var(--landing-parch-shift-y, -3.1vh))
+      )
+      scale(1, var(--landing-parch-scale-y, 1.14));
   }
 }
