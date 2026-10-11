@@ -407,6 +407,7 @@
     ghost.style.zIndex = "10000";
     ghost.style.willChange = "transform";
     ghost.style.transformOrigin = "center center";
+    ghost.style.transition = "none";
     ghost.style.transform = `translate3d(${rect.left}px, ${rect.top}px, 0) scale(${scale})`;
     ghost.style.display = computed.display;
     ghost.style.alignItems = computed.alignItems;

@@ -1480,7 +1480,7 @@ body.wiki-reveal-open .play-layout {
 }
 
 .board-stage.board-stage-zoom-anim {
-  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .board-wrap-zoomed .tile,
@@ -2830,6 +2830,19 @@ body > .tile.tile-shuffle-active {
 
 .rack-slot-pop .tile {
   animation: rack-slot-pop 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes cell-tile-land {
+  from {
+    transform: scale(0.94);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+.cell-tile-landed .tile {
+  animation: cell-tile-land 200ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .tile-drag-ghost {

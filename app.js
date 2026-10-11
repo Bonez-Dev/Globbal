@@ -1462,11 +1462,23 @@ async function placeRackTile(row, col, rackIndex) {
     tile.value = 0;
   }
 
+  const fromRect = window.GlobbleRackReorder?.getActiveDragRect?.();
   rack[rackIndex] = null;
   selectedRackIndex = null;
   board[row][col].tile = tile;
   turnPlacedTiles.push({ row, col, tile, rackIndex });
   render();
+  if (fromRect && window.GlobbleRackReturn?.animateBoardPlacement) {
+    await window.GlobbleRackReturn.animateBoardPlacement({
+      boardEl,
+      row,
+      col,
+      tile,
+      fromRect
+    });
+  } else {
+    window.GlobbleRackReorder?.finishDragGhost();
+  }
 }
 
 function moveTurnTile(targetRow, targetCol, sourceRow, sourceCol) {
@@ -1478,6 +1490,7 @@ function moveTurnTile(targetRow, targetCol, sourceRow, sourceCol) {
     return;
   }
 
+  const fromRect = window.GlobbleRackReorder?.getActiveDragRect?.();
   const movedTile = sourceCell.tile;
   sourceCell.tile = null;
   board[targetRow][targetCol].tile = movedTile;
@@ -1489,6 +1502,17 @@ function moveTurnTile(targetRow, targetCol, sourceRow, sourceCol) {
   }
 
   render();
+  if (fromRect && window.GlobbleRackReturn?.animateBoardPlacement) {
+    void window.GlobbleRackReturn.animateBoardPlacement({
+      boardEl,
+      row: targetRow,
+      col: targetCol,
+      tile: movedTile,
+      fromRect
+    });
+  } else {
+    window.GlobbleRackReorder?.finishDragGhost();
+  }
 }
 
 async function removeTurnTile(row, col, preferredRackSlot = null, dropPoint = null) {
@@ -1612,7 +1636,7 @@ async function recallTurnTiles({ animate = true } = {}) {
       });
     });
     await new Promise((resolve) => {
-      window.setTimeout(resolve, window.GlobbleRackReturn?.QUICK_DURATION_MS ?? 55);
+      window.setTimeout(resolve, window.GlobbleRackReturn?.QUICK_DURATION_MS ?? 100);
     });
   }
 

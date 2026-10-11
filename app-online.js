@@ -1839,11 +1839,24 @@ async function placeOnlineRackTile(row, col, rackIndex) {
     }
     blankLetter = raw.toUpperCase();
   }
+  const fromRect = window.GlobbleRackReorder?.getActiveDragRect?.();
   if (!applyOptimisticPlaceTile(row, col, rackIndex, blankLetter)) {
     return;
   }
   selectedRackIndex = null;
   renderAll();
+  if (fromRect && window.GlobbleRackReturn?.animateBoardPlacement) {
+    const placedTile = gameState.board?.[row]?.[col]?.tile;
+    await window.GlobbleRackReturn.animateBoardPlacement({
+      boardEl,
+      row,
+      col,
+      tile: placedTile,
+      fromRect
+    });
+  } else {
+    window.GlobbleRackReorder?.finishDragGhost();
+  }
   if (canInteract()) {
     sendAction({
       type: "placeTile",
@@ -1859,10 +1872,23 @@ function moveOnlineTurnTile(targetRow, targetCol, sourceRow, sourceCol) {
   if (!canRackBoardInteract()) {
     return;
   }
+  const fromRect = window.GlobbleRackReorder?.getActiveDragRect?.();
+  const movedTile = gameState.board?.[sourceRow]?.[sourceCol]?.tile;
   if (!applyOptimisticMoveTile(targetRow, targetCol, sourceRow, sourceCol)) {
     return;
   }
   renderAll();
+  if (fromRect && movedTile && window.GlobbleRackReturn?.animateBoardPlacement) {
+    void window.GlobbleRackReturn.animateBoardPlacement({
+      boardEl,
+      row: targetRow,
+      col: targetCol,
+      tile: movedTile,
+      fromRect
+    });
+  } else {
+    window.GlobbleRackReorder?.finishDragGhost();
+  }
   if (canInteract()) {
     sendAction({
       type: "moveTile",

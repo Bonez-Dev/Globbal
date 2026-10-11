@@ -10,10 +10,15 @@
   const SPIN_DEGREES = 540;
   const DEFAULT_DURATION_MS = 160;
   const RECALL_DURATION_MS = 120;
-  const QUICK_DURATION_MS = 55;
+  const QUICK_DURATION_MS = 100;
+  const PLACE_DURATION_MS = 140;
 
   function easeOutCubic(t) {
     return 1 - (1 - t) ** 3;
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
   }
 
   function createGhost(tile, width, height, sourceEl = null) {
@@ -153,7 +158,7 @@
   }
 
   function quickFrameAt(t, fromRect, toRect) {
-    const p = easeOutCubic(t);
+    const p = easeInOutCubic(t);
     return {
       left: fromRect.left + (toRect.left - fromRect.left) * p,
       top: fromRect.top + (toRect.top - fromRect.top) * p,
@@ -161,6 +166,61 @@
       height: fromRect.height + (toRect.height - fromRect.height) * p,
       opacity: 1
     };
+  }
+
+  async function playPlace({ fromRect, toRect, tile, durationMs = PLACE_DURATION_MS, sourceEl = null }) {
+    if (!fromRect || !toRect || !tile) {
+      return;
+    }
+
+    const ghost = createGhost(tile, fromRect.width, fromRect.height, sourceEl);
+    document.body.appendChild(ghost);
+    applyQuickGhostFrame(ghost, quickFrameAt(0, fromRect, toRect));
+
+    await new Promise((resolve) => {
+      const start = performance.now();
+      function tick(now) {
+        const t = Math.min(1, (now - start) / durationMs);
+        applyQuickGhostFrame(ghost, quickFrameAt(t, fromRect, toRect));
+        if (t < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          ghost.remove();
+          resolve();
+        }
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
+  async function animateBoardPlacement({ boardEl, row, col, tile, fromRect }) {
+    const from =
+      fromRect ||
+      window.GlobbleRackReorder?.getActiveDragRect?.() ||
+      null;
+    window.GlobbleRackReorder?.finishDragGhost();
+    if (!boardEl || !from || !tile) {
+      return;
+    }
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    const cellEl = boardEl.querySelector(`[data-row="${row}"][data-col="${col}"]`);
+    const tileEl = cellEl?.querySelector(".tile");
+    const toRect = tileEl?.getBoundingClientRect();
+    if (!toRect) {
+      return;
+    }
+    if (tileEl) {
+      tileEl.style.visibility = "hidden";
+    }
+    try {
+      await playPlace({ fromRect: from, toRect, tile, sourceEl: tileEl });
+    } finally {
+      if (tileEl) {
+        tileEl.style.visibility = "";
+      }
+      cellEl?.classList.add("cell-tile-landed");
+      window.setTimeout(() => cellEl?.classList.remove("cell-tile-landed"), 220);
+    }
   }
 
   async function playQuick({ fromRect, toRect, tile, durationMs = QUICK_DURATION_MS, sourceEl = null }) {
@@ -227,10 +287,13 @@
 
   window.GlobbleRackReturn = {
     play,
+    playPlace,
     playQuick,
+    animateBoardPlacement,
     getSlotRect,
     resolveQuickFromRect,
     RECALL_DURATION_MS,
-    QUICK_DURATION_MS
+    QUICK_DURATION_MS,
+    PLACE_DURATION_MS
   };
 })();

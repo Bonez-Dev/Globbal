@@ -5,14 +5,15 @@
 (function boardZoom() {
   const PLACEMENT_ZOOM_SCALE = 1.88;
   const DRAG_FOCUS_SCALE = 1.78;
-  const DRAG_FOCUS_SCALE_LERP = 0.38;
-  const DRAG_FOCUS_SCALE_LERP_COARSE = 0.82;
+  const DRAG_FOCUS_SCALE_LERP = 0.24;
+  const DRAG_FOCUS_SCALE_LERP_COARSE = 0.46;
   const DRAG_FOCUS_EDGE_PX = 52;
-  const DRAG_FOCUS_EDGE_PAN_PX = 16;
-  const DRAG_FOCUS_EDGE_PAN_PX_COARSE = 7;
+  const DRAG_FOCUS_EDGE_PAN_PX = 9;
+  const DRAG_FOCUS_EDGE_PAN_PX_COARSE = 5;
+  const DRAG_FOCUS_EDGE_PAN_BLEND = 0.42;
   const MIN_SCALE = 1;
   const MAX_SCALE = 2.4;
-  const PLACEMENT_ANIM_MS = 180;
+  const PLACEMENT_ANIM_MS = 280;
   /** Edge ring (CSS px) of the viewport that always starts a pan while zoomed. */
   const PAN_EDGE_GUTTER_PX = 40;
 
@@ -63,6 +64,10 @@
 
   function easeOutQuint(t) {
     return 1 - Math.pow(1 - t, 5);
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
   }
 
   function getBoardEl() {
@@ -181,7 +186,7 @@
     return { scale: MIN_SCALE, translateX: 0, translateY: 0 };
   }
 
-  function settleToRest(durationMs = 200) {
+  function settleToRest(durationMs = 300) {
     const rest = getRestPose();
     state.userOverridden = false;
     const alreadyRest =
@@ -283,7 +288,7 @@
         return;
       }
       const t = clamp((now - start) / durationMs, 0, 1);
-      const eased = easeOutQuint(t);
+      const eased = easeInOutCubic(t);
       state.scale = from.scale + (to.scale - from.scale) * eased;
       state.translateX = from.translateX + (to.translateX - from.translateX) * eased;
       state.translateY = from.translateY + (to.translateY - from.translateY) * eased;
@@ -503,7 +508,7 @@
       translateY: snapshot.translateY
     };
     if (animate) {
-      animateTo(target, 150);
+      animateTo(target, 240);
       return;
     }
     cancelAnim();
@@ -575,9 +580,9 @@
     const point = wrapPointFromClient(clientX, clientY);
     const scaleDelta = targetScale - state.scale;
     const nextScale =
-      Math.abs(scaleDelta) <= 0.02
+      Math.abs(scaleDelta) <= 0.012
         ? targetScale
-        : state.scale + scaleDelta * Math.max(lerp, 0.55);
+        : state.scale + scaleDelta * lerp;
     setTransformAtPoint(nextScale, point.x, point.y, local.x, local.y);
 
     // Near the viewport edge, nudge the board so far cells stay reachable while zoomed.
@@ -594,8 +599,8 @@
       panY = -edgePan;
     }
     if (panX || panY) {
-      state.translateX += panX;
-      state.translateY += panY;
+      state.translateX += panX * DRAG_FOCUS_EDGE_PAN_BLEND;
+      state.translateY += panY * DRAG_FOCUS_EDGE_PAN_BLEND;
       applyTransform(false);
     }
 
@@ -626,7 +631,7 @@
           translateX: snapshot.translateX,
           translateY: snapshot.translateY
         },
-        160
+        240
       );
       return;
     }
@@ -657,7 +662,7 @@
     state.suppressClick = false;
     state.wrap?.classList.remove("board-wrap-panning");
     if (animate && (state.scale !== 1 || state.translateX !== 0 || state.translateY !== 0)) {
-      animateTo(target, 160);
+      animateTo(target, 260);
       return;
     }
     state.scale = 1;
@@ -860,7 +865,7 @@
         state.gesture = null;
       }
       if (state.scale <= 1.08) {
-        settleToRest(220);
+        settleToRest(300);
       }
       return;
     }
@@ -869,7 +874,7 @@
       const touch = event.touches[0];
       if (state.scale <= 1.08) {
         state.gesture = null;
-        settleToRest(220);
+        settleToRest(300);
         return;
       }
       if (canSingleFingerPan()) {
@@ -902,7 +907,7 @@
 
     // Always allow returning to the full board; ease the last bit to rest.
     if (nextScale <= MIN_SCALE + 0.001) {
-      settleToRest(200);
+      settleToRest(280);
       return;
     }
 
@@ -911,7 +916,7 @@
     setTransformAtPoint(nextScale, point.x, point.y, anchor.x, anchor.y);
 
     if (state.scale <= 1.02) {
-      settleToRest(180);
+      settleToRest(260);
     }
   }
 
