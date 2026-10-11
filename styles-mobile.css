@@ -457,9 +457,9 @@ button {
 
 .landing-body.about-parchment-page .landing-shell.parchment-shell .splash-parchment-sheet {
   width: min(128vw, 44rem);
-  max-height: min(120dvh, 62rem);
+  max-height: min(124dvh, 64rem);
   transform-origin: 50% 52%;
-  transform: translate(calc(-50% + -0.9vw), calc(-50% + -1.1vh)) scale(1, 1.24);
+  transform: translate(calc(-50% + -0.9vw), calc(-50% + -1.1vh)) scale(1, 1.28);
 }
 
 .landing-grid {
