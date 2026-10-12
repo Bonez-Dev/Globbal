@@ -83,6 +83,7 @@ function sendStaticFile(req, res, file, ext) {
         liveJs === "accounts-menu.js" ||
         liveJs === "place-info.js" ||
         liveJs === "word-wikipedia-reveal.js" ||
+        liveJs === "place-article.js" ||
         liveJs === "invalid-word-toast.js" ||
         liveJs === "tile-pointer-drag.js" ||
         liveJs === "rack-reorder.js" ||
@@ -93,7 +94,8 @@ function sendStaticFile(req, res, file, ext) {
         liveJs === "board-zoom.js" ||
         liveJs === "styles.css" ||
         liveJs === "styles-splash.css" ||
-        liveJs === "styles-mobile.css"
+        liveJs === "styles-mobile.css" ||
+        liveJs === "styles-place-article.css"
       ) {
         headers["Cache-Control"] = "no-cache";
       } else {

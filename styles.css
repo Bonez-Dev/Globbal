@@ -1322,49 +1322,6 @@ body.wiki-reveal-open .play-layout {
   pointer-events: none;
 }
 
-@media (min-width: 641px) {
-  .wiki-reveal {
-    inset: auto;
-    top: max(10px, env(safe-area-inset-top, 0px));
-    right: max(10px, env(safe-area-inset-right, 0px));
-    bottom: auto;
-    left: auto;
-    width: min(380px, calc(100vw - var(--play-width, 400px) - 48px), 34vw);
-    max-width: 380px;
-    height: auto;
-    max-height: min(calc(100dvh - 20px), 540px);
-    padding: 0;
-    justify-content: flex-start;
-    align-items: stretch;
-    background: transparent !important;
-    pointer-events: none;
-  }
-
-  .wiki-reveal.is-open {
-    background: transparent !important;
-  }
-
-  .wiki-reveal-shell {
-    width: 100%;
-    max-height: min(calc(100dvh - 20px), 540px);
-    background: transparent;
-    box-shadow: 0 12px 36px rgba(0, 0, 0, 0.22);
-    pointer-events: auto;
-  }
-
-  .wiki-reveal-parchment::after {
-    display: none;
-  }
-
-  body.wiki-reveal-open {
-    overflow: auto;
-  }
-
-  body.wiki-reveal-open .play-layout {
-    pointer-events: auto;
-  }
-}
-
 .game-stats-tray {
   flex-shrink: 0;
   width: 100%;

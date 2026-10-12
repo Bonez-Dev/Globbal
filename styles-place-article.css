@@ -1,0 +1,97 @@
+/* Dedicated place-article page (Wikipedia summary on parchment). */
+
+html:has(.place-article-page) {
+  background: #000;
+}
+
+.place-article-page {
+  overflow-x: clip;
+  overflow-y: auto;
+  background: #000;
+  --about-compose-max: min(100vw, 430px);
+  --about-compose-pad-x: clamp(1.25rem, 7vw, 2rem);
+  --landing-tray-drop: 0.18rem;
+  --landing-parch-shift-y: -0.85vh;
+  --landing-parch-origin-y: 54%;
+  --landing-parch-scale-y: 1.29;
+  --landing-parch-fit-h: min(124dvh, 62rem);
+}
+
+.place-article-page .landing-shell {
+  height: auto;
+  min-height: 100dvh;
+  min-height: 100svh;
+  overflow: visible;
+  width: 100%;
+  max-width: 100%;
+  margin-inline: auto;
+}
+
+.place-article-page .landing-shell.parchment-shell {
+  overflow: visible;
+  background: transparent;
+}
+
+.place-article-page .landing-shell.parchment-shell > .splash-parchment,
+.place-article-page .landing-shell.parchment-shell > .splash-vignette {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.place-article-page .place-article-header,
+.place-article-page .place-article-main {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: var(--about-compose-max);
+  margin-inline: auto;
+  transform: translateY(calc(-1 * var(--play-y-nudge, 0rem)));
+}
+
+.place-article-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0  var(--about-compose-pad-x) 0.35rem;
+}
+
+.place-article-back {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 2rem;
+  padding: 0.35rem 0.85rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
+
+.place-article-main {
+  padding:
+    0
+    var(--about-compose-pad-x)
+    max(1.25rem, env(safe-area-inset-bottom, 0px) + 0.75rem);
+}
+
+.place-article-panel {
+  width: 100%;
+  max-height: none;
+  background: transparent;
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.35);
+  transform: none;
+  opacity: 1;
+}
+
+.place-article-panel .wiki-reveal-body {
+  min-height: 12rem;
+}
+
+.place-article-panel .wiki-reveal-loading:not([hidden]),
+.place-article-panel .wiki-reveal-fallback:not([hidden]) {
+  min-height: 10rem;
+}

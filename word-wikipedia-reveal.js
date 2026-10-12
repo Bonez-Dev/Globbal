@@ -691,9 +691,53 @@
     return showForWord(word, { ...options, scoredWords });
   }
 
+  async function mountStandalone(rootEl, word, options = {}) {
+    const normalized = String(word || "").trim();
+    if (!rootEl || !normalized) {
+      return;
+    }
+    const label = displayLabelForWord(normalized);
+    const titleEl = rootEl.querySelector(".wiki-reveal-title");
+    if (titleEl) {
+      titleEl.textContent = label;
+    }
+    const loadingEl = rootEl.querySelector(".wiki-reveal-loading");
+    const contentEl = rootEl.querySelector(".wiki-reveal-content");
+    const fallbackEl = rootEl.querySelector(".wiki-reveal-fallback");
+    if (loadingEl) {
+      loadingEl.hidden = false;
+    }
+    if (contentEl) {
+      contentEl.hidden = true;
+    }
+    if (fallbackEl) {
+      fallbackEl.hidden = true;
+    }
+    if (loadingEl) {
+      markPanelEnter(loadingEl);
+    }
+
+    let article = null;
+    try {
+      article = await resolveArticleForWord(normalized, options);
+      if (!article?.extract) {
+        article = await resolveWikipediaArticle(normalized);
+      }
+    } catch {
+      article = null;
+    }
+
+    if (!prefersReducedMotion()) {
+      await waitMs(40);
+    }
+
+    renderArticle(rootEl, article, label);
+  }
+
   window.GlobbleWordWikipediaReveal = {
     prefetch,
     show,
-    showForWord
+    showForWord,
+    mountStandalone
   };
 })();

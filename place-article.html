@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Globbal — Place article</title>
+    <link rel="icon" href="./assets/favicon.ico" sizes="any" />
+    <link rel="icon" href="./assets/logo-mark.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&display=swap" rel="stylesheet" />
+    <link rel="preload" href="./assets/parch2copy.png?v=parch-alpha1" as="image" />
+    <link rel="stylesheet" href="./styles.css?v=wiki-page1" />
+    <link rel="stylesheet" href="./styles-splash.css?v=wiki-page1" />
+    <link rel="stylesheet" href="./styles-place-article.css?v=wiki-page1" />
+    <link
+      rel="stylesheet"
+      href="./styles-mobile.css?v=wiki-page1"
+      media="screen and (max-width: 768px), screen and (max-height: 520px) and (orientation: landscape)"
+    />
+  </head>
+  <body class="landing-body place-article-page">
+    <div class="landing-shell parchment-shell">
+      <div class="splash-parchment" aria-hidden="true">
+        <div class="splash-parchment-sheet-wrap">
+          <img
+            class="splash-parchment-sheet"
+            src="./assets/parch2copy.png?v=parch-alpha1"
+            alt=""
+            draggable="false"
+          />
+          <div class="splash-parchment-sheet-shade"></div>
+        </div>
+      </div>
+      <div class="splash-vignette" aria-hidden="true"></div>
+
+      <header class="landing-header place-article-header">
+        <div class="landing-brand-tray rack-panel">
+          <h1 class="logo-wordmark-wrap">
+            <img
+              class="logo-wordmark"
+              src="./assets/logo-wordmark.svg?v=wordmark-glow-mobile1"
+              width="425"
+              height="90"
+              alt="Globbal"
+              decoding="async"
+            />
+          </h1>
+        </div>
+        <a id="placeArticleBack" class="place-article-back score-cell" href="./practice.html">Back to game</a>
+      </header>
+
+      <main class="place-article-main">
+        <article
+          id="placeArticleRoot"
+          class="place-article-panel wiki-reveal-shell wiki-reveal-parchment"
+          aria-live="polite"
+        >
+          <div class="wiki-reveal-parchment-layer" aria-hidden="true">
+            <img
+              class="wiki-reveal-parchment-sheet"
+              src="./assets/parch2copy.png?v=parch-alpha1"
+              alt=""
+              draggable="false"
+            />
+          </div>
+          <header class="wiki-reveal-header">
+            <div class="wiki-reveal-heading">
+              <p class="wiki-reveal-kicker">Wikipedia</p>
+              <h2 class="wiki-reveal-title">…</h2>
+            </div>
+          </header>
+          <div class="wiki-reveal-body">
+            <div class="wiki-reveal-loading">Loading article…</div>
+            <div class="wiki-reveal-content" hidden>
+              <img class="wiki-reveal-thumb" alt="" hidden />
+              <div class="wiki-reveal-html"></div>
+              <p class="wiki-reveal-extract" hidden></p>
+              <p class="wiki-reveal-attribution" hidden>
+                Summary from
+                <a href="https://en.wikipedia.org/" target="_blank" rel="noopener noreferrer">Wikipedia</a>,
+                licensed under
+                <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer"
+                  >CC BY-SA</a
+                >.
+              </p>
+              <a class="wiki-reveal-open" target="_blank" rel="noopener noreferrer" hidden>
+                Read full article on Wikipedia
+              </a>
+            </div>
+            <div class="wiki-reveal-fallback" hidden></div>
+          </div>
+        </article>
+      </main>
+    </div>
+
+    <script src="./dictionary-keys.js"></script>
+    <script src="./place-info.js?v=wiki-page1"></script>
+    <script src="./word-wikipedia-reveal.js?v=wiki-page1"></script>
+    <script src="./place-article.js?v=wiki-page1"></script>
+  </body>
+</html>

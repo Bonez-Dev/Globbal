@@ -691,6 +691,23 @@
     }, TIP_FADE_MS);
   }
 
+  function buildPlaceArticleUrl(word, candidate) {
+    const params = new URLSearchParams();
+    params.set("word", String(word || "").trim());
+    if (candidate?.url) {
+      params.set("wiki", candidate.url);
+    }
+    try {
+      const path = window.location.pathname.split("/").pop() || "";
+      if (path.endsWith(".html")) {
+        params.set("return", `${path}${window.location.search || ""}`);
+      }
+    } catch {
+      /* ignore */
+    }
+    return `./place-article.html?${params.toString()}`;
+  }
+
   function appendWikipediaLinks(container, word) {
     const candidates = getWikipediaCandidates(word);
     if (!candidates.length) {
@@ -711,29 +728,14 @@
           : candidate.label && candidate.label !== "Wikipedia"
             ? `Wikipedia — ${candidate.label}`
             : "Open on Wikipedia";
-      const revealApi = window.GlobbleWordWikipediaReveal;
-      if (revealApi?.showForWord) {
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "globble-place-tip-link";
-        btn.setAttribute("aria-label", `Read Wikipedia summary for ${candidate.label || word}`);
-        btn.textContent = linkLabel;
-        btn.addEventListener("click", (event) => {
-          event.preventDefault();
-          event.stopPropagation();
-          hidePlaceTip(true);
-          void revealApi.showForWord(word, { candidate });
-        });
-        linksWrap.appendChild(btn);
-        return;
-      }
       const link = document.createElement("a");
       link.className = "globble-place-tip-link";
-      link.href = candidate.url;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-      link.setAttribute("aria-label", `Open Wikipedia for ${candidate.label || word}`);
+      link.href = buildPlaceArticleUrl(word, candidate);
+      link.setAttribute("aria-label", `Read Wikipedia summary for ${candidate.label || word}`);
       link.textContent = linkLabel;
+      link.addEventListener("click", (event) => {
+        event.stopPropagation();
+      });
       linksWrap.appendChild(link);
     });
     container.appendChild(linksWrap);
@@ -896,6 +898,7 @@
     formatDisplayLabel,
     getPlaceMeta: getMetaForWord,
     getWikipediaCandidates,
+    buildPlaceArticleUrl,
     isGeographicWord,
     linesForCell,
     summaryBlockForWords,
