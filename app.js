@@ -1116,9 +1116,24 @@ function renderRack(dealIn = false) {
     return;
   }
   clearActiveTileDragState();
-  const frag = document.createDocumentFragment();
   const rack = players[currentPlayer].rack;
   ensureRackSlots(rack);
+  if (
+    !dealIn &&
+    window.GlobbleRackShuffle?.rackDomMatchesRack?.(rackEl, rack, RACK_SIZE)
+  ) {
+    rackEl.querySelectorAll(".rack-slot").forEach((slotEl) => {
+      const index = Number(slotEl.dataset.rackSlot);
+      const tileEl = slotEl.querySelector(".tile");
+      if (!tileEl) {
+        return;
+      }
+      setTileDraggable(tileEl, gameStarted);
+      tileEl.classList.toggle("selected", index === selectedRackIndex);
+    });
+    return;
+  }
+  const frag = document.createDocumentFragment();
   for (let index = 0; index < RACK_SIZE; index += 1) {
     const slotEl = document.createElement("div");
     slotEl.className = "rack-slot";

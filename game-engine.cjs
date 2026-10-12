@@ -260,6 +260,47 @@ function shuffleRackSlots(rack) {
   });
 }
 
+/** Apply client shuffle mapping (dest slot → source slot); must be a valid occupied-slot permutation. */
+function applyRackShuffleFromSlotSources(rack, slotSources, rackSize = RACK_SIZE) {
+  ensureRackSlots(rack);
+  const size = rackSize;
+  if (!Array.isArray(slotSources) || slotSources.length !== size) {
+    return false;
+  }
+  const before = rack.slice(0, size);
+  const usedSrc = new Array(size).fill(false);
+  const after = new Array(size).fill(null);
+  for (let dest = 0; dest < size; dest += 1) {
+    const src = slotSources[dest];
+    if (src === null || src === undefined) {
+      if (before[dest]) {
+        return false;
+      }
+      continue;
+    }
+    if (!Number.isInteger(src) || src < 0 || src >= size) {
+      return false;
+    }
+    if (!before[src] || usedSrc[src]) {
+      return false;
+    }
+    usedSrc[src] = true;
+    after[dest] = before[src];
+  }
+  for (let i = 0; i < size; i += 1) {
+    if (before[i] && !usedSrc[i]) {
+      return false;
+    }
+    if (!before[i] && after[i]) {
+      return false;
+    }
+  }
+  for (let i = 0; i < size; i += 1) {
+    rack[i] = after[i];
+  }
+  return true;
+}
+
 class OnlineGame {
   constructor(dictionary) {
     this.dictionary = dictionary;
@@ -1008,14 +1049,21 @@ class OnlineGame {
     }
   }
 
-  shuffleRack(playerIndex) {
+  shuffleRack(playerIndex, slotSources) {
     if (!this.gameStarted || this.gameOver) {
       return { ok: false, error: "Game not active." };
     }
     if (playerIndex !== 0 && playerIndex !== 1) {
       return { ok: false, error: "Invalid player." };
     }
-    shuffleRackSlots(this.players[playerIndex].rack);
+    const rack = this.players[playerIndex].rack;
+    if (
+      slotSources &&
+      applyRackShuffleFromSlotSources(rack, slotSources)
+    ) {
+      return { ok: true };
+    }
+    shuffleRackSlots(rack);
     return { ok: true };
   }
 

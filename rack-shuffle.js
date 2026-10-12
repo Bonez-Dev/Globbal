@@ -166,6 +166,46 @@
     return `${tile.letter}|${tile.value}|${tile.isBlank ? 1 : 0}`;
   }
 
+  function domTileKeyFromEl(tileEl) {
+    if (!tileEl) {
+      return null;
+    }
+    const isBlank = tileEl.classList.contains("tile-blank");
+    const valueEl = tileEl.querySelector(".value");
+    const letterEl = valueEl?.previousElementSibling;
+    let letter = letterEl?.textContent?.trim() ?? "";
+    if (isBlank && !letter) {
+      letter = "?";
+    }
+    const value = Number(valueEl?.textContent ?? 0);
+    return `${letter}|${value}|${isBlank ? 1 : 0}`;
+  }
+
+  function rackDomMatchesRack(rackEl, rack, rackSize) {
+    if (!rackEl || !Array.isArray(rack)) {
+      return false;
+    }
+    const size = rackSize ?? rack.length;
+    for (let i = 0; i < size; i += 1) {
+      const slot = rackEl.querySelector(`.rack-slot[data-rack-slot="${i}"]`);
+      if (!slot) {
+        return false;
+      }
+      const tileEl = slot.querySelector(".tile");
+      const t = rack[i] ?? null;
+      if (!t && !tileEl) {
+        continue;
+      }
+      if (!t || !tileEl) {
+        return false;
+      }
+      if (tileSlotKey(t) !== domTileKeyFromEl(tileEl)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   function shuffleInPlace(array) {
     for (let i = array.length - 1; i > 0; i -= 1) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -541,6 +581,7 @@
     play,
     playRecall,
     computeSlotSources,
-    shuffleRackInPlace
+    shuffleRackInPlace,
+    rackDomMatchesRack
   };
 })();

@@ -600,7 +600,7 @@ async function handleMessage(ws, raw) {
       break;
     }
     case "shuffle": {
-      result = game.shuffleRack(playerIndex);
+      result = game.shuffleRack(playerIndex, msg.slotSources);
       break;
     }
     case "reorderRack": {

@@ -529,7 +529,18 @@ function onWsMessage(ev) {
         !gameState.isMyTurn
     );
     const preview = snapshotOffTurnPreview();
+    const prevRack = gameState?.myRack?.map((tile) => (tile ? { ...tile } : null));
+    const domMatchesPrevRack =
+      prevRack &&
+      window.GlobbleRackShuffle?.rackDomMatchesRack?.(rackEl, prevRack, RACK_SIZE);
     gameState = msg.payload;
+    if (
+      domMatchesPrevRack &&
+      gameState?.myRack &&
+      !window.GlobbleRackShuffle.rackDomMatchesRack(rackEl, gameState.myRack, RACK_SIZE)
+    ) {
+      gameState.myRack = prevRack;
+    }
     rememberConfirmedState(gameState);
     if (Array.isArray(gameState?.playerNames) && gameState.playerNames.length) {
       matchUsernames = gameState.playerNames.slice();
@@ -811,8 +822,20 @@ function renderRack() {
   if (rackEl.dataset.shuffling === "1" || rackShuffleAnimating) {
     return;
   }
-  const frag = document.createDocumentFragment();
   const rack = gameState.myRack || [];
+  if (window.GlobbleRackShuffle?.rackDomMatchesRack?.(rackEl, rack, RACK_SIZE)) {
+    rackEl.querySelectorAll(".rack-slot").forEach((slotEl) => {
+      const index = Number(slotEl.dataset.rackSlot);
+      const tileEl = slotEl.querySelector(".tile");
+      if (!tileEl) {
+        return;
+      }
+      setTileDraggable(tileEl, canRackBoardInteract());
+      tileEl.classList.toggle("selected", index === selectedRackIndex);
+    });
+    return;
+  }
+  const frag = document.createDocumentFragment();
 
   for (let index = 0; index < RACK_SIZE; index += 1) {
     const slotEl = document.createElement("div");
@@ -2060,7 +2083,7 @@ if (shuffleRackBtn) {
       shufflePrevRack.push(null);
     }
     onlineShuffleSlotSources = window.GlobbleRackShuffle.shuffleRackInPlace(rack, RACK_SIZE);
-    if (!sendAction({ type: "shuffle" })) {
+    if (!sendAction({ type: "shuffle", slotSources: onlineShuffleSlotSources })) {
       onlineShuffleSlotSources = null;
       restoreRackSnapshot(shufflePrevRack);
       shufflePrevRack = null;
