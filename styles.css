@@ -978,6 +978,15 @@ button:hover {
   transition: color 0.16s ease, transform 0.16s ease;
 }
 
+button.globble-place-tip-link {
+  width: 100%;
+  margin: 0;
+  border: none;
+  background: none;
+  font: inherit;
+  text-align: left;
+}
+
 .globble-place-tip-link:hover,
 .globble-place-tip-link:focus-visible {
   color: var(--text);
@@ -1253,6 +1262,22 @@ button:hover {
 
 .wiki-reveal-html a {
   color: #245ea8;
+}
+
+.wiki-reveal-attribution:not([hidden]) {
+  display: block;
+}
+
+.wiki-reveal-attribution {
+  margin: 0.75rem 0 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+  color: rgba(31, 20, 13, 0.72);
+}
+
+.wiki-reveal-attribution a {
+  color: #245ea8;
+  font-weight: 600;
 }
 
 .wiki-reveal-open:not([hidden]) {

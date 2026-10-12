@@ -387,6 +387,12 @@
             <img class="wiki-reveal-thumb" alt="" hidden />
             <div class="wiki-reveal-html"></div>
             <p class="wiki-reveal-extract" hidden></p>
+            <p class="wiki-reveal-attribution" hidden>
+              Summary from
+              <a href="https://en.wikipedia.org/" target="_blank" rel="noopener noreferrer">Wikipedia</a>,
+              licensed under
+              <a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener noreferrer">CC BY-SA</a>.
+            </p>
             <a class="wiki-reveal-open" target="_blank" rel="noopener noreferrer" hidden>
               Read full article on Wikipedia
             </a>
@@ -510,6 +516,7 @@
     const htmlEl = el.querySelector(".wiki-reveal-html");
     const extractEl = el.querySelector(".wiki-reveal-extract");
     const openEl = el.querySelector(".wiki-reveal-open");
+    const attributionEl = el.querySelector(".wiki-reveal-attribution");
 
     loadingEl.hidden = true;
     fallbackEl.hidden = true;
@@ -521,6 +528,9 @@
     thumbEl.removeAttribute("src");
     openEl.hidden = true;
     openEl.removeAttribute("href");
+    if (attributionEl) {
+      attributionEl.hidden = true;
+    }
     contentEl.classList.remove("wiki-reveal-panel-enter");
     fallbackEl.classList.remove("wiki-reveal-panel-enter");
 
@@ -566,19 +576,53 @@
       openEl.hidden = false;
     }
 
+    if (attributionEl && article.extract) {
+      attributionEl.hidden = false;
+    }
+
     contentEl.hidden = false;
     markPanelEnter(contentEl);
   }
 
-  async function show(scoredWords, options = {}) {
+  async function resolveArticleForWord(word, options = {}) {
+    if (options.articlePromise) {
+      return options.articlePromise;
+    }
+    if (options.candidate) {
+      const fromCandidate = await articleFromCandidate(options.candidate);
+      if (fromCandidate) {
+        return fromCandidate;
+      }
+      if (options.candidate.url) {
+        const candidateLabel =
+          options.candidate.label && !/^wikipedia$/i.test(options.candidate.label)
+            ? options.candidate.label
+            : displayLabelForWord(word);
+        return {
+          title: candidateLabel,
+          extract: options.candidate.searchOnly
+            ? `No short preview is available here. Open Wikipedia to search for “${candidateLabel}”.`
+            : "",
+          description: "",
+          thumbnail: "",
+          pageUrl: toMobileWikiPageUrl(options.candidate.url)
+        };
+      }
+    }
+    return resolveWikipediaArticle(word);
+  }
+
+  async function showForWord(word, options = {}) {
+    const normalized = String(word || "").trim();
+    if (!normalized) {
+      return;
+    }
     if (activePromise) {
       await activePromise;
     }
 
-    const word = pickPrimaryWord(scoredWords);
-    if (!word) {
-      return;
-    }
+    const label = displayLabelForWord(normalized);
+    const scoredWords = options.scoredWords || [{ text: normalized }];
 
     activePromise = (async () => {
       const el = ensureOverlay();
@@ -587,7 +631,6 @@
       const contentEl = el.querySelector(".wiki-reveal-content");
       const fallbackEl = el.querySelector(".wiki-reveal-fallback");
       const titleEl = el.querySelector(".wiki-reveal-title");
-      const label = simpleDisplayWord(word);
 
       titleEl.textContent = label;
       let scoreEl = headingEl.querySelector(".wiki-reveal-score");
@@ -613,7 +656,7 @@
 
       let article = null;
       try {
-        article = await (options.articlePromise || prefetch(scoredWords));
+        article = await resolveArticleForWord(normalized, options);
         if (!article?.extract) {
           article = await prefetch(scoredWords);
         }
@@ -621,7 +664,6 @@
         article = null;
       }
 
-      // Let the parchment settle briefly before swapping loading → article.
       if (!prefersReducedMotion()) {
         await waitMs(40);
       }
@@ -641,8 +683,17 @@
     }
   }
 
+  async function show(scoredWords, options = {}) {
+    const word = pickPrimaryWord(scoredWords);
+    if (!word) {
+      return;
+    }
+    return showForWord(word, { ...options, scoredWords });
+  }
+
   window.GlobbleWordWikipediaReveal = {
     prefetch,
-    show
+    show,
+    showForWord
   };
 })();
