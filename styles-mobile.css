@@ -200,6 +200,11 @@
   max-height: var(--play-wordmark-height);
   height: auto;
   object-fit: contain;
+  filter:
+    drop-shadow(0 0 1.5px rgba(255, 242, 215, 0.82))
+    drop-shadow(0 0 4px rgba(255, 228, 185, 0.52))
+    drop-shadow(0 0 7px rgba(255, 210, 155, 0.28))
+    drop-shadow(0 3px 8px rgba(40, 0, 0, 0.28));
 }
 
 .play-status {
@@ -440,6 +445,11 @@ button {
   max-width: 100%;
   transform: scale(1.22);
   transform-origin: center top;
+  filter:
+    drop-shadow(0 0 1.5px rgba(255, 242, 215, 0.82))
+    drop-shadow(0 0 4px rgba(255, 228, 185, 0.52))
+    drop-shadow(0 0 7px rgba(255, 210, 155, 0.28))
+    drop-shadow(0 3px 8px rgba(40, 0, 0, 0.28));
 }
 
 /* About: match desktop column width; enlarge parchment on phones */
