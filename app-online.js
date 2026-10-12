@@ -909,7 +909,15 @@ async function maybeRunShuffleAnimation() {
     rackShuffleAnimating = false;
     rackEl.classList.remove("is-shuffle-prep");
     setControlsDisabled(!!gameState?.gameOver);
-    renderRack();
+    rackEl.querySelectorAll(".rack-slot").forEach((slotEl) => {
+      const index = Number(slotEl.dataset.rackSlot);
+      const tileEl = slotEl.querySelector(".tile");
+      if (!tileEl) {
+        return;
+      }
+      setTileDraggable(tileEl, canRackBoardInteract());
+      tileEl.classList.toggle("selected", index === selectedRackIndex);
+    });
   }
 }
 

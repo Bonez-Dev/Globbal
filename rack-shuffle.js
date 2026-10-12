@@ -82,13 +82,52 @@
     return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
   }
 
-  function easeInOutQuad(t) {
-    return t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
-  }
+  const SHUFFLE_DURATION_MS = 580;
+  const SHUFFLE_LIFT_FRAC = 0.17;
+  const SHUFFLE_LAND_FRAC = 0.2;
+  const RECALL_DURATION_MS = 320;
 
   function applyTransform(el, tx, ty, rot, scale, z) {
     el.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg) scale(${scale})`;
     el.style.zIndex = String(z);
+  }
+
+  function shuffleFrameAt(t, state) {
+    const jumpHeight = Math.max(44, state.h * 1.22);
+    const dx = state.toX - state.x;
+    const dy = state.toY - state.y;
+    const rotMax = (state.srcSlot - state.destSlot) * 1.15;
+    const travelEnd = 1 - SHUFFLE_LAND_FRAC;
+    const z = 100 + state.destSlot;
+
+    if (t <= SHUFFLE_LIFT_FRAC) {
+      const u = easeInOutCubic(t / SHUFFLE_LIFT_FRAC);
+      return {
+        tx: 0,
+        ty: -jumpHeight * u,
+        rot: rotMax * u,
+        scale: 1 + 0.08 * u,
+        z
+      };
+    }
+    if (t <= travelEnd) {
+      const u = easeInOutCubic((t - SHUFFLE_LIFT_FRAC) / (travelEnd - SHUFFLE_LIFT_FRAC));
+      return {
+        tx: dx * u,
+        ty: dy * u - jumpHeight,
+        rot: rotMax * (1 - u),
+        scale: 1.08,
+        z
+      };
+    }
+    const u = easeInOutCubic((t - travelEnd) / SHUFFLE_LAND_FRAC);
+    return {
+      tx: dx,
+      ty: dy - jumpHeight * (1 - u),
+      rot: 0,
+      scale: 1.08 - 0.08 * u,
+      z
+    };
   }
 
   function naturalSlotPositions(rackEl) {
@@ -307,8 +346,9 @@
       state.el.style.pointerEvents = "none";
       state.el.style.transformOrigin = "center center";
       state.el.style.willChange = "transform";
+      state.el.style.backfaceVisibility = "hidden";
       state.el.style.zIndex = "10000";
-      state.el.style.transform = "translate(0px, 0px) rotate(0deg) scale(1)";
+      state.el.style.transform = "translate3d(0px, 0px, 0) rotate(0deg) scale(1)";
       document.body.appendChild(state.el);
     });
   }
@@ -322,18 +362,23 @@
   }
 
   async function animateStates(states, durationMs, frameFn) {
-    const start = performance.now();
     await new Promise((resolve) => requestAnimationFrame(resolve));
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    const start = performance.now();
     return new Promise((resolve) => {
-      function tick(now) {
-        const t = Math.min(1, (now - start) / durationMs);
+      function paint(t) {
         states.forEach((state) => {
           const frame = frameFn(t, state);
           applyTransform(state.el, frame.tx, frame.ty, frame.rot, frame.scale, frame.z);
         });
+      }
+      function tick(now) {
+        const t = Math.min(1, (now - start) / durationMs);
+        paint(t);
         if (t < 1) {
           requestAnimationFrame(tick);
         } else {
+          paint(1);
           resolve();
         }
       }
@@ -346,35 +391,17 @@
       return;
     }
 
-    await animateStates(states, 200, (t, state) => {
+    await animateStates(states, RECALL_DURATION_MS, (t, state) => {
       const e = easeInOutCubic(t);
-      const lift = Math.sin(t * Math.PI) * -22;
-      const pop = 1 + Math.sin(t * Math.PI) * 0.06;
+      const lift = Math.sin(t * Math.PI) * -18;
+      const scale = 1 + Math.sin(t * Math.PI) * 0.045;
       return {
         tx: (state.toX - state.x) * e,
         ty: (state.toY - state.y) * e + lift,
-        rot: (1 - e) * 10,
-        scale: pop,
+        rot: (1 - e) * 7,
+        scale,
         z: 100 + state.destSlot
       };
-    });
-
-    // Match the rack shuffle: recalled tiles clatter as they reach the rack.
-    playDiceClatter(states.length, { durationMs: 160 });
-    await animateStates(states, 75, (t, state) => {
-      const e = easeInOutQuad(t);
-      const settle = 1 + (1 - e) * 0.03;
-      return {
-        tx: state.toX - state.x,
-        ty: state.toY - state.y,
-        rot: 0,
-        scale: settle,
-        z: 100 + state.destSlot
-      };
-    });
-
-    states.forEach((state) => {
-      applyTransform(state.el, state.toX - state.x, state.toY - state.y, 0, 1, 100 + state.destSlot);
     });
   }
 
@@ -412,8 +439,9 @@
     ghost.style.pointerEvents = "none";
     ghost.style.transformOrigin = "center center";
     ghost.style.willChange = "transform";
+    ghost.style.backfaceVisibility = "hidden";
     ghost.style.zIndex = "10000";
-    ghost.style.transform = "translate(0px, 0px) rotate(0deg) scale(1)";
+    ghost.style.transform = "translate3d(0px, 0px, 0) rotate(0deg) scale(1)";
     document.body.appendChild(ghost);
     return ghost;
   }
@@ -462,58 +490,14 @@
     }
 
     pinTiles(rackEl, states);
+    await new Promise((resolve) => requestAnimationFrame(resolve));
     refreshDestPositions(rackEl, states);
-    // Sound is triggered from the Shuffle button click (user gesture).
 
-    // Give the shuffle a distinct jump, travel, and landing. Keeping the
-    // tiles above the rack during the slot change makes the new order easy
-    // to follow on both desktop and a small phone screen.
-    await animateStates(states, 120, (t, state) => {
-      const e = easeInOutCubic(t);
-      const jumpHeight = Math.max(48, state.h * 1.28);
-      return {
-        tx: 0,
-        ty: -jumpHeight * e,
-        rot: (state.srcSlot - state.destSlot) * 1.2 * e,
-        scale: 1 + 0.1 * e,
-        z: 100 + state.destSlot
-      };
-    });
-
-    refreshDestPositions(rackEl, states);
-    await animateStates(states, 310, (t, state) => {
-      const e = easeInOutCubic(t);
-      const jumpHeight = Math.max(48, state.h * 1.28);
-      return {
-        tx: (state.toX - state.x) * e,
-        ty: (state.toY - state.y) * e - jumpHeight,
-        rot: (state.srcSlot - state.destSlot) * 1.2 * (1 - e),
-        scale: 1.1,
-        z: 100 + state.destSlot
-      };
-    });
-
-    await animateStates(states, 130, (t, state) => {
-      const e = easeInOutQuad(t);
-      const jumpHeight = Math.max(48, state.h * 1.28);
-      return {
-        tx: state.toX - state.x,
-        ty: state.toY - state.y - jumpHeight * (1 - e),
-        rot: 0,
-        scale: 1.1 - 0.1 * e,
-        z: 100 + state.destSlot
-      };
-    });
+    await animateStates(states, SHUFFLE_DURATION_MS, (t, state) => shuffleFrameAt(t, state));
 
     states.forEach((state) => {
-      applyTransform(
-        state.el,
-        state.toX - state.x,
-        state.toY - state.y,
-        0,
-        1,
-        10 + state.destSlot
-      );
+      const frame = shuffleFrameAt(1, state);
+      applyTransform(state.el, frame.tx, frame.ty, frame.rot, frame.scale, frame.z);
     });
 
     unpinTiles(states);

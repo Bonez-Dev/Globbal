@@ -1182,7 +1182,15 @@ async function maybeRunShuffleAnimation() {
     rackShuffleAnimating = false;
     rackEl.classList.remove("is-shuffle-prep");
     shuffleRackBtn.disabled = false;
-    renderRack();
+    rackEl.querySelectorAll(".rack-slot").forEach((slotEl) => {
+      const index = Number(slotEl.dataset.rackSlot);
+      const tileEl = slotEl.querySelector(".tile");
+      if (!tileEl) {
+        return;
+      }
+      setTileDraggable(tileEl, gameStarted);
+      tileEl.classList.toggle("selected", index === selectedRackIndex);
+    });
   }
 }
 
