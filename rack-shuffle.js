@@ -82,8 +82,12 @@
     return t < 0.5 ? 4 * t * t * t : 1 - (-2 * t + 2) ** 3 / 2;
   }
 
+  function easeInOutQuad(t) {
+    return t < 0.5 ? 2 * t * t : 1 - (-2 * t + 2) ** 2 / 2;
+  }
+
   function applyTransform(el, tx, ty, rot, scale, z) {
-    el.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg) scale(${scale})`;
+    el.style.transform = `translate3d(${tx}px, ${ty}px, 0) rotate(${rot}deg) scale(${scale})`;
     el.style.zIndex = String(z);
   }
 
@@ -342,14 +346,14 @@
       return;
     }
 
-    await animateStates(states, 140, (t, state) => {
+    await animateStates(states, 200, (t, state) => {
       const e = easeInOutCubic(t);
-      const lift = Math.sin(t * Math.PI) * -30;
-      const pop = 1 + Math.sin(t * Math.PI) * 0.08;
+      const lift = Math.sin(t * Math.PI) * -22;
+      const pop = 1 + Math.sin(t * Math.PI) * 0.06;
       return {
         tx: (state.toX - state.x) * e,
         ty: (state.toY - state.y) * e + lift,
-        rot: (1 - e) * 16,
+        rot: (1 - e) * 10,
         scale: pop,
         z: 100 + state.destSlot
       };
@@ -357,9 +361,9 @@
 
     // Match the rack shuffle: recalled tiles clatter as they reach the rack.
     playDiceClatter(states.length, { durationMs: 160 });
-    await animateStates(states, 45, (t, state) => {
-      const e = easeOutCubic(t);
-      const settle = 1 + (1 - e) * 0.04;
+    await animateStates(states, 75, (t, state) => {
+      const e = easeInOutQuad(t);
+      const settle = 1 + (1 - e) * 0.03;
       return {
         tx: state.toX - state.x,
         ty: state.toY - state.y,
@@ -464,39 +468,39 @@
     // Give the shuffle a distinct jump, travel, and landing. Keeping the
     // tiles above the rack during the slot change makes the new order easy
     // to follow on both desktop and a small phone screen.
-    await animateStates(states, 90, (t, state) => {
-      const e = easeOutCubic(t);
-      const jumpHeight = Math.max(52, state.h * 1.35);
+    await animateStates(states, 120, (t, state) => {
+      const e = easeInOutCubic(t);
+      const jumpHeight = Math.max(48, state.h * 1.28);
       return {
         tx: 0,
         ty: -jumpHeight * e,
-        rot: (state.srcSlot - state.destSlot) * 1.5 * e,
-        scale: 1 + 0.13 * e,
+        rot: (state.srcSlot - state.destSlot) * 1.2 * e,
+        scale: 1 + 0.1 * e,
         z: 100 + state.destSlot
       };
     });
 
     refreshDestPositions(rackEl, states);
-    await animateStates(states, 240, (t, state) => {
+    await animateStates(states, 310, (t, state) => {
       const e = easeInOutCubic(t);
-      const jumpHeight = Math.max(52, state.h * 1.35);
+      const jumpHeight = Math.max(48, state.h * 1.28);
       return {
         tx: (state.toX - state.x) * e,
         ty: (state.toY - state.y) * e - jumpHeight,
-        rot: (state.srcSlot - state.destSlot) * 1.5 * (1 - e),
-        scale: 1.13,
+        rot: (state.srcSlot - state.destSlot) * 1.2 * (1 - e),
+        scale: 1.1,
         z: 100 + state.destSlot
       };
     });
 
-    await animateStates(states, 105, (t, state) => {
-      const e = easeOutCubic(t);
-      const jumpHeight = Math.max(52, state.h * 1.35);
+    await animateStates(states, 130, (t, state) => {
+      const e = easeInOutQuad(t);
+      const jumpHeight = Math.max(48, state.h * 1.28);
       return {
         tx: state.toX - state.x,
         ty: state.toY - state.y - jumpHeight * (1 - e),
         rot: 0,
-        scale: 1.13 - 0.13 * e,
+        scale: 1.1 - 0.1 * e,
         z: 100 + state.destSlot
       };
     });

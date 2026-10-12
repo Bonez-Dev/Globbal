@@ -7,9 +7,9 @@
   const LIFT_END = 0.22;
   const LIFT_GROWTH = 0.28;
   const FLIGHT_PEAK_SCALE = 2.15;
-  const SPIN_DEGREES = 540;
-  const DEFAULT_DURATION_MS = 160;
-  const RECALL_DURATION_MS = 120;
+  const SPIN_DEGREES = 420;
+  const DEFAULT_DURATION_MS = 200;
+  const RECALL_DURATION_MS = 180;
   const QUICK_DURATION_MS = 100;
   const PLACE_DURATION_MS = 140;
 
@@ -129,7 +129,7 @@
       cy = startCenterY + liftY * liftP;
       uniformScale = 1 + liftP * LIFT_GROWTH;
     } else {
-      const flightP = (t - LIFT_END) / (1 - LIFT_END);
+      const flightP = easeInOutCubic((t - LIFT_END) / (1 - LIFT_END));
       const sizeBump = Math.sin(flightP * Math.PI);
       const shrink = 1 + (endUniformScale - 1) * flightP;
       const peakScale = Math.max(FLIGHT_PEAK_SCALE, shrink + 0.35);
