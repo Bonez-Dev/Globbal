@@ -1115,9 +1115,6 @@ function renderRack(dealIn = false) {
   if (rackEl.dataset.shuffling === "1" || rackShuffleAnimating) {
     return;
   }
-  if (rackShufflePendingAnimation) {
-    rackEl.classList.add("is-shuffle-prep");
-  }
   clearActiveTileDragState();
   const frag = document.createDocumentFragment();
   const rack = players[currentPlayer].rack;
@@ -1144,10 +1141,6 @@ function renderRack(dealIn = false) {
     frag.appendChild(slotEl);
   }
   rackEl.replaceChildren(frag);
-
-  if (rackShufflePendingAnimation) {
-    void maybeRunShuffleAnimation();
-  }
 }
 
 async function maybeRunShuffleAnimation() {
@@ -1173,11 +1166,12 @@ async function maybeRunShuffleAnimation() {
   shufflePrevRack = null;
   shuffleSlotSources = null;
 
+  rackEl.classList.add("is-shuffle-prep");
   rackShuffleAnimating = true;
   shuffleRackBtn.disabled = true;
+  let animated = false;
   try {
-    await new Promise((resolve) => requestAnimationFrame(resolve));
-    await window.GlobbleRackShuffle.play(rackEl, { slotSources, button: shuffleRackBtn });
+    animated = await window.GlobbleRackShuffle.play(rackEl, { slotSources, button: shuffleRackBtn });
   } finally {
     rackShuffleAnimating = false;
     rackEl.classList.remove("is-shuffle-prep");
@@ -1191,6 +1185,9 @@ async function maybeRunShuffleAnimation() {
       setTileDraggable(tileEl, gameStarted);
       tileEl.classList.toggle("selected", index === selectedRackIndex);
     });
+    if (!animated) {
+      renderRack();
+    }
   }
 }
 
@@ -1977,7 +1974,7 @@ async function shuffleRack() {
   );
   selectedRackIndex = null;
   rackShufflePendingAnimation = true;
-  renderRack();
+  void maybeRunShuffleAnimation();
 }
 
 function checkGameOver() {

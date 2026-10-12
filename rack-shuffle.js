@@ -249,23 +249,25 @@
   function buildStates(rackEl, slotSources) {
     const slotPositions = naturalSlotPositions(rackEl);
     const states = [];
+    const size = slotPositions.length;
 
-    rackEl.querySelectorAll(".rack-slot").forEach((slotEl) => {
-      const tileEl = slotEl.querySelector(".tile");
-      if (!tileEl) {
-        return;
-      }
-      const destSlot = Number(slotEl.dataset.rackSlot);
+    for (let destSlot = 0; destSlot < size; destSlot += 1) {
       const srcSlot =
         slotSources && slotSources[destSlot] != null ? slotSources[destSlot] : destSlot;
-      const from = slotPositions[srcSlot] || slotPositions[destSlot];
+      if (srcSlot === destSlot) {
+        continue;
+      }
+      const srcSlotEl = rackEl.querySelector(`.rack-slot[data-rack-slot="${srcSlot}"]`);
+      const destSlotEl = rackEl.querySelector(`.rack-slot[data-rack-slot="${destSlot}"]`);
+      const tileEl = srcSlotEl?.querySelector(".tile");
+      const from = slotPositions[srcSlot];
       const to = slotPositions[destSlot];
-      if (!from || !to || from.w < 1 || from.h < 1) {
-        return;
+      if (!tileEl || !destSlotEl || !from || !to || from.w < 1 || from.h < 1) {
+        continue;
       }
       states.push({
         el: tileEl,
-        parent: slotEl,
+        parent: destSlotEl,
         destSlot,
         srcSlot,
         x: from.x,
@@ -275,7 +277,7 @@
         toX: to.toX,
         toY: to.toY
       });
-    });
+    }
 
     return states;
   }
@@ -512,12 +514,13 @@
     }
 
     const { slotSources, button } = options;
-    rackEl.classList.remove("is-shuffle-prep");
+    rackEl.classList.add("is-shuffle-prep");
     await new Promise((resolve) => requestAnimationFrame(resolve));
-    let states = buildStates(rackEl, slotSources);
+    await new Promise((resolve) => requestAnimationFrame(resolve));
+    const states = buildStates(rackEl, slotSources);
     if (states.length < 2) {
       rackEl.classList.remove("is-shuffle-prep");
-      return;
+      return false;
     }
 
     rackEl.dataset.shuffling = "1";
@@ -527,6 +530,7 @@
 
     try {
       await runShuffleAnimation(rackEl, states);
+      return true;
     } finally {
       rackEl.dataset.shuffling = "0";
       rackEl.classList.remove("is-shuffle-prep");

@@ -811,9 +811,6 @@ function renderRack() {
   if (rackEl.dataset.shuffling === "1" || rackShuffleAnimating) {
     return;
   }
-  if (rackShufflePendingAnimation) {
-    rackEl.classList.add("is-shuffle-prep");
-  }
   const frag = document.createDocumentFragment();
   const rack = gameState.myRack || [];
 
@@ -836,10 +833,6 @@ function renderRack() {
     frag.appendChild(slotEl);
   }
   rackEl.replaceChildren(frag);
-
-  if (rackShufflePendingAnimation) {
-    void maybeRunShuffleAnimation();
-  }
 }
 
 async function runPendingTileReturn() {
@@ -900,11 +893,12 @@ async function maybeRunShuffleAnimation() {
       : null);
   shufflePrevRack = null;
   onlineShuffleSlotSources = null;
+  rackEl.classList.add("is-shuffle-prep");
   rackShuffleAnimating = true;
   shuffleRackBtn.disabled = true;
+  let animated = false;
   try {
-    await new Promise((resolve) => requestAnimationFrame(resolve));
-    await window.GlobbleRackShuffle.play(rackEl, { slotSources, button: shuffleRackBtn });
+    animated = await window.GlobbleRackShuffle.play(rackEl, { slotSources, button: shuffleRackBtn });
   } finally {
     rackShuffleAnimating = false;
     rackEl.classList.remove("is-shuffle-prep");
@@ -918,6 +912,9 @@ async function maybeRunShuffleAnimation() {
       setTileDraggable(tileEl, canRackBoardInteract());
       tileEl.classList.toggle("selected", index === selectedRackIndex);
     });
+    if (!animated) {
+      renderRack();
+    }
   }
 }
 
@@ -2063,16 +2060,16 @@ if (shuffleRackBtn) {
       shufflePrevRack.push(null);
     }
     onlineShuffleSlotSources = window.GlobbleRackShuffle.shuffleRackInPlace(rack, RACK_SIZE);
-    rackShufflePendingAnimation = true;
-    renderRack();
     if (!sendAction({ type: "shuffle" })) {
-      rackShufflePendingAnimation = false;
       onlineShuffleSlotSources = null;
       restoreRackSnapshot(shufflePrevRack);
       shufflePrevRack = null;
       clearStaleRackShuffleUi();
       renderRack();
+      return;
     }
+    rackShufflePendingAnimation = true;
+    void maybeRunShuffleAnimation();
   });
 }
 
