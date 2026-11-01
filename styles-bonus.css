@@ -36,7 +36,8 @@ body {
 .bonus-shell {
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 0.65rem;
+  min-height: 100dvh;
   max-width: 960px;
   margin: 0 auto;
   padding: 0.85rem 0.85rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
@@ -86,21 +87,34 @@ body {
   border-color: rgba(255, 107, 107, 0.45);
 }
 
+.bonus-globe-stage {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  width: 100%;
+  padding: 0.15rem 0;
+}
+
 .bonus-globe-wrap {
   position: relative;
-  flex: 0 0 auto;
-  height: clamp(200px, 38dvh, 380px);
-  max-height: min(42dvh, 380px);
+  width: min(100%, 480px);
+  aspect-ratio: 1;
+  max-height: min(52dvh, calc(100dvh - 17rem));
+  margin-inline: auto;
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
-  background: radial-gradient(circle at 50% 40%, #0d1b33, #02060f 70%);
+  background: radial-gradient(circle at 50% 50%, #0d1b33, #02060f 72%);
   box-shadow:
     inset 0 0 80px rgba(0, 0, 0, 0.55),
     0 18px 40px rgba(0, 0, 0, 0.35);
 }
 
 .bonus-globe-host {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   min-height: 0;
@@ -108,6 +122,13 @@ body {
   cursor: grab;
   user-select: none;
   -webkit-user-select: none;
+}
+
+.bonus-globe-host canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+  margin: 0;
 }
 
 .bonus-globe-host--ready {
@@ -171,7 +192,6 @@ body {
   display: flex;
   flex-direction: column;
   gap: 0.65rem;
-  margin-top: auto;
   padding: 0.65rem 0 calc(0.35rem + env(safe-area-inset-bottom, 0px));
   background: linear-gradient(
     to top,
@@ -321,14 +341,14 @@ body {
   }
 
   .bonus-globe-wrap {
-    height: clamp(180px, 34dvh, 320px);
-    max-height: min(36dvh, 320px);
+    width: min(100%, 420px);
+    max-height: min(46dvh, calc(100dvh - 18rem));
   }
 }
 
 @media (min-width: 900px) {
   .bonus-globe-wrap {
-    height: clamp(280px, 44dvh, 420px);
-    max-height: 420px;
+    width: min(100%, 520px);
+    max-height: min(56dvh, 480px);
   }
 }

@@ -10,7 +10,7 @@ const BUMP_TEXTURE_CDN =
   "https://unpkg.com/three-globe@2.31.1/example/img/earth-topology.png";
 
 /** Bumped when drag feel changes — check Network tab loads this version. */
-export const BONUS_GLOBE_DRAG_VERSION = "globe-arcball12";
+export const BONUS_GLOBE_DRAG_VERSION = "globe-center1";
 
 const DEFAULT_CAMERA_Z = 2.8;
 const MIN_CAMERA_Z = 1.55;
@@ -265,6 +265,9 @@ export class BonusGlobe {
       throw new Error("WebGL is not available in this browser.");
     }
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+    this.renderer.domElement.style.display = "block";
+    this.renderer.domElement.style.width = "100%";
+    this.renderer.domElement.style.height = "100%";
     this.renderer.domElement.style.touchAction = "none";
     this.hostEl.classList.add("bonus-globe-host--ready");
     this.hostEl.replaceChildren(this.renderer.domElement);

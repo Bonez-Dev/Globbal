@@ -191,7 +191,7 @@ async function ensureGlobe() {
     return true;
   }
   try {
-    const { BonusGlobe, BONUS_GLOBE_DRAG_VERSION } = await import("./bonus-globe.js?v=globe-arcball12");
+    const { BonusGlobe, BONUS_GLOBE_DRAG_VERSION } = await import("./bonus-globe.js?v=globe-center1");
     if (globeHostEl && BONUS_GLOBE_DRAG_VERSION) {
       globeHostEl.dataset.globeDragVersion = BONUS_GLOBE_DRAG_VERSION;
     }
