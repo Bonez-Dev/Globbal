@@ -718,8 +718,8 @@ body.dictionary-page .dictionary-topbar {
   }
 }
 
-/* Fold landscape: play column + controls sidebar (controls-rack is sibling of play-focus) */
-@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: landscape) {
+/* Fold / tablet landscape only (wider than phone): sidebar controls beside play column */
+@media (min-width: 840px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: landscape) {
   :root {
     --play-wordmark-height: clamp(1.35rem, 3vmin, 2rem);
     --fold-stack-ref: min(
@@ -803,8 +803,9 @@ body.dictionary-page .dictionary-topbar {
   }
 }
 
-/* Fold portrait: full-width stack under wordmark */
-@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: portrait) {
+/* Fold portrait + phone-width landscape: stacked layout (no sidebar reorientation) */
+@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: portrait),
+  (min-width: 641px) and (max-width: 839px) and (hover: none) and (pointer: coarse) and (orientation: landscape) {
   .play-layout {
     flex-direction: column;
   }
