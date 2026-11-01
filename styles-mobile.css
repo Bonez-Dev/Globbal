@@ -702,3 +702,183 @@ body.dictionary-page .dictionary-topbar {
     --landing-compose-max: min(920px, calc(100vw - 24px));
   }
 }
+
+/* Fold portrait: stacked column (explicit so landscape rules can reset on rotate) */
+@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: portrait) {
+  .play-focus {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .play-focus > .lobby-panel {
+    width: min(100%, var(--play-column));
+    align-self: center;
+  }
+}
+
+/* Fold landscape: board + rack left, controls right (phones stay on short-landscape rules only) */
+@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: landscape) {
+  :root {
+    --fold-sidebar-w: min(10rem, 25vw);
+    --play-wordmark-height: clamp(1.3rem, 3vmin, 1.85rem);
+    --play-brand-band: calc(var(--play-wordmark-height) + 6px);
+    --mobile-action-band: 2.55rem;
+    --action-rail-height: 1.45rem;
+    --controls-rack-band: calc(
+      var(--score-strip-height) + var(--mobile-action-band) + 2 * var(--rack-pad) + var(--play-gap)
+    );
+    --fold-stack-ref: min(
+      calc(
+        100vw
+        - var(--fold-sidebar-w)
+        - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 12px)
+      ),
+      calc(
+        (
+          100dvh
+          - env(safe-area-inset-top, 0px)
+          - env(safe-area-inset-bottom, 0px)
+          - var(--play-brand-band)
+          - var(--game-stats-tray-band)
+          - var(--play-layout-stack-pad)
+        ) * 15 / (var(--board-aspect-rows, 19) + 5)
+      )
+    );
+    --rack-band: calc(
+      2 * ((var(--fold-stack-ref) - 2 * var(--rack-pad) - (var(--rack-cols) - 1) * var(--rack-gap)) / var(--rack-cols))
+      + var(--rack-gap)
+      + 2 * var(--rack-pad)
+    );
+  }
+
+  .play-layout {
+    flex-direction: column;
+    justify-content: flex-start;
+    --play-column: min(
+      var(--fold-stack-ref),
+      calc(
+        (
+          100dvh
+          - env(safe-area-inset-top, 0px)
+          - env(safe-area-inset-bottom, 0px)
+          - var(--play-brand-band)
+          - var(--game-stats-tray-band)
+          - var(--play-layout-stack-pad)
+          - var(--rack-band)
+        ) * 15 / var(--board-aspect-rows, 19)
+      )
+    );
+  }
+
+  .play-layout > .play-brand {
+    width: min(100%, calc(var(--play-column) + var(--fold-sidebar-w)));
+    max-width: 100%;
+  }
+
+  .play-focus {
+    display: grid;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    grid-template-columns: minmax(0, 1fr) var(--fold-sidebar-w);
+    grid-template-rows: auto auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "lobby lobby"
+      "status status"
+      "stats stats"
+      "board controls"
+      "rack controls";
+    gap: var(--play-gap);
+    align-content: stretch;
+    --play-width: var(--play-column);
+  }
+
+  .play-focus > .lobby-panel {
+    grid-area: lobby;
+    width: 100%;
+    max-width: none;
+  }
+
+  .play-focus > .play-status {
+    grid-area: status;
+    width: 100%;
+    max-width: none;
+  }
+
+  .play-focus > .game-stats-tray {
+    grid-area: stats;
+    width: 100%;
+    max-width: none;
+  }
+
+  .play-focus > .board-wrap {
+    grid-area: board;
+    width: min(100%, var(--play-column));
+    max-width: 100%;
+    max-height: 100%;
+    min-height: 0;
+    justify-self: center;
+    margin-inline: auto;
+  }
+
+  .play-focus > .rack-panel:not(.controls-rack) {
+    grid-area: rack;
+    width: min(100%, var(--play-column));
+    max-width: 100%;
+    justify-self: center;
+  }
+
+  .play-focus > .controls-rack {
+    grid-area: controls;
+    width: 100%;
+    max-width: none;
+    margin-inline: 0;
+    align-self: stretch;
+    flex-direction: column;
+    justify-content: stretch;
+  }
+
+  .controls-rack .score-strip {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    width: 100%;
+  }
+
+  .controls-rack .score-strip .score-strip-nav {
+    width: 100%;
+    justify-content: stretch;
+  }
+
+  .controls-rack .score-strip .score-home-btn,
+  .controls-rack .score-strip .score-dictionary-btn {
+    flex: 1 1 0;
+    width: auto;
+    min-width: 0;
+  }
+
+  .controls-rack .game-action-rail {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 4px;
+  }
+
+  .controls-rack .game-action-rail button {
+    width: 100%;
+    min-height: 1.65rem;
+    height: auto;
+    font-size: 0.62rem;
+    padding: 4px 6px;
+    white-space: normal;
+    line-height: 1.15;
+  }
+
+  .gameplay-body .play-stage.parchment-shell {
+    --landing-parch-scale-x: 1.12;
+    --landing-parch-fit-w: min(118vw, 60rem);
+  }
+}
