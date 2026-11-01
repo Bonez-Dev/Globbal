@@ -637,10 +637,10 @@ body.dictionary-page .dictionary-topbar {
   }
 }
 
-/* Unfolded foldables / touch tablets — wide viewport must not inflate rack band */
+/* Touch foldables (Galaxy Fold inner, etc.) — not regular phones under 641px */
 @media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) {
   :root {
-    /* Rack tile math used 100vw before, which made the rack huge and the board column skinny. */
+    --fold-sidebar-w: min(9.5rem, 24vw);
     --fold-stack-ref: min(
       calc(100vw - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 8px)),
       max(520px, min(920px, calc(100dvh * 0.58)))
@@ -664,6 +664,9 @@ body.dictionary-page .dictionary-topbar {
   }
 
   .play-layout {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
     padding-left: max(10px, env(safe-area-inset-left, 0px));
     padding-right: max(10px, env(safe-area-inset-right, 0px));
     --play-column: min(
@@ -683,11 +686,23 @@ body.dictionary-page .dictionary-topbar {
     );
   }
 
+  .play-layout > .play-focus {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 auto;
+    min-height: 0;
+    width: 100%;
+    max-width: 100%;
+    --play-width: var(--play-column);
+  }
+
   .play-layout > .play-brand,
-  .controls-rack,
-  .play-status,
-  .play-focus > .rack-panel:not(.controls-rack),
-  .board-wrap {
+  .play-layout > .controls-rack,
+  .play-focus > .lobby-panel,
+  .play-focus > .play-status,
+  .play-focus > .game-stats-tray,
+  .play-focus > .board-wrap,
+  .play-focus > .rack-panel:not(.controls-rack) {
     width: min(100%, var(--play-column));
     max-width: 100%;
     margin-inline: auto;
@@ -703,48 +718,19 @@ body.dictionary-page .dictionary-topbar {
   }
 }
 
-/* Fold portrait: stacked column (explicit so landscape rules can reset on rotate) */
-@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: portrait) {
-  .play-focus {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .play-focus > .lobby-panel {
-    width: min(100%, var(--play-column));
-    align-self: center;
-  }
-}
-
-/* Fold landscape: board + rack left, controls right (phones stay on short-landscape rules only) */
+/* Fold landscape: play column + controls sidebar (controls-rack is sibling of play-focus) */
 @media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: landscape) {
   :root {
-    --fold-sidebar-w: min(10rem, 25vw);
-    --play-wordmark-height: clamp(1.3rem, 3vmin, 1.85rem);
-    --play-brand-band: calc(var(--play-wordmark-height) + 6px);
-    --mobile-action-band: 2.55rem;
-    --action-rail-height: 1.45rem;
-    --controls-rack-band: calc(
-      var(--score-strip-height) + var(--mobile-action-band) + 2 * var(--rack-pad) + var(--play-gap)
-    );
+    --play-wordmark-height: clamp(1.35rem, 3vmin, 2rem);
     --fold-stack-ref: min(
       calc(
         100vw
         - var(--fold-sidebar-w)
-        - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 12px)
+        - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 16px)
       ),
-      calc(
-        (
-          100dvh
-          - env(safe-area-inset-top, 0px)
-          - env(safe-area-inset-bottom, 0px)
-          - var(--play-brand-band)
-          - var(--game-stats-tray-band)
-          - var(--play-layout-stack-pad)
-        ) * 15 / (var(--board-aspect-rows, 19) + 5)
+      max(
+        520px,
+        min(920px, calc((100dvh - var(--play-brand-band) - var(--game-stats-tray-band) - 8rem) * 15 / 19))
       )
     );
     --rack-band: calc(
@@ -755,8 +741,10 @@ body.dictionary-page .dictionary-topbar {
   }
 
   .play-layout {
-    flex-direction: column;
-    justify-content: flex-start;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    align-items: stretch;
     --play-column: min(
       var(--fold-stack-ref),
       calc(
@@ -774,96 +762,34 @@ body.dictionary-page .dictionary-topbar {
   }
 
   .play-layout > .play-brand {
-    width: min(100%, calc(var(--play-column) + var(--fold-sidebar-w)));
-    max-width: 100%;
-  }
-
-  .play-focus {
-    display: grid;
-    flex: 1 1 auto;
-    min-height: 0;
+    flex: 0 0 100%;
     width: 100%;
     max-width: 100%;
-    grid-template-columns: minmax(0, 1fr) var(--fold-sidebar-w);
-    grid-template-rows: auto auto minmax(0, 1fr) auto;
-    grid-template-areas:
-      "lobby lobby"
-      "status status"
-      "stats stats"
-      "board controls"
-      "rack controls";
-    gap: var(--play-gap);
-    align-content: stretch;
-    --play-width: var(--play-column);
   }
 
-  .play-focus > .lobby-panel {
-    grid-area: lobby;
-    width: 100%;
-    max-width: none;
+  .play-layout > .play-focus {
+    flex: 1 1 0;
+    min-width: 0;
+    max-width: calc(100% - var(--fold-sidebar-w) - var(--play-gap));
   }
 
-  .play-focus > .play-status {
-    grid-area: status;
-    width: 100%;
-    max-width: none;
-  }
-
-  .play-focus > .game-stats-tray {
-    grid-area: stats;
-    width: 100%;
-    max-width: none;
-  }
-
-  .play-focus > .board-wrap {
-    grid-area: board;
-    width: min(100%, var(--play-column));
-    max-width: 100%;
-    max-height: 100%;
-    min-height: 0;
-    justify-self: center;
-    margin-inline: auto;
-  }
-
-  .play-focus > .rack-panel:not(.controls-rack) {
-    grid-area: rack;
-    width: min(100%, var(--play-column));
-    max-width: 100%;
-    justify-self: center;
-  }
-
-  .play-focus > .controls-rack {
-    grid-area: controls;
-    width: 100%;
-    max-width: none;
+  .play-layout > .controls-rack {
+    flex: 0 0 var(--fold-sidebar-w);
+    width: var(--fold-sidebar-w);
+    max-width: var(--fold-sidebar-w);
     margin-inline: 0;
     align-self: stretch;
     flex-direction: column;
-    justify-content: stretch;
   }
 
   .controls-rack .score-strip {
     grid-template-columns: 1fr;
     grid-template-rows: auto auto auto;
-    width: 100%;
-  }
-
-  .controls-rack .score-strip .score-strip-nav {
-    width: 100%;
-    justify-content: stretch;
-  }
-
-  .controls-rack .score-strip .score-home-btn,
-  .controls-rack .score-strip .score-dictionary-btn {
-    flex: 1 1 0;
-    width: auto;
-    min-width: 0;
   }
 
   .controls-rack .game-action-rail {
     display: flex;
     flex-direction: column;
-    width: 100%;
     gap: 4px;
   }
 
@@ -872,13 +798,38 @@ body.dictionary-page .dictionary-topbar {
     min-height: 1.65rem;
     height: auto;
     font-size: 0.62rem;
-    padding: 4px 6px;
-    white-space: normal;
     line-height: 1.15;
+    white-space: normal;
+  }
+}
+
+/* Fold portrait: full-width stack under wordmark */
+@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: portrait) {
+  .play-layout {
+    flex-direction: column;
   }
 
-  .gameplay-body .play-stage.parchment-shell {
-    --landing-parch-scale-x: 1.12;
-    --landing-parch-fit-w: min(118vw, 60rem);
+  .play-layout > .play-focus {
+    flex: 1 1 auto;
+    max-width: 100%;
+  }
+
+  .play-layout > .controls-rack {
+    flex: 0 0 auto;
+    width: min(100%, var(--play-column));
+    max-width: 100%;
+    flex-direction: column;
+  }
+
+  .controls-rack .game-action-rail {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    flex-direction: unset;
+  }
+
+  .controls-rack .game-action-rail button {
+    width: auto;
+    white-space: nowrap;
+    font-size: inherit;
   }
 }
