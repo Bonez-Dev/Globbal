@@ -1,24 +1,30 @@
 /**
  * Temporary dev control: jump to bonus.html for layout testing.
- * Enable with ?bonusDev=1 once (sticky in sessionStorage) or on localhost.
+ * Shown by default on practice/online. Hide with ?bonusDev=0 (sticky in sessionStorage).
  */
 (function bonusDevButton() {
   const STORAGE_KEY = "globble-bonus-dev";
 
   function isBonusDevEnabled() {
-    const host = location.hostname;
-    if (host === "localhost" || host === "127.0.0.1") {
-      return true;
+    if (document.documentElement.classList.contains("is-preview-embed")) {
+      return false;
+    }
+    const path = String(location.pathname || "").toLowerCase();
+    if (!path.endsWith("practice.html") && !path.endsWith("game-online.html")) {
+      return false;
     }
     try {
       const params = new URLSearchParams(location.search);
-      if (params.get("bonusDev") === "1") {
-        sessionStorage.setItem(STORAGE_KEY, "1");
-        return true;
+      if (params.get("bonusDev") === "0") {
+        sessionStorage.setItem(STORAGE_KEY, "0");
+        return false;
       }
-      return sessionStorage.getItem(STORAGE_KEY) === "1";
+      if (params.get("bonusDev") === "1") {
+        sessionStorage.removeItem(STORAGE_KEY);
+      }
+      return sessionStorage.getItem(STORAGE_KEY) !== "0";
     } catch {
-      return false;
+      return true;
     }
   }
 
@@ -82,6 +88,11 @@
     if (!btn || !isBonusDevEnabled()) {
       return;
     }
+    if (btn.dataset.devBound === "1") {
+      btn.hidden = false;
+      return;
+    }
+    btn.dataset.devBound = "1";
     btn.hidden = false;
     btn.addEventListener("click", () => {
       btn.disabled = true;
@@ -98,9 +109,14 @@
     launchDevBonusRound
   };
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", mount);
-  } else {
+  function scheduleMount() {
     mount();
+    window.addEventListener("load", mount, { once: true });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scheduleMount);
+  } else {
+    scheduleMount();
   }
 })();

@@ -412,6 +412,7 @@ html:has(.gameplay-body) {
   min-height: 0;
   padding: 0 2px;
   position: relative;
+  overflow: visible;
 }
 
 .gameplay-body .play-layout > .play-brand {
@@ -431,7 +432,7 @@ html:has(.gameplay-body) {
   position: absolute;
   top: calc(var(--play-ad-clearance, 0.5rem) + 2px);
   right: 2px;
-  z-index: 40;
+  z-index: 45;
   display: flex;
   flex-direction: row;
   align-items: flex-start;
