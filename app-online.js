@@ -533,11 +533,20 @@ function onWsMessage(ev) {
     const domMatchesPrevRack =
       prevRack &&
       window.GlobbleRackShuffle?.rackDomMatchesRack?.(rackEl, prevRack, RACK_SIZE);
+    const shuffleBusy =
+      rackShuffleAnimating ||
+      rackShufflePendingAnimation ||
+      rackEl?.dataset?.shuffling === "1";
     gameState = msg.payload;
+    const serverRack = gameState?.myRack;
+    const prevTileCount = countOccupiedRackSlots(prevRack);
+    const serverTileCount = countOccupiedRackSlots(serverRack);
     if (
+      shuffleBusy &&
       domMatchesPrevRack &&
-      gameState?.myRack &&
-      !window.GlobbleRackShuffle.rackDomMatchesRack(rackEl, gameState.myRack, RACK_SIZE)
+      serverRack &&
+      serverTileCount === prevTileCount &&
+      !window.GlobbleRackShuffle.rackDomMatchesRack(rackEl, serverRack, RACK_SIZE)
     ) {
       gameState.myRack = prevRack;
     }
@@ -813,6 +822,19 @@ function restoreRackSnapshot(snapshot) {
   for (let i = 0; i < RACK_SIZE; i += 1) {
     rack[i] = snapshot[i] ? { ...snapshot[i] } : null;
   }
+}
+
+function countOccupiedRackSlots(rack) {
+  if (!rack) {
+    return 0;
+  }
+  let count = 0;
+  for (let i = 0; i < RACK_SIZE; i += 1) {
+    if (rack[i]) {
+      count += 1;
+    }
+  }
+  return count;
 }
 
 function renderRack() {
