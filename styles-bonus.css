@@ -22,6 +22,9 @@ body {
 
 .bonus-body {
   min-height: 100dvh;
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  -webkit-overflow-scrolling: touch;
   font-family: Inter, "Segoe UI", system-ui, sans-serif;
   color: var(--bonus-text);
   background:
@@ -31,13 +34,12 @@ body {
 }
 
 .bonus-shell {
-  display: grid;
-  grid-template-rows: auto auto 1fr auto auto;
+  display: flex;
+  flex-direction: column;
   gap: 0.75rem;
-  min-height: 100dvh;
   max-width: 960px;
   margin: 0 auto;
-  padding: 0.85rem 0.85rem 1.2rem;
+  padding: 0.85rem 0.85rem calc(0.85rem + env(safe-area-inset-bottom, 0px));
 }
 
 .bonus-loading[hidden],
@@ -86,7 +88,9 @@ body {
 
 .bonus-globe-wrap {
   position: relative;
-  min-height: min(52vh, 420px);
+  flex: 0 0 auto;
+  height: clamp(200px, 38dvh, 380px);
+  max-height: min(42dvh, 380px);
   border-radius: 18px;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.08);
@@ -99,7 +103,7 @@ body {
 .bonus-globe-host {
   width: 100%;
   height: 100%;
-  min-height: min(52vh, 420px);
+  min-height: 0;
   touch-action: none;
   cursor: grab;
   user-select: none;
@@ -151,11 +155,31 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: min(52vh, 420px);
+  height: 100%;
+  min-height: 12rem;
   margin: 0;
   padding: 1rem;
   text-align: center;
   color: var(--bonus-muted);
+}
+
+.bonus-answer-panel {
+  position: sticky;
+  bottom: 0;
+  z-index: 4;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin-top: auto;
+  padding: 0.65rem 0 calc(0.35rem + env(safe-area-inset-bottom, 0px));
+  background: linear-gradient(
+    to top,
+    var(--bonus-bg) 0%,
+    var(--bonus-bg) 72%,
+    rgba(3, 7, 18, 0.92) 88%,
+    transparent 100%
+  );
 }
 
 .bonus-globe-hint {
@@ -294,5 +318,17 @@ body {
 @media (max-width: 640px) {
   .bonus-choices {
     grid-template-columns: 1fr;
+  }
+
+  .bonus-globe-wrap {
+    height: clamp(180px, 34dvh, 320px);
+    max-height: min(36dvh, 320px);
+  }
+}
+
+@media (min-width: 900px) {
+  .bonus-globe-wrap {
+    height: clamp(280px, 44dvh, 420px);
+    max-height: 420px;
   }
 }

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <title>Globbal — Bonus Round</title>
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
-    <link rel="stylesheet" href="./styles-bonus.css?v=4" />
+    <link rel="stylesheet" href="./styles-bonus.css?v=5" />
   </head>
   <body class="bonus-body">
     <div id="bonusLoading" class="bonus-loading">Loading bonus round…</div>
@@ -28,9 +28,11 @@
         <p class="bonus-globe-hint">Drag to spin · Scroll or pinch to zoom</p>
       </div>
 
-      <p class="bonus-question">What country is this?</p>
-      <div id="bonusChoices" class="bonus-choices"></div>
-      <p id="bonusStatus" class="bonus-status" aria-live="polite"></p>
+      <section class="bonus-answer-panel" aria-label="Answer choices">
+        <p class="bonus-question">What country is this?</p>
+        <div id="bonusChoices" class="bonus-choices"></div>
+        <p id="bonusStatus" class="bonus-status" aria-live="polite"></p>
+      </section>
     </main>
 
     <script src="./bonus-ambient-guard.js?v=bonus-silence3"></script>
