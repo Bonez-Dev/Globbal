@@ -105,7 +105,7 @@
   position: relative;
 }
 
-.game-chat-root {
+.play-brand-actions {
   top: max(4px, env(safe-area-inset-top, 0px));
   right: 0;
 }

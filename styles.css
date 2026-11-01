@@ -427,11 +427,59 @@ html:has(.gameplay-body) {
   margin-top: auto;
 }
 
-.game-chat-root {
+.play-brand-actions {
   position: absolute;
   top: calc(var(--play-ad-clearance, 0.5rem) + 2px);
   right: 2px;
   z-index: 40;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 6px;
+  pointer-events: none;
+}
+
+.play-brand-actions > * {
+  pointer-events: auto;
+}
+
+.game-dev-bubble {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: clamp(34px, 8vmin, 42px);
+  height: clamp(34px, 8vmin, 42px);
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--tile-border-dark);
+  border-top-color: var(--tile-border-light);
+  border-left-color: var(--tile-border-mid);
+  background-color: var(--tile);
+  background-image: var(--tile-bg-image);
+  color: var(--tile-text);
+  box-shadow: var(--tile-shadow);
+  cursor: pointer;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  font: inherit;
+  font-size: clamp(0.58rem, 1.35vmin, 0.68rem);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.game-dev-bubble:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--tile-shadow-hover);
+  background-image: var(--tile-bg-image-hover);
+}
+
+.game-dev-bubble[hidden] {
+  display: none !important;
+}
+
+.game-chat-root {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: flex-end;

@@ -300,6 +300,15 @@ async function handleAnswer(choiceIndex) {
     return;
   }
 
+  if (session.devQuick) {
+    window.setTimeout(() => {
+      releaseGameAmbient();
+      clearSession();
+      location.replace(session.returnUrl || "./practice.html");
+    }, postAnswerDelayMs);
+    return;
+  }
+
   session.results[session.activePlayerIndex] = points;
   if (session.activePlayerIndex === session.submittingPlayer) {
     session.activePlayerIndex = session.submittingPlayer === 0 ? 1 : 0;

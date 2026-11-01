@@ -29,7 +29,7 @@
     }
   }
 
-  async function launchPracticeBonus(submittingPlayer, gameSnapshot) {
+  async function launchPracticeBonus(submittingPlayer, gameSnapshot, options = {}) {
     if (typeof navigator !== "undefined" && navigator.onLine === false) {
       throw new Error("Bonus round requires a network connection.");
     }
@@ -41,7 +41,8 @@
     const question = window.GlobbleBonusRound.generateBonusQuestion(countryData);
     saveBonusSession({
       mode: "practice",
-      returnUrl: "./practice.html",
+      returnUrl: options.returnUrl || "./practice.html",
+      devQuick: !!options.devQuick,
       submittingPlayer,
       activePlayerIndex: submittingPlayer,
       playerNames: gameSnapshot.players.map((p) => p.name),

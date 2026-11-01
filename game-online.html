@@ -101,7 +101,18 @@
                 decoding="async"
               />
             </h1>
-            <div class="game-chat-root" id="gameChatRoot" hidden>
+            <div class="play-brand-actions">
+              <button
+                type="button"
+                id="bonusDevBtn"
+                class="game-dev-bubble"
+                hidden
+                title="Test bonus round (dev)"
+                aria-label="Test bonus round"
+              >
+                Bonus
+              </button>
+              <div class="game-chat-root" id="gameChatRoot" hidden>
               <button
                 type="button"
                 id="gameChatBubbleBtn"
@@ -160,6 +171,7 @@
                   <button type="submit" id="gameChatSendBtn">Send</button>
                 </form>
               </section>
+            </div>
             </div>
           </header>
           <div class="play-focus">
@@ -287,6 +299,9 @@
     <script src="./playable-words.js?v=stats1"></script>
     <script src="./invalid-word-toast.js"></script>
     <script src="./game-load-reveal.js"></script>
+    <script src="./bonus-round.js"></script>
+    <script src="./practice-bonus.js?v=dev-bonus1"></script>
+    <script src="./bonus-dev-button.js?v=dev-bonus1"></script>
     <script src="./app-online.js?v=chat-ping1"></script>
   </body>
 </html>
