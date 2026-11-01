@@ -637,41 +637,68 @@ body.dictionary-page .dictionary-topbar {
   }
 }
 
-/* Unfolded foldables / touch tablets: keep the stacked play column centered */
-@media (min-width: 641px) and (max-width: 1100px) and (hover: none) and (pointer: coarse) {
+/* Unfolded foldables / touch tablets — wide viewport must not inflate rack band */
+@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) {
+  :root {
+    /* Rack tile math used 100vw before, which made the rack huge and the board column skinny. */
+    --fold-stack-ref: min(
+      calc(100vw - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 8px)),
+      max(520px, min(920px, calc(100dvh * 0.58)))
+    );
+    --rack-band: calc(
+      2 * ((var(--fold-stack-ref) - 2 * var(--rack-pad) - (var(--rack-cols) - 1) * var(--rack-gap)) / var(--rack-cols))
+      + var(--rack-gap)
+      + 2 * var(--rack-pad)
+    );
+    --play-wordmark-height: clamp(2rem, 4.8vmin, 3.25rem);
+  }
+
   .gameplay-body .play-stage.parchment-shell {
     --landing-parch-shift-x: 0;
     --landing-parch-shift-y: -0.85vh;
-    --landing-parch-scale-x: 1.08;
-    --landing-parch-scale-y: 1.12;
+    --landing-parch-scale-x: 1.05;
+    --landing-parch-scale-y: 1.1;
     --landing-parch-origin-y: 54%;
-    --landing-parch-fit-w: min(108vw, 52rem);
+    --landing-parch-fit-w: min(112vw, 56rem);
     --landing-parch-fit-h: min(118dvh, 62rem);
   }
 
   .play-layout {
     padding-left: max(10px, env(safe-area-inset-left, 0px));
     padding-right: max(10px, env(safe-area-inset-right, 0px));
+    --play-column: min(
+      var(--fold-stack-ref),
+      calc(
+        (
+          100dvh
+          - env(safe-area-inset-top, 0px)
+          - env(safe-area-inset-bottom, 0px)
+          - var(--controls-rack-band)
+          - var(--rack-band)
+          - var(--play-brand-band)
+          - var(--game-stats-tray-band)
+          - var(--play-layout-stack-pad)
+        ) * 15 / var(--board-aspect-rows, 19)
+      )
+    );
   }
 
   .play-layout > .play-brand,
   .controls-rack,
-  .play-status {
+  .play-status,
+  .play-focus > .rack-panel:not(.controls-rack),
+  .board-wrap {
     width: min(100%, var(--play-column));
-    max-width: min(100%, 520px);
+    max-width: 100%;
     margin-inline: auto;
-  }
-
-  :root {
-    --play-wordmark-height: clamp(2rem, 4.8vmin, 3.25rem);
   }
 
   .landing-body {
     --landing-parch-shift-x: 0;
-    --landing-parch-fit-w: min(108vw, 52rem);
+    --landing-parch-fit-w: min(112vw, 56rem);
   }
 
   .landing-shell {
-    --landing-compose-max: min(520px, 100vw);
+    --landing-compose-max: min(920px, calc(100vw - 24px));
   }
 }
