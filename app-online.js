@@ -22,6 +22,7 @@ const gameChatFormEl = document.getElementById("gameChatForm");
 const gameChatInputEl = document.getElementById("gameChatInput");
 const gameChatSendBtn = document.getElementById("gameChatSendBtn");
 const gameChatUnreadEl = document.getElementById("gameChatUnread");
+const gameChatPingBtn = document.getElementById("gameChatPingBtn");
 
 const submitTurnBtn = document.getElementById("submitTurnBtn");
 const recallTilesBtn = document.getElementById("recallTilesBtn");
@@ -100,6 +101,8 @@ let chatBothEnabled = false;
 let chatMessages = [];
 let chatPanelOpen = false;
 let chatUnreadCount = 0;
+let chatInviteFromName = null;
+let chatPingCooldownUntil = 0;
 
 function syncPlayedWordScoresFromState(state) {
   window.GlobblePlaceInfo?.clearPlayedWordScores?.();
@@ -214,8 +217,11 @@ function setChatPanelOpen(open) {
       gameChatFormEl.hidden = false;
     }
     focusChatComposer();
+    updateChatUi();
   } else if (gameChatInputEl && document.activeElement === gameChatInputEl) {
     gameChatInputEl.blur();
+  } else {
+    updateChatUi();
   }
 }
 
@@ -223,6 +229,13 @@ function updateChatUnreadBadge() {
   if (!gameChatUnreadEl) {
     return;
   }
+  if (chatInviteFromName && !chatPanelOpen) {
+    gameChatUnreadEl.hidden = false;
+    gameChatUnreadEl.textContent = "!";
+    gameChatBubbleBtn?.classList.add("is-ping-alert");
+    return;
+  }
+  gameChatBubbleBtn?.classList.remove("is-ping-alert");
   if (chatUnreadCount > 0) {
     gameChatUnreadEl.hidden = false;
     gameChatUnreadEl.textContent = chatUnreadCount > 9 ? "9+" : String(chatUnreadCount);
@@ -289,8 +302,19 @@ function updateChatUi() {
   if (gameChatLogEl) {
     gameChatLogEl.hidden = !chatYouEnabled;
   }
+  if (gameChatPingBtn) {
+    const pingVisible = chatPanelOpen && !chatBothEnabled;
+    gameChatPingBtn.hidden = !pingVisible;
+    const onCooldown = Date.now() < chatPingCooldownUntil;
+    gameChatPingBtn.disabled = onCooldown;
+    gameChatPingBtn.textContent = onCooldown
+      ? "Invite sent — wait a moment…"
+      : "Ask opponent to join chat";
+  }
   if (gameChatHintEl) {
-    if (!chatYouEnabled) {
+    if (chatInviteFromName && !chatBothEnabled) {
+      gameChatHintEl.textContent = `${chatInviteFromName} invited you to chat — check “Join chat with opponent” to reply.`;
+    } else if (!chatYouEnabled) {
       gameChatHintEl.textContent =
         "Opt in to message your opponent. Chat stays in this game only.";
     } else if (!chatBothEnabled) {
@@ -303,12 +327,41 @@ function updateChatUi() {
   updateChatUnreadBadge();
 }
 
+function handleChatPing(msg) {
+  if (typeof myPlayerIndex === "number" && msg.fromPlayerIndex === myPlayerIndex) {
+    return;
+  }
+  if (chatBothEnabled) {
+    return;
+  }
+  const name = String(msg.username || "Your opponent").trim() || "Your opponent";
+  chatInviteFromName = name;
+  window.GlobbleInvalidWordToast?.show(`${name} wants to chat — open the chat bubble to join.`);
+  updateChatUi();
+}
+
+function handleChatPingSent() {
+  chatPingCooldownUntil = Date.now() + 20000;
+  if (gameChatHintEl && !chatBothEnabled) {
+    gameChatHintEl.textContent = "Chat invite sent. Waiting for your opponent to join…";
+  }
+  updateChatUi();
+  window.setTimeout(() => {
+    if (Date.now() >= chatPingCooldownUntil) {
+      updateChatUi();
+    }
+  }, 20000);
+}
+
 function applyChatStatus(msg) {
   chatYouEnabled = Boolean(msg.youEnabled);
   chatBothEnabled = Boolean(msg.bothEnabled);
   chatMessages = Array.isArray(msg.messages) ? msg.messages.slice() : [];
   if (!chatYouEnabled) {
     chatUnreadCount = 0;
+  }
+  if (chatBothEnabled) {
+    chatInviteFromName = null;
   }
   updateChatUi();
 }
@@ -340,6 +393,8 @@ function resetChatState() {
   chatBothEnabled = false;
   chatMessages = [];
   chatUnreadCount = 0;
+  chatInviteFromName = null;
+  chatPingCooldownUntil = 0;
   chatPanelOpen = false;
   updateChatUi();
   setChatPanelOpen(false);
@@ -369,6 +424,14 @@ function bindGameChatUi() {
     if (enabled && chatPanelOpen) {
       focusChatComposer();
     }
+  });
+  gameChatPingBtn?.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (chatBothEnabled || Date.now() < chatPingCooldownUntil) {
+      return;
+    }
+    sendAction({ type: "chatPing" });
   });
   gameChatFormEl?.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -591,6 +654,10 @@ function onWsMessage(ev) {
     if (msg.message) {
       appendChatMessage(msg.message, { fromServer: true });
     }
+  } else if (msg.type === "chatPing") {
+    handleChatPing(msg);
+  } else if (msg.type === "chatPingSent") {
+    handleChatPingSent();
   } else if (msg.type === "error") {
     rackShufflePendingAnimation = false;
     rackShuffleAnimating = false;

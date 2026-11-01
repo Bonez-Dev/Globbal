@@ -261,6 +261,7 @@ function broadcastRoom(room) {
 const CHAT_MAX_LEN = 200;
 const CHAT_MAX_MESSAGES = 40;
 const CHAT_MIN_INTERVAL_MS = 400;
+const CHAT_PING_MIN_INTERVAL_MS = 20000;
 
 function ensureRoomChat(room) {
   if (!Array.isArray(room.chatOptIn) || room.chatOptIn.length !== 2) {
@@ -271,6 +272,9 @@ function ensureRoomChat(room) {
   }
   if (!Array.isArray(room.chatLastSendAt) || room.chatLastSendAt.length !== 2) {
     room.chatLastSendAt = [0, 0];
+  }
+  if (!Array.isArray(room.chatLastPingAt) || room.chatLastPingAt.length !== 2) {
+    room.chatLastPingAt = [0, 0];
   }
 }
 
@@ -373,6 +377,27 @@ function handleChatSend(room, playerIndex, rawText) {
   return { ok: true };
 }
 
+function handleChatPing(room, playerIndex) {
+  ensureRoomChat(room);
+  if (chatBothEnabled(room)) {
+    return { ok: false, error: "You are already connected in chat." };
+  }
+  const now = Date.now();
+  if (now - (room.chatLastPingAt[playerIndex] || 0) < CHAT_PING_MIN_INTERVAL_MS) {
+    return { ok: false, error: "Wait a moment before sending another chat invite." };
+  }
+  room.chatLastPingAt[playerIndex] = now;
+  const opponentIndex = playerIndex === 0 ? 1 : 0;
+  const opponentSock = room.slots[opponentIndex];
+  sendChatPayload(opponentSock, {
+    type: "chatPing",
+    fromPlayerIndex: playerIndex,
+    username: String(room.usernames[playerIndex] || `Player ${playerIndex + 1}`),
+    at: now
+  });
+  return { ok: true };
+}
+
 function attachSlot(ws, room, playerIndex) {
   cancelRoomCleanup(room);
   const existing = room.slots[playerIndex];
@@ -434,7 +459,8 @@ async function ensureLiveGame(gameDoc) {
     status: gameDoc.status,
     chatOptIn: [false, false],
     chatMessages: [],
-    chatLastSendAt: [0, 0]
+    chatLastSendAt: [0, 0],
+    chatLastPingAt: [0, 0]
   };
   liveGames.set(gameId, room);
   if (gameDoc.status === "active" && game.gameStarted && !gameDoc.liveSnapshot) {
@@ -540,7 +566,8 @@ async function handleMessage(ws, raw) {
     game.isBonusBlocking?.() &&
     type !== "bonusAnswer" &&
     type !== "chatOptIn" &&
-    type !== "chatSend"
+    type !== "chatSend" &&
+    type !== "chatPing"
   ) {
     ws.send(JSON.stringify({ type: "error", error: "Bonus round in progress." }));
     return;
@@ -554,6 +581,15 @@ async function handleMessage(ws, raw) {
     const chatResult = handleChatSend(room, playerIndex, msg.text);
     if (!chatResult.ok) {
       ws.send(JSON.stringify({ type: "error", error: chatResult.error || "Chat rejected." }));
+    }
+    return;
+  }
+  if (type === "chatPing") {
+    const pingResult = handleChatPing(room, playerIndex);
+    if (!pingResult.ok) {
+      ws.send(JSON.stringify({ type: "error", error: pingResult.error || "Chat invite rejected." }));
+    } else {
+      ws.send(JSON.stringify({ type: "chatPingSent" }));
     }
     return;
   }

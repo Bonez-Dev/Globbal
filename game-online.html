@@ -8,7 +8,7 @@
     <link rel="icon" href="./assets/favicon.ico" sizes="any" />
     <link rel="icon" href="./assets/logo-mark.svg" type="image/svg+xml" />
     <link rel="preload" href="./assets/ancient-compass-map-original.png" as="image" />
-    <link rel="stylesheet" href="./styles.css?v=wiki-page1" />
+    <link rel="stylesheet" href="./styles.css?v=chat-ping1" />
     <link rel="stylesheet" href="./styles-splash.css?v=game-online-gold1" />
     <link
       rel="stylesheet"
@@ -138,6 +138,9 @@
                 <p id="gameChatHint" class="game-chat-hint">
                   Opt in to message your opponent. Chat stays in this game only.
                 </p>
+                <button type="button" id="gameChatPingBtn" class="game-chat-ping-btn score-cell" hidden>
+                  Ask opponent to join chat
+                </button>
                 <div id="gameChatLog" class="game-chat-log" aria-live="polite"></div>
                 <form id="gameChatForm" class="game-chat-form" hidden>
                   <input
@@ -283,6 +286,6 @@
     <script src="./playable-words.js?v=stats1"></script>
     <script src="./invalid-word-toast.js"></script>
     <script src="./game-load-reveal.js"></script>
-    <script src="./app-online.js?v=submit-rack1"></script>
+    <script src="./app-online.js?v=chat-ping1"></script>
   </body>
 </html>
