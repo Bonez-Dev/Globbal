@@ -1,7 +1,8 @@
 /**
  * Adds US state two-letter codes to LOCKED_WORDS and place-metadata.json.
  * Each abbreviation links to the full-name state Wikipedia article.
- * Country abbreviations (USA, UK, UAE) are added by apply-country-aliases.cjs.
+ * Country ISO2 codes (FR, DE, …) are added by add-country-iso2-abbreviations.cjs.
+ * Longer country aliases (USA, UK, UAE) are added by apply-country-aliases.cjs.
  *
  * Run: node scripts/add-abbreviations-to-dictionary.cjs
  */
@@ -13,6 +14,7 @@ const DICT_PATH = path.join(ROOT, "dictionary.js");
 const META_PATH = path.join(ROOT, "place-metadata.json");
 const STATES_PATH = path.join(ROOT, "data", "us-states.json");
 const { displayWord } = require(path.join(ROOT, "dictionary-keys.js"));
+const { applyCountryIso2Abbreviations } = require("./add-country-iso2-abbreviations.cjs");
 
 const US_COUNTRY = "United States";
 
@@ -102,13 +104,18 @@ states.forEach((state) => {
   }
 });
 
-mergedWords.sort((a, b) => a.localeCompare(b));
+const {
+  mergedWords: withCountryIso2,
+  added: countryIsoAdded,
+  skippedStateClash
+} = applyCountryIso2Abbreviations(mergedWords, meta);
 
-fs.writeFileSync(DICT_PATH, `const LOCKED_WORDS = ${JSON.stringify(mergedWords)};\n`, "utf8");
+fs.writeFileSync(DICT_PATH, `const LOCKED_WORDS = ${JSON.stringify(withCountryIso2)};\n`, "utf8");
 fs.writeFileSync(META_PATH, `${JSON.stringify(meta)}\n`, "utf8");
 
 process.stdout.write(
   `State abbreviations: ${states.length} configured (${added} new words).\n` +
-    `Dictionary total: ${mergedWords.length} words.\n` +
+    `Country ISO2 abbreviations: ${countryIsoAdded} new (${skippedStateClash} skipped — US state code clash).\n` +
+    `Dictionary total: ${withCountryIso2.length} words.\n` +
     `place-metadata.json: ${Object.keys(meta).length} entries.\n`
 );

@@ -637,200 +637,195 @@ body.dictionary-page .dictionary-topbar {
   }
 }
 
-/* Touch foldables (Galaxy Fold inner, etc.) — not regular phones under 641px */
-@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) {
-  :root {
-    --fold-sidebar-w: min(9.5rem, 24vw);
-    --fold-stack-ref: min(
-      calc(100vw - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 8px)),
-      max(520px, min(920px, calc(100dvh * 0.58)))
-    );
-    --rack-band: calc(
-      2 * ((var(--fold-stack-ref) - 2 * var(--rack-pad) - (var(--rack-cols) - 1) * var(--rack-gap)) / var(--rack-cols))
-      + var(--rack-gap)
-      + 2 * var(--rack-pad)
-    );
-    --play-wordmark-height: clamp(2rem, 4.8vmin, 3.25rem);
-  }
-
-  .gameplay-body .play-stage.parchment-shell {
-    --landing-parch-shift-x: 0;
-    --landing-parch-shift-y: -0.85vh;
-    --landing-parch-scale-x: 1.05;
-    --landing-parch-scale-y: 1.1;
-    --landing-parch-origin-y: 54%;
-    --landing-parch-fit-w: min(112vw, 56rem);
-    --landing-parch-fit-h: min(118dvh, 62rem);
-  }
-
-  .play-layout {
-    display: flex;
-    flex-direction: column;
-    align-items: stretch;
-    padding-left: max(10px, env(safe-area-inset-left, 0px));
-    padding-right: max(10px, env(safe-area-inset-right, 0px));
-    --play-column: min(
-      var(--fold-stack-ref),
-      calc(
-        (
-          100dvh
-          - env(safe-area-inset-top, 0px)
-          - env(safe-area-inset-bottom, 0px)
-          - var(--controls-rack-band)
-          - var(--rack-band)
-          - var(--play-brand-band)
-          - var(--game-stats-tray-band)
-          - var(--play-layout-stack-pad)
-        ) * 15 / var(--board-aspect-rows, 19)
-      )
-    );
-  }
-
-  .play-layout > .play-focus {
-    display: flex;
-    flex-direction: column;
-    flex: 1 1 auto;
-    min-height: 0;
-    width: 100%;
-    max-width: 100%;
-    --play-width: var(--play-column);
-  }
-
-  .play-layout > .play-brand,
-  .play-layout > .controls-rack,
-  .play-focus > .lobby-panel,
-  .play-focus > .play-status,
-  .play-focus > .game-stats-tray,
-  .play-focus > .board-wrap,
-  .play-focus > .rack-panel:not(.controls-rack) {
-    width: min(100%, var(--play-column));
-    max-width: 100%;
-    margin-inline: auto;
-  }
-
-  .landing-body {
-    --landing-parch-shift-x: 0;
-    --landing-parch-fit-w: min(112vw, 56rem);
-  }
-
-  .landing-shell {
-    --landing-compose-max: min(920px, calc(100vw - 24px));
-  }
+/* Wide touch (Fold inner, etc.) — activated by fold-detect.js on html.globble-wide-touch */
+html.globble-wide-touch {
+  --fold-sidebar-w: min(9.5rem, 24vw);
+  --fold-stack-ref: min(
+    calc(100vw - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 8px)),
+    max(520px, min(920px, calc(100dvh * 0.58)))
+  );
+  --rack-band: calc(
+    2 * ((var(--fold-stack-ref) - 2 * var(--rack-pad) - (var(--rack-cols) - 1) * var(--rack-gap)) / var(--rack-cols))
+    + var(--rack-gap)
+    + 2 * var(--rack-pad)
+  );
+  --play-wordmark-height: clamp(2rem, 4.8vmin, 3.25rem);
 }
 
-/* Fold / tablet landscape only (wider than phone): sidebar controls beside play column */
-@media (min-width: 840px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: landscape) {
-  :root {
-    --play-wordmark-height: clamp(1.35rem, 3vmin, 2rem);
-    --fold-stack-ref: min(
-      calc(
-        100vw
-        - var(--fold-sidebar-w)
-        - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 16px)
-      ),
-      max(
-        520px,
-        min(920px, calc((100dvh - var(--play-brand-band) - var(--game-stats-tray-band) - 8rem) * 15 / 19))
-      )
-    );
-    --rack-band: calc(
-      2 * ((var(--fold-stack-ref) - 2 * var(--rack-pad) - (var(--rack-cols) - 1) * var(--rack-gap)) / var(--rack-cols))
-      + var(--rack-gap)
-      + 2 * var(--rack-pad)
-    );
-  }
-
-  .play-layout {
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-content: flex-start;
-    align-items: stretch;
-    --play-column: min(
-      var(--fold-stack-ref),
-      calc(
-        (
-          100dvh
-          - env(safe-area-inset-top, 0px)
-          - env(safe-area-inset-bottom, 0px)
-          - var(--play-brand-band)
-          - var(--game-stats-tray-band)
-          - var(--play-layout-stack-pad)
-          - var(--rack-band)
-        ) * 15 / var(--board-aspect-rows, 19)
-      )
-    );
-  }
-
-  .play-layout > .play-brand {
-    flex: 0 0 100%;
-    width: 100%;
-    max-width: 100%;
-  }
-
-  .play-layout > .play-focus {
-    flex: 1 1 0;
-    min-width: 0;
-    max-width: calc(100% - var(--fold-sidebar-w) - var(--play-gap));
-  }
-
-  .play-layout > .controls-rack {
-    flex: 0 0 var(--fold-sidebar-w);
-    width: var(--fold-sidebar-w);
-    max-width: var(--fold-sidebar-w);
-    margin-inline: 0;
-    align-self: stretch;
-    flex-direction: column;
-  }
-
-  .controls-rack .score-strip {
-    grid-template-columns: 1fr;
-    grid-template-rows: auto auto auto;
-  }
-
-  .controls-rack .game-action-rail {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .controls-rack .game-action-rail button {
-    width: 100%;
-    min-height: 1.65rem;
-    height: auto;
-    font-size: 0.62rem;
-    line-height: 1.15;
-    white-space: normal;
-  }
+html.globble-wide-touch .gameplay-body .play-stage.parchment-shell {
+  --landing-parch-shift-x: 0;
+  --landing-parch-shift-y: -0.85vh;
+  --landing-parch-scale-x: 1.05;
+  --landing-parch-scale-y: 1.1;
+  --landing-parch-origin-y: 54%;
+  --landing-parch-fit-w: min(112vw, 56rem);
+  --landing-parch-fit-h: min(118dvh, 62rem);
 }
 
-/* Fold portrait + phone-width landscape: stacked layout (no sidebar reorientation) */
-@media (min-width: 641px) and (max-width: 1200px) and (hover: none) and (pointer: coarse) and (orientation: portrait),
-  (min-width: 641px) and (max-width: 839px) and (hover: none) and (pointer: coarse) and (orientation: landscape) {
-  .play-layout {
-    flex-direction: column;
-  }
+html.globble-wide-touch .play-layout {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding-left: max(10px, env(safe-area-inset-left, 0px));
+  padding-right: max(10px, env(safe-area-inset-right, 0px));
+  --play-column: min(
+    var(--fold-stack-ref),
+    calc(
+      (
+        100dvh
+        - env(safe-area-inset-top, 0px)
+        - env(safe-area-inset-bottom, 0px)
+        - var(--controls-rack-band)
+        - var(--rack-band)
+        - var(--play-brand-band)
+        - var(--game-stats-tray-band)
+        - var(--play-layout-stack-pad)
+      ) * 15 / var(--board-aspect-rows, 19)
+    )
+  );
+  --play-width: var(--play-column);
+}
 
-  .play-layout > .play-focus {
-    flex: 1 1 auto;
-    max-width: 100%;
-  }
+html.globble-wide-touch .play-layout > .play-focus {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  max-width: 100%;
+  --play-width: var(--play-column);
+}
 
-  .play-layout > .controls-rack {
-    flex: 0 0 auto;
-    width: min(100%, var(--play-column));
-    max-width: 100%;
-    flex-direction: column;
-  }
+html.globble-wide-touch .play-layout > .play-brand,
+html.globble-wide-touch .play-layout > .controls-rack,
+html.globble-wide-touch .play-focus > .lobby-panel,
+html.globble-wide-touch .play-focus > .play-status,
+html.globble-wide-touch .play-focus > .game-stats-tray,
+html.globble-wide-touch .play-focus > .board-wrap,
+html.globble-wide-touch .play-focus > .rack-panel:not(.controls-rack) {
+  width: min(100%, var(--play-column));
+  max-width: 100%;
+  margin-inline: auto;
+}
 
-  .controls-rack .game-action-rail {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    flex-direction: unset;
-  }
+html.globble-wide-touch .landing-body {
+  --landing-parch-shift-x: 0;
+  --landing-parch-fit-w: min(112vw, 56rem);
+}
 
-  .controls-rack .game-action-rail button {
-    width: auto;
-    white-space: nowrap;
-    font-size: inherit;
-  }
+html.globble-wide-touch .landing-shell {
+  --landing-compose-max: min(920px, calc(100vw - 24px));
+}
+
+/* Stacked layout: portrait or phone-width landscape on wide touch */
+html.globble-wide-touch.globble-fold-stack .play-layout {
+  flex-direction: column;
+}
+
+html.globble-wide-touch.globble-fold-stack .play-layout > .play-focus {
+  flex: 1 1 auto;
+  max-width: 100%;
+}
+
+html.globble-wide-touch.globble-fold-stack .play-layout > .controls-rack {
+  flex: 0 0 auto;
+  width: min(100%, var(--play-column));
+  max-width: 100%;
+  flex-direction: column;
+}
+
+html.globble-wide-touch.globble-fold-stack .controls-rack .game-action-rail {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  flex-direction: unset;
+}
+
+html.globble-wide-touch.globble-fold-stack .controls-rack .game-action-rail button {
+  width: auto;
+  white-space: nowrap;
+  font-size: inherit;
+}
+
+/* Sidebar layout: wide touch landscape (840px+ width, wider than tall) */
+html.globble-wide-touch.globble-fold-sidebar {
+  --play-wordmark-height: clamp(1.35rem, 3vmin, 2rem);
+  --fold-stack-ref: min(
+    calc(
+      100vw
+      - var(--fold-sidebar-w)
+      - max(16px, env(safe-area-inset-left, 0px) + env(safe-area-inset-right, 0px) + 16px)
+    ),
+    max(
+      520px,
+      min(920px, calc((100dvh - var(--play-brand-band) - var(--game-stats-tray-band) - 8rem) * 15 / 19))
+    )
+  );
+  --rack-band: calc(
+    2 * ((var(--fold-stack-ref) - 2 * var(--rack-pad) - (var(--rack-cols) - 1) * var(--rack-gap)) / var(--rack-cols))
+    + var(--rack-gap)
+    + 2 * var(--rack-pad)
+  );
+}
+
+html.globble-wide-touch.globble-fold-sidebar .play-layout {
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  align-items: stretch;
+  --play-column: min(
+    var(--fold-stack-ref),
+    calc(
+      (
+        100dvh
+        - env(safe-area-inset-top, 0px)
+        - env(safe-area-inset-bottom, 0px)
+        - var(--play-brand-band)
+        - var(--game-stats-tray-band)
+        - var(--play-layout-stack-pad)
+        - var(--rack-band)
+      ) * 15 / var(--board-aspect-rows, 19)
+    )
+  );
+  --play-width: var(--play-column);
+}
+
+html.globble-wide-touch.globble-fold-sidebar .play-layout > .play-brand {
+  flex: 0 0 100%;
+  width: 100%;
+  max-width: 100%;
+}
+
+html.globble-wide-touch.globble-fold-sidebar .play-layout > .play-focus {
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: calc(100% - var(--fold-sidebar-w) - var(--play-gap));
+}
+
+html.globble-wide-touch.globble-fold-sidebar .play-layout > .controls-rack {
+  flex: 0 0 var(--fold-sidebar-w);
+  width: var(--fold-sidebar-w);
+  max-width: var(--fold-sidebar-w);
+  margin-inline: 0;
+  align-self: stretch;
+  flex-direction: column;
+}
+
+html.globble-wide-touch.globble-fold-sidebar .controls-rack .score-strip {
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto auto;
+}
+
+html.globble-wide-touch.globble-fold-sidebar .controls-rack .game-action-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+html.globble-wide-touch.globble-fold-sidebar .controls-rack .game-action-rail button {
+  width: 100%;
+  min-height: 1.65rem;
+  height: auto;
+  font-size: 0.62rem;
+  line-height: 1.15;
+  white-space: normal;
 }

@@ -54,9 +54,39 @@
     return fullName;
   }
 
+  function wikipediaCandidatesForCountryIso2(meta) {
+    if (!meta?.abbreviationFor) {
+      return [];
+    }
+    const targetMeta = getMetaForWord(meta.abbreviationFor);
+    if (targetMeta?.wikipediaUrl) {
+      const label =
+        targetMeta.wikipediaCandidates?.[0]?.label &&
+        !/^wikipedia$/i.test(targetMeta.wikipediaCandidates[0].label)
+          ? targetMeta.wikipediaCandidates[0].label
+          : formatCountryValue(targetMeta.country) || formatStateFullName(meta.abbreviationFor);
+      return [
+        {
+          label,
+          url: targetMeta.wikipediaUrl,
+          kind: "country"
+        }
+      ];
+    }
+    const countryName = formatCountryValue(meta.country) || formatStateFullName(meta.abbreviationFor);
+    const url = wikipediaUrlForTitle(countryName);
+    if (!url) {
+      return [];
+    }
+    return [{ label: countryName, url, kind: "country" }];
+  }
+
   function wikipediaCandidatesForStateAbbreviation(meta) {
     if (!meta?.abbreviationFor) {
       return [];
+    }
+    if (meta.countryIso2) {
+      return wikipediaCandidatesForCountryIso2(meta);
     }
     const fullName = formatStateFullName(meta.abbreviationFor);
     const code = meta.stateCode || "";
@@ -99,6 +129,9 @@
   function getPlaceKind(meta) {
     if (!meta) {
       return null;
+    }
+    if (meta.kind === "abbreviation" && meta.countryIso2) {
+      return "country";
     }
     if (meta.kind === "abbreviation" && meta.abbreviationFor) {
       return "state";
@@ -397,6 +430,11 @@
     if (meta?.kind === "state") {
       const pop = formatPopulationValue(meta.population);
       return `${display} — United States (state) · ${pop}`;
+    }
+    if (meta?.kind === "abbreviation" && meta.countryIso2) {
+      const pop = formatPopulationValue(meta.population);
+      const code = String(meta.iso || word || "").toUpperCase();
+      return `${code} — ${display} (country) · ${pop}`;
     }
     if (meta?.kind === "abbreviation" && meta.abbreviationFor) {
       const pop = formatPopulationValue(meta.population);

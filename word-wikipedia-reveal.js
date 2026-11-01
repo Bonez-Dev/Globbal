@@ -241,6 +241,11 @@
       pushQuery(meta.country || label);
       pushQuery(label);
       pushQuery(rawWord);
+    } else if (meta.kind === "abbreviation" && meta.countryIso2) {
+      pushQuery(meta.country || label);
+      pushQuery(meta.abbreviationFor);
+      pushQuery(label);
+      pushQuery(rawWord);
     } else if (meta.kind === "abbreviation" && meta.abbreviationFor) {
       pushQuery(label);
       pushQuery(meta.abbreviationFor);

@@ -92,6 +92,7 @@ function sendStaticFile(req, res, file, ext) {
         liveJs === "landing-music.js" ||
         liveJs === "bonus-ambient-guard.js" ||
         liveJs === "board-zoom.js" ||
+        liveJs === "fold-detect.js" ||
         liveJs === "styles.css" ||
         liveJs === "styles-splash.css" ||
         liveJs === "styles-mobile.css" ||

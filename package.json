@@ -13,6 +13,7 @@
     "add:territories": "node scripts/add-territories-to-dictionary.cjs",
     "apply:country-aliases": "node scripts/apply-country-aliases.cjs",
     "add:abbreviations": "node scripts/add-abbreviations-to-dictionary.cjs",
+    "add:country-iso2": "node scripts/add-country-iso2-abbreviations.cjs",
     "add:states": "node scripts/add-us-states-to-dictionary.cjs",
     "add:uk-ireland-counties": "node scripts/add-uk-ireland-counties-to-dictionary.cjs",
     "add:rivers": "node scripts/add-rivers-to-dictionary.cjs",
